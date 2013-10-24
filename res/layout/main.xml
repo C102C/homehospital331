@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:scrollbars="none" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/topbg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbarSize="10dp"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="150dp"
+            android:text="@string/myhealth_Welcome"
+            android:textColor="#fffdfdfd"
+            android:textSize="24px" />
+
+        <TextView
+            android:id="@+id/main_spinnertext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinnerground"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:textColor="#fffdfdfd"
+            android:textSize="24px" />
+
+        <Spinner
+            android:id="@+id/main_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/main_spinner" />
+
+        <cn.younext.DigitalClock
+            android:id="@+id/digitalclock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:textColor="#fffdfdfd"
+            android:textSize="24px" />
+
+        <cn.younext.BatteryView
+            android:id="@+id/batteryview"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/dianliang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#fffdfdfd"
+            android:textSize="24px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="375dp"
+        android:background="@drawable/background"
+        android:orientation="vertical"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="5px"
+            android:layout_marginLeft="5px"
+            android:layout_marginRight="5px"
+            android:layout_marginTop="5px"
+            android:background="@drawable/centerbg"
+            android:orientation="vertical"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="180dp"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="267dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center" >
+
+                    <Button
+                        android:id="@+id/main_myhealthid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/main_myhealthxml" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="267dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center" >
+
+                    <Button
+                        android:id="@+id/main_testid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/main_testxml" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center" >
+
+                    <Button
+                        android:id="@+id/main_teleferenceid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/main_teleferencexml" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="195dp"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="267dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center" >
+
+                    <Button
+                        android:id="@+id/main_calendarid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/main_calendarxml" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="267dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center" >
+
+                    <Button
+                        android:id="@+id/main_healthinformationid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/main_healthinformationxml" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center" >
+
+                    <Button
+                        android:id="@+id/main_healthknowledgeid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/main_healthknowledgexml" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/bottombg"
+        android:orientation="horizontal"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/main_fresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:background="@drawable/main_freshbtn"
+                android:gravity="right" >
+            </Button>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
