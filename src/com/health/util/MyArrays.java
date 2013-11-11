@@ -7,6 +7,9 @@ import android.util.Log;
 public class MyArrays<T> {
 	private static final String TAG = "MyArrays";
 
+	private MyArrays() {// 工具类，外部不能实例化
+	}
+
 	/**
 	 * 将data的[start,end)左闭右区间开部分复制返回
 	 * 
@@ -34,7 +37,8 @@ public class MyArrays<T> {
 	 * @return
 	 */
 	public static byte[] copyOfRange(byte[] data, int start, int end) {
-//		Log.i(TAG, "start:" + start + ", end:" + end);
+		// Log.i(TAG, "start:" + start + ", end:" +
+		// end);
 		byte[] buffer = new byte[end - start];
 		for (int i = start; i < end; i++) {
 			buffer[i - start] = data[i];

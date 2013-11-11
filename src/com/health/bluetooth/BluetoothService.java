@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-import com.health.pc300.PC300;
+import com.health.device.PC300;
 
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
@@ -44,23 +44,43 @@ public class BluetoothService {
 	public static final int STATE_CONNECTING = 2; // 正在连接
 	public static final int STATE_CONNECTED = 3; // 已经建立蓝牙连
 
+	public static final int MESSAGE_DEVICE = 0;// 传递蓝牙设备名称和地址
 	public static final int MESSAGE_STATE_CHANGE = 1;// 适配器状态改变信号
 	public static final int MESSAGE_READ = 2;// 读入数据信号
 	public static final int MESSAGE_WRITE = 3;// 写入数据信号
 	public static final int MESSAGE_TOAST = 4;// 显示给用户的提示的信号
 
 	public static final String TOAST = "toast";// handler传递过去的关键字
+	public static final String DEVICE_NAME = "device_name";
+	public static final String DEVICE_ADDRESS = "device_address";
+
+	private static boolean isAsyn = true;// 异步方式传递数据
+	private static BluetoothService lastInstance = null;
 
 	// 调试信息
 	private static final String TAG = "BluetoothService";
 	private static final boolean DEBUG = true;
 
-	public BluetoothService(Handler handler) {
+	private BluetoothService(Handler handler, boolean isAsyn) {
 		this.btAdapter = BluetoothAdapter.getDefaultAdapter();
 		if (btAdapter.getState() == BluetoothAdapter.STATE_OFF)
 			btAdapter.enable();// 打开蓝牙
 		this.handler = handler;
+		BluetoothService.isAsyn = isAsyn;
 		this.state = STATE_NONE;
+	}
+
+	public static BluetoothService getService(Handler handler, boolean isAsyn) {
+		if (lastInstance != null) {
+			if (lastInstance.handler == handler)
+				return lastInstance;// 返回之前建立的实例
+			else
+				lastInstance.stop();// handler不同表示要连接不同的设备，需要把上次连接断掉
+			Log.i(TAG, "Stop lastInstance:" + lastInstance.handler.getClass());
+		}
+		Log.i(TAG, "新建 BluetoothService:" + handler.getClass());
+		lastInstance = new BluetoothService(handler, isAsyn);
+		return lastInstance;
 	}
 
 	/**
@@ -69,7 +89,7 @@ public class BluetoothService {
 	 * @param name
 	 * @return
 	 */
-	public BluetoothDevice getBluetoothDevice(String name) {
+	public BluetoothDevice getBondedDeviceByName(String name) {
 		Set<BluetoothDevice> pairedDevices = btAdapter.getBondedDevices();
 		for (BluetoothDevice d : pairedDevices) {
 			String n = d.getName();
@@ -79,8 +99,26 @@ public class BluetoothService {
 		}
 		return null;
 	}
+
+	/**
+	 * 根据设备地址找已经绑定的蓝牙
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public BluetoothDevice getBondedDeviceByAddress(String address) {
+		Set<BluetoothDevice> pairedDevices = btAdapter.getBondedDevices();
+		for (BluetoothDevice d : pairedDevices) {
+			if (d.getAddress().equals(address)) {
+				return d;
+			}
+		}
+		return null;
+	}
+
 	/**
 	 * 根据地址名，获取设备
+	 * 
 	 * @param address
 	 * @return
 	 */
@@ -115,7 +153,12 @@ public class BluetoothService {
 		return this.state;
 	}
 
-	public void connect(BluetoothDevice device) {
+	/**
+	 * 连接蓝牙设备
+	 * 
+	 * @param device
+	 */
+	public synchronized void connect(BluetoothDevice device) {
 		if (DEBUG)
 			Log.i(TAG, "connect to: " + device);
 		if (state == STATE_CONNECTING) {// 取消正在建立的连接
@@ -126,6 +169,7 @@ public class BluetoothService {
 		}
 		if (state == STATE_CONNECTED) {// 断开已经建立好连接
 			if (connectedThread != null) {
+				connectedThread.shutdown();// 先关闭流
 				connectedThread.cancel();
 				connectedThread = null;
 			}
@@ -164,12 +208,19 @@ public class BluetoothService {
 		}
 		if (state == STATE_CONNECTED) {// 断开已经建立好连接
 			if (connectedThread != null) {
+				connectedThread.shutdown();
 				connectedThread.cancel();
 				connectedThread = null;
 			}
 		}
 		connectedThread = new ConnectedThread(socket);
 		connectedThread.start();// 开启管理蓝牙通道的线程
+		Message msg = handler.obtainMessage(MESSAGE_DEVICE);
+		Bundle bundle = new Bundle();
+		bundle.putString(DEVICE_NAME, device.getName());
+		bundle.putString(DEVICE_ADDRESS, device.getAddress());
+		msg.setData(bundle);
+		handler.sendMessage(msg);
 		setState(STATE_CONNECTED);// 更新状态
 	}
 
@@ -207,6 +258,10 @@ public class BluetoothService {
 		bundle.putString(TOAST, "设备连接断开");
 		msg.setData(bundle);
 		handler.sendMessage(msg);
+		if (connectedThread != null) {
+			connectedThread.cancel();
+			connectedThread = null;
+		}
 		setState(STATE_NONE);
 	}
 
@@ -289,10 +344,6 @@ public class BluetoothService {
 					return;// 没有连接成功，返回
 				}
 			} catch (Exception bondException) {// 绑定异常
-				// IllegalArgumentException|SecurityException
-				// | IllegalAccessException |
-				// InvocationTargetException
-				// | NoSuchMethodException
 				Log.e(TAG, "createBond error", bondException);
 				return;// 没有连接成功，返回
 			}
@@ -323,7 +374,6 @@ public class BluetoothService {
 		private BluetoothSocket socket;
 		private InputStream inStream = null;
 		private OutputStream outStream = null;
-
 		private boolean stop = false;
 
 		public ConnectedThread(BluetoothSocket socket) {
@@ -339,26 +389,47 @@ public class BluetoothService {
 
 		@Override
 		public void run() {
-			while (stop == false) {
-				try {
-					if (inStream.available() > 0) {
-						byte[] buffer = new byte[256];
-						int bytes;
-						bytes = inStream.read(buffer);
-						byte[] contend = new byte[bytes];// 只传递有效数据内容
-						for (int i = 0; i < bytes; i++) {
-							contend[i] = buffer[i];
-						}
-						handler.obtainMessage(MESSAGE_READ, bytes, -1, contend)
-								.sendToTarget();// 传递给界面更新数据
+			while (!stop & isAsyn) {// 异步方式下，不停的读数据
+				read();
+			}
+			while (!stop && !isAsyn) {
+				synchronized (this) {
+					try {
+						wait();// 先睡觉,等写了数据叫我起来哈
+						read();
+					} catch (InterruptedException e) {
+						Log.e(TAG, "wait() Interrupted", e);
 					}
-					TimeUnit.MILLISECONDS.sleep(100);
-				} catch (IOException e) {// 读数据异常
-					Log.e(TAG, "Can't read from socket", e);
-					connectionLost();// 连接断开
-				} catch (InterruptedException e) {
-					Log.e(TAG, "sleep interrupted", e);
 				}
+			}
+
+		}
+
+		/**
+		 * 读取数据
+		 */
+		private void read() {
+			try {
+				int tryTime = 2;
+				while (!stop && inStream.available() <= 0 && (tryTime--) >= 0)
+					TimeUnit.MILLISECONDS.sleep(50);
+				if (stop || tryTime < 0)// 睡一觉起来，蓝牙通道都管了，还读啥呀,回去!
+					return;
+				byte[] buffer = new byte[256];
+				int bytes;
+				bytes = inStream.read(buffer);
+				byte[] contend = new byte[bytes];// 只传递有效数据内容
+				for (int i = 0; i < bytes; i++) {
+					contend[i] = buffer[i];
+				}
+				handler.obtainMessage(MESSAGE_READ, bytes, -1, contend)
+						.sendToTarget();// 传递给界面更新数据
+
+			} catch (IOException e) {// 读数据异常
+				Log.e(TAG, "Can't read from socket", e);
+				connectionLost();// 连接断开
+			} catch (InterruptedException e) {
+				Log.e(TAG, "sleep interrupted", e);
 			}
 		}
 
@@ -367,12 +438,15 @@ public class BluetoothService {
 		 * 
 		 * @param buffer
 		 */
-		public void write(byte[] buffer) {
+		public synchronized void write(byte[] buffer) {
 			try {
 				outStream.write(buffer);
 				outStream.flush();
 				handler.obtainMessage(MESSAGE_WRITE, -1, -1, buffer)
 						.sendToTarget();// 传递状态
+				if (!isAsyn) {// 同步方式下，写完数据后马上唤醒读
+					notify();
+				}
 			} catch (IOException e) {
 				connectionLost();
 				Log.e(TAG, "write error", e);

@@ -25,13 +25,17 @@
             android:process=":remote" />
 
         <activity
-            android:name=".main"
+            android:name="com.health.Login"
             android:theme="@style/theme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.health.MainUi"
+            android:theme="@style/theme" >
         </activity>
         <activity
             android:name=".AlarmAlert"
@@ -104,7 +108,7 @@
             android:label="心电测量" >
         </activity>
         <activity
-            android:name=".test_xuetang"
+            android:name="com.health.measurement.MeasureGlucose"
             android:label="血糖仪" >
         </activity>
         <activity
@@ -120,7 +124,7 @@
             android:label="血氧测量" >
         </activity>
         <activity
-            android:name=".test_taixin"
+            android:name="com.health.measurement.MeasureUrine"
             android:label="胎心测量" >
         </activity>
         <activity

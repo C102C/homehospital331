@@ -17,7 +17,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:gravity="center_vertical"
-            android:text="未连接" />
+            android:text="@string/unconnect" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -141,6 +141,7 @@
                     android:layout_width="150sp"
                     android:layout_height="70sp"
                     android:editable="false"
+                    android:clickable="false" 
                     android:textColor="#ff444444"
                     android:textSize="20dp" />
 

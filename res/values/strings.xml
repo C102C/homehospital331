@@ -33,7 +33,9 @@
     <string name="dia">舒张压</string>
     <string name="pulse">脉率</string>
     <string name="start_measurement">开始测量</string>
-     <string name="find_device">查找设备</string>
+    <string name="find_device">查找设备</string>
+    <string name="connecting">正在连接</string>
+    <string name="unconnect">未连接</string>
     <string name="BluetoothAdapterNotFound">Bluetooth Adapter Not Found.Bluetooth Not Supported</string>
     <string name="UnableToStartServiceDiscovery">Bluetooth is not started，please open</string>
     <string name="CreateSocketFailed">Create Socket Failed</string>

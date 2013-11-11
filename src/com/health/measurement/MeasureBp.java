@@ -13,6 +13,7 @@ import org.achartengine.renderer.XYSeriesRenderer;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -22,8 +23,8 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -33,8 +34,9 @@ import cn.younext.R;
 
 import com.health.bluetooth.BluetoothListActivity;
 import com.health.bluetooth.BluetoothService;
-import com.health.pc300.PC300;
-import com.health.pc300.PC300.PersistWriter;
+import com.health.device.HealthDevice;
+import com.health.device.PC300;
+import com.health.util.MiniDataBase;
 
 /**
  * 测量血压
@@ -42,24 +44,27 @@ import com.health.pc300.PC300.PersistWriter;
  */
 public class MeasureBp extends Activity {
 
-	EditText HighBpEditText = null;// 高压文本框
-	EditText lowBpEditText = null;// 低压文本框
-	EditText pulseEditText = null;// 脉率
-	EditText boEditText = null;// 血氧
-	Button measureButton = null;// 测试测量血压按钮
+	static EditText HighBpEditText = null;// 高压文本框
+	static EditText lowBpEditText = null;// 低压文本框
+	static EditText pulseEditText = null;// 脉率
+	static EditText boEditText = null;// 血氧
+	static Button measureButton = null;// 测试测量血压按钮
 	Button findButton = null;// 查找设备按钮
-	TextView statusView = null;// 蓝牙连接状态
+	static TextView statusView = null;// 蓝牙连接状态
 
 	private static final boolean DEBUG = true;
 	private static final String TAG = "MeasureBp";
 	private BluetoothService bluetoothService = null;
+	private static PC300Handler handler = null;
 
-	private final static String NAME = "PC_300SNT";
+	private static String btName = "PC_300SNT";// 蓝牙名称
+	private static Context context;
+	private static MiniDataBase miniDb;// 保存数据工具
 
-	private boolean stop = false;
+	private static boolean stop = false;
 	private LinearLayout graphLayout;// 装血氧图的布局
-	private GraphicalView boWaveView;// 血氧图
-	XYSeries xSeries = new XYSeries("血氧");
+	private static GraphicalView boWaveView;// 血氧图
+	static XYSeries xSeries = new XYSeries("血氧");
 	XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
 	private static float boWaveIndex = 0;
 	private static int maxBo = 0;
@@ -71,6 +76,8 @@ public class MeasureBp extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.measure_bp);
 
+		context = this;
+		miniDb = new MiniDataBase(context);
 		HighBpEditText = (EditText) findViewById(R.id.hp);
 		lowBpEditText = (EditText) findViewById(R.id.lp);
 		pulseEditText = (EditText) findViewById(R.id.mb);
@@ -78,7 +85,9 @@ public class MeasureBp extends Activity {
 		measureButton = (Button) findViewById(R.id.getdata);
 		findButton = (Button) findViewById(R.id.find_device);
 		statusView = (TextView) findViewById(R.id.connect_status);
-		bluetoothService = new BluetoothService(handler);
+		if (handler == null)
+			handler = new PC300Handler();
+		bluetoothService = BluetoothService.getService(handler, true);// 异步方式
 		measureButton.setVisibility(View.GONE);// 开始设置不可见
 		graphLayout = (LinearLayout) this.findViewById(R.id.bo_image_view);
 		graphLayout.addView(lineView());
@@ -98,7 +107,29 @@ public class MeasureBp extends Activity {
 			}
 
 		});
+		setConnectState();
 
+	}
+
+	/**
+	 * 设置连接状态的显示
+	 */
+	private void setConnectState() {
+		if (bluetoothService == null) {
+			statusView.setText(R.string.unconnect);
+			return;
+		}
+		switch (bluetoothService.getState()) {
+		case BluetoothService.STATE_CONNECTING:
+			statusView.setText(R.string.connecting);
+			break;
+		case BluetoothService.STATE_CONNECTED:
+			statusView.setText(btName);
+			break;
+		case BluetoothService.STATE_NONE:
+			statusView.setText(R.string.unconnect);
+			break;
+		}
 	}
 
 	/**
@@ -131,17 +162,33 @@ public class MeasureBp extends Activity {
 	 * 连接到PC300设备
 	 */
 	private void connectPC300() {
-		BluetoothDevice device = bluetoothService.getBluetoothDevice(NAME);
-		if (device != null) {
-			bluetoothService.connect(device);
-			PersistWriter persistWriter = new PC300.PersistWriter(
-					bluetoothService);
-			if (!persistWriter.isAlive())
+		if (bluetoothService.getState() != BluetoothService.STATE_CONNECTED) {
+
+			String address = miniDb.getDeviceAddress(MiniDataBase.BENECHECK);
+			BluetoothDevice device = bluetoothService
+					.getBondedDeviceByAddress(address);
+			if (device != null) {
+				bluetoothService.connect(device);
+				HealthDevice.PersistWriter persistWriter = new HealthDevice.PersistWriter(
+						bluetoothService, PC300.COMMAND_BETTERY, 3000);
 				persistWriter.start();// 持续握手
-		} else {
-			Toast.makeText(getApplicationContext(), "无已经绑定的PC300设备，试试查找设备...",
-					Toast.LENGTH_LONG).show();// 没有配对过得设备，启动查找
+			} else {
+				Toast.makeText(context, "无已经绑定的PC300设备，试试查找设备...",
+						Toast.LENGTH_LONG).show();// 没有配对过得设备，启动查找
+			}
 		}
+	}
+	/**
+	 * 连接搜索到的PC300设备
+	 * @param address
+	 */
+	private void connectPC300(String address) {
+		BluetoothDevice device = bluetoothService
+				.getRemoteDeviceByAddress(address);
+		bluetoothService.connect(device);
+		HealthDevice.PersistWriter persistWriter = new HealthDevice.PersistWriter(
+				bluetoothService, PC300.COMMAND_BETTERY, 3000);
+		persistWriter.start();// 持续握手
 	}
 
 	/**
@@ -164,32 +211,30 @@ public class MeasureBp extends Activity {
 			if (resultCode == Activity.RESULT_OK) {
 				String address = data.getExtras().getString(
 						BluetoothListActivity.EXTRA_DEVICE_ADDRESS);
-				BluetoothDevice device = bluetoothService
-						.getRemoteDeviceByAddress(address);
-				bluetoothService.connect(device);
+				connectPC300(address);
 			}
 			break;
 		}
 	}
 
-	private final Handler handler = new Handler() {
+	private static class PC300Handler extends Handler {
 		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case BluetoothService.MESSAGE_STATE_CHANGE:
 				switch (msg.arg1) {
 				case BluetoothService.STATE_CONNECTED:
-					statusView.setText(NAME);
-					Toast.makeText(getApplicationContext(), "已连接到" + NAME,
-							Toast.LENGTH_LONG).show();
+					statusView.setText(btName);
+					Toast.makeText(context, "已连接到" + btName, Toast.LENGTH_LONG)
+							.show();
 					measureButton.setVisibility(View.VISIBLE);// 设置测量按钮可见
 					break;
 				case BluetoothService.STATE_CONNECTING:
-					statusView.setText("正在连接...");
+					statusView.setText(R.string.connecting);
 					measureButton.setVisibility(View.GONE);
 					break;
 				case BluetoothService.STATE_NONE:
-					statusView.setText("未连接");
+					statusView.setText(R.string.unconnect);
 					measureButton.setVisibility(View.GONE);
 					break;
 				}
@@ -198,7 +243,7 @@ public class MeasureBp extends Activity {
 			case BluetoothService.MESSAGE_WRITE:
 				byte[] writeBuf = (byte[]) msg.obj;
 				new String(writeBuf);
-				// Toast.makeText(getApplicationContext(),
+				// Toast.makeText(context,
 				// writeMessage,
 				// Toast.LENGTH_LONG).show();
 				break;
@@ -213,11 +258,18 @@ public class MeasureBp extends Activity {
 				}
 				break;
 			case BluetoothService.MESSAGE_TOAST:
-				Toast.makeText(getApplicationContext(),
+				Toast.makeText(context,
 						msg.getData().getString(BluetoothService.TOAST),
 						Toast.LENGTH_SHORT).show();
 				break;
+			case BluetoothService.MESSAGE_DEVICE:
+				btName = msg.getData().getString(BluetoothService.DEVICE_NAME);
+				String address = msg.getData().getString(
+						BluetoothService.DEVICE_ADDRESS);
+				miniDb.saveDeviceAddress(MiniDataBase.BENECHECK, address);// 保存地址,以便下次自带连接
+				break;
 			}
+
 		}
 	};
 
@@ -228,7 +280,7 @@ public class MeasureBp extends Activity {
 	 * @param buffer
 	 * 
 	 */
-	public void processReadData(byte[] buffer) {
+	public static void processReadData(byte[] buffer) {
 		PC300 pc300 = new PC300();
 		SparseArray<List<byte[]>> map = pc300
 				.getLegalPatternsFromBuffer(buffer);
@@ -266,7 +318,7 @@ public class MeasureBp extends Activity {
 	 * 
 	 * @param data
 	 */
-	private void updateWaveImage(int[] data) {
+	private static void updateWaveImage(int[] data) {
 		// Log.i(TAG + ".updateWaveImage",
 		// Arrays.toString(data));
 		for (int each : data) {
@@ -288,7 +340,7 @@ public class MeasureBp extends Activity {
 	 * 
 	 * @param bpResult
 	 */
-	private void processBpResult(int[] bpResult) {
+	private static void processBpResult(int[] bpResult) {
 		if (bpResult[0] == PC300.ERROR_RESULT) {// 测量结果有误
 			Log.i(TAG, "ERROR_RESULT:" + bpResult[1]);
 			String text = new String();
@@ -305,12 +357,10 @@ public class MeasureBp extends Activity {
 			default:
 				text = "未知错误";
 			}
-			Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG)
-					.show();
+			Toast.makeText(context, text, Toast.LENGTH_LONG).show();
 		} else {
 			String pulseTag = bpResult[0] == 1 ? "心率不齐" : "心率正常";
-			Toast.makeText(getApplicationContext(), pulseTag, Toast.LENGTH_LONG)
-					.show();
+			Toast.makeText(context, pulseTag, Toast.LENGTH_LONG).show();
 			HighBpEditText.setText(Integer.valueOf(bpResult[1]).toString());
 			lowBpEditText.setText(Integer.valueOf(bpResult[2]).toString());
 			pulseEditText.setText(Integer.valueOf(bpResult[3]).toString());
@@ -367,7 +417,8 @@ public class MeasureBp extends Activity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			bluetoothService.stop();// 退出activity后关闭蓝牙连接
+			// bluetoothService.stop();//
+			// 退出activity后关闭蓝牙连接
 			this.finish();
 		}
 		return super.onKeyDown(keyCode, event);

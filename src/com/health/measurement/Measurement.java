@@ -3,27 +3,17 @@ package com.health.measurement;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import cn.younext.BatteryView;
 import cn.younext.R;
 import cn.younext.test_handinput;
-import cn.younext.test_taixin;
 import cn.younext.test_tizhong;
 import cn.younext.test_xindian;
-import cn.younext.test_xuetang;
 import cn.younext.test_xueyang;
 import cn.younext.test_zhifang;
-import cn.younext.R.id;
-import cn.younext.R.layout;
-import cn.younext.R.string;
-
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,13 +22,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DigitalClock;
-import android.widget.GridView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class Measurement extends Activity{
 	Button homeBtn;
@@ -125,7 +111,7 @@ public class Measurement extends Activity{
     			startActivityForResult(i,1);
     		}
     		else if(v==xuetang){  
-    			i.setClass(Measurement.this, test_xuetang.class);
+    			i.setClass(Measurement.this, MeasureGlucose.class);
     			i.putExtra("userid", userid);
 			    i.putExtra("username", username);
     			startActivityForResult(i,1);
@@ -139,7 +125,7 @@ public class Measurement extends Activity{
     		}
     		
     		else if(v==taixin){  
-    			i.setClass(Measurement.this, test_taixin.class);
+    			i.setClass(Measurement.this, MeasureUrine.class);
     			i.putExtra("userid", userid);
 			    i.putExtra("username", username);
     			startActivityForResult(i,1);

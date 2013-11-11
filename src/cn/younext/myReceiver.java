@@ -1,5 +1,7 @@
 package cn.younext;
 
+import com.health.MainUi;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -19,7 +21,7 @@ public class myReceiver extends BroadcastReceiver{
         //start service   
 		Log.d("BootReceiver", "system boot completed");    
 	       if(intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)){
-	            Intent bootActivityIntent=new Intent(context,main.class);
+	            Intent bootActivityIntent=new Intent(context,MainUi.class);
 	            bootActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	            context.startActivity(bootActivityIntent);
 	       }
