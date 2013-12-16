@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/background"
     android:orientation="vertical" >
 
     <RelativeLayout
+        android:id="@+id/topbar"
         android:layout_width="fill_parent"
         android:layout_height="55dp"
+        android:layout_alignParentTop="true"
         android:background="@drawable/topbg" >
 
         <TextView
@@ -39,132 +41,174 @@
                 android:paddingLeft="300dp"
                 android:textColor="#fffdfdfd"
                 android:textSize="24px" />
-
-            <cn.younext.DigitalClock
-                android:id="@+id/test_xuetang_clock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingLeft="20dp"
-                android:textColor="#fffdfdfd"
-                android:textSize="24px" />
-
-            <cn.younext.BatteryView
-                android:id="@+id/batteryview"
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:gravity="center" />
         </LinearLayout>
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="375dp"
-        android:orientation="horizontal" >
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/bottombar"
+        android:layout_below="@+id/topbar"
+        android:background="@drawable/centerbg"
+        android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_margin="5px"
-            android:background="@drawable/centerbg"
             android:orientation="horizontal" >
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:background="@drawable/myhealth_healthreport_leftbackground"
-                android:gravity="center_horizontal"
+                android:layout_margin="5dp"
+                android:background="@drawable/cont_bg03"
                 android:orientation="vertical" >
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
-                    android:src="@drawable/test_xuetang_little" />
-
                 <LinearLayout
-                    android:layout_width="fill_parent"
+                    android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="20dp" >
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="100dp"
+                    android:background="@drawable/cont_bg03"
+                    android:orientation="vertical"
+                    android:padding="5dp" >
 
-                    <ImageView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingTop="5dp"
-                        android:src="@drawable/test_greenpoint" />
+                        android:orientation="horizontal" >
 
-                    <TextView
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/myhealth_test_xuetang_buzou1"
-                        android:textColor="#ff444444"
-                        android:textSize="18px" />
-                </LinearLayout>
+                        <ImageView
+                            android:id="@+id/glu_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/light_blue" />
 
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="20dp" >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="血糖"
+                            android:textColor="@color/duckgrey"
+                            android:textSize="20dp" />
 
-                    <ImageView
+                        <EditText
+                            android:id="@+id/gluse_value_et"
+                            android:layout_width="80dp"
+                            android:layout_height="60sp"
+                            android:layout_marginLeft="42dp"
+                            android:clickable="false"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:textColor="@color/datacolor"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="mol/L"
+                            android:textColor="@color/duckgrey"
+                            android:textSize="20dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingTop="5dp"
-                        android:src="@drawable/test_greenpoint" />
+                        android:orientation="horizontal" >
 
-                    <TextView
-                        android:layout_width="120dp"
+                        <ImageView
+                            android:id="@+id/ua_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/light_blue" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="尿酸"
+                            android:textColor="@color/duckgrey"
+                            android:textSize="20dp" />
+
+                        <EditText
+                            android:id="@+id/ua_value_et"
+                            android:layout_width="80dp"
+                            android:layout_height="60sp"
+                            android:layout_marginLeft="42dp"
+                            android:clickable="false"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:textColor="@color/datacolor"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="mol/L"
+                            android:textColor="@color/duckgrey"
+                            android:textSize="20dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/myhealth_test_xuetang_buzou2"
-                        android:textColor="#ff444444"
-                        android:textSize="18px" />
-                </LinearLayout>
+                        android:orientation="horizontal" >
 
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="20dp" >
+                        <ImageView
+                            android:id="@+id/chol_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/light_blue" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingTop="5dp"
-                        android:src="@drawable/test_greenpoint" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="总胆固醇"
+                            android:textColor="@color/duckgrey"
+                            android:textSize="20dp" />
 
-                    <TextView
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/myhealth_test_xuetang_buzou3"
-                        android:textColor="#ff444444"
-                        android:textSize="18px" />
+                        <EditText
+                            android:id="@+id/chol_value_et"
+                            android:layout_width="80dp"
+                            android:layout_height="60sp"
+                            android:clickable="false"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:textColor="@color/datacolor"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="mol/L"
+                            android:textColor="@color/duckgrey"
+                            android:textSize="20dp" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="5px"
+                android:layout_margin="5dp"
                 android:background="@drawable/cont_bg03"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:padding="15dp" >
 
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
                     android:orientation="horizontal" >
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="5dp"
                         android:src="@drawable/test_xuetang_pic1" />
 
                     <ImageView
@@ -172,127 +216,66 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="10dp"
                         android:src="@drawable/test_xuetang_pic2" />
-
-                    <RelativeLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="200dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/cont_bg03" >
-
-                        <!--
-                        <Button
-                            android:id="@+id/test_xuetang_nextBtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:background="@drawable/test_nextbtn" />
-                        -->
-
-                        <Button
-                            android:id="@+id/measure_glu"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:layout_centerHorizontal="true"
-                            android:text="测量血糖" />
-
-                        <Button
-                            android:id="@+id/measure_ua"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/measure_glu"
-                            android:layout_centerHorizontal="true"
-                            android:text="测量尿酸" />
-
-                        <Button
-                            android:id="@+id/measure_chol"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/measure_ua"
-                            android:layout_centerHorizontal="true"
-                            android:text="测量胆固醇" />
-
-                        <Button
-                            android:id="@+id/find_device"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:text="查找设备" />
-                    </RelativeLayout>
                 </LinearLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="25dp" >
+                    android:layout_margin="10dp"
+                    android:background="@drawable/cont_bg03" >
 
-                    <TextView
+                    <Button
+                        android:id="@+id/measure_getdata"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:text="@string/myhealth_test_xuetang_tishi"
-                        android:textColor="#ff444444"
-                        android:textSize="18px" />
-                </LinearLayout>
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:text="获取测量值" />
 
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:background="@drawable/cont_bg03"
-                    android:orientation="vertical"
-                    android:padding="5dp" >
-
-                    <EditText
-                        android:id="@+id/gluse_value_et"
-                        android:layout_width="fill_parent"
+                    <Button
+                        android:id="@+id/find_device"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="2dp"
-                        android:background="@drawable/test_edittextbg"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:text="mol/L"
-                        android:textColor="#ff444444"
-                        android:textSize="18sp" >
-                    </EditText>
-                </LinearLayout>
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/finddevice_button_bg" />
+                </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/bottombar"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@drawable/bottombg"
-        android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottombg" >
 
         <Button
-            android:id="@+id/test_xuetang_homeBtn"
+            android:id="@+id/to_home_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:background="@drawable/all_homebtn" >
         </Button>
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:gravity="center_vertical"
-            android:orientation="vertical" >
+        <Button
+            android:id="@+id/upload_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/upload"
+            android:enabled="false" >
+        </Button>
 
-            <Button
-                android:id="@+id/test_xuetang_returnBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:background="@drawable/all_returnbtn"
-                android:gravity="right" >
-            </Button>
-        </LinearLayout>
-    </LinearLayout>
+        <Button
+            android:id="@+id/return_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/all_returnbtn" >
+        </Button>
+    </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

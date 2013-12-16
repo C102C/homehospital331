@@ -36,11 +36,7 @@
               android:textSize="24px"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"/>
-              <cn.younext.BatteryView
-        android:id="@+id/batteryview"
-        android:gravity="center"
-        android:layout_width="40dp"
-        android:layout_height="20dp"/>   
+                 
                  
   </LinearLayout>
        

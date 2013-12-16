@@ -3,11 +3,6 @@
 	<classpathentry kind="src" path="SDK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
-	<classpathentry kind="lib" path="SDK/ksoap2-android-assembly-2.5.2-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="SDK/libbp.jar"/>
-	<classpathentry kind="lib" path="SDK/libdev.jar"/>
-	<classpathentry kind="lib" path="SDK/libecg.jar"/>
-	<classpathentry kind="lib" path="SDK/libfat.jar"/>
 	<classpathentry kind="lib" path="libs/achartengine-1.0.0.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>

@@ -38,15 +38,15 @@ public class PC300 {
 	public static final byte[] COMMAND_BP_STOP = { -86, 85, 64, 2, 2, -53 };// 开始测量血压命令
 	public static final byte[] COMMAND_BETTERY = { (byte) 0xaa, 0x55, 0x51,
 			0x02, 0x01, -56 };// 电池电量命令
-	public static final byte[] COMMAND_YEMP = { (byte) 0xaa, 0x55, 0x70, 0x03,
-			0x01, (byte) 0xD6 };
+	public static final byte[] COMMAND_TEMP_START = { (byte) 0xaa, 0x55, 0x70,
+			0x03, 0x01, (byte) 0x40, (byte) 0x1A };// 体温开始测量命令
 
 	public static final byte TOKEN_BP_CURRENT = 0x42;// 当前血压令牌
 	public static final byte TOKEN_BP_RESULT = 0x43;// 血压测量结果令牌
 	public static final byte TOKEN_BO_WAVE = 0x52;// 血氧波形图令牌
 	public static final byte TOKEN_POWER_OFF = (byte) 0xD0;// 测量仪关机令牌
 	public static final byte TOKEN_BO_PAKAGE = (byte) 0x53;// 上传参数数据包令牌
-	public static final byte TOKEN_TEMP = (byte) 0x73;// 上传体温令牌
+	public static final byte TOKEN_TEMP = (byte) 0x72;// 上传体温令牌
 
 	public static final int ERROR_RESULT = -1;// 测量结果错误
 	public static final int ILLEGAL_PULSE = 0;// 测量不到有效的脉搏
@@ -158,7 +158,7 @@ public class PC300 {
 	 * @return
 	 */
 	public int[] getBoWave(byte[] data) {
-		if (data[4] == 0x01) {
+		if (data[4] == 0x01 && data[4] == 0x02) {
 			int[] value = { data[5] & 0x7f, data[6] & 0x7f };
 			return value;
 		}
@@ -173,6 +173,17 @@ public class PC300 {
 	 */
 	public int getSpO2(byte[] data) {
 		return 0xff & data[5];
+	}
+
+	/**
+	 * 获取体温
+	 * 
+	 * @param bs
+	 * @return
+	 */
+	public Float getTemp(byte[] data) {
+		int fDegree = ((data[6] & 0xff) << 8) | (data[7] & 0xff);
+		return (float) (30.00 + (1.0 * fDegree / 100));
 	}
 
 	// -86, 85, 83, 7, 1, 98, 59, 0, 85, 0, -107,
@@ -236,8 +247,7 @@ public class PC300 {
 		testCrc.printDataWithCrc(COMMAND_BP_START, "COMMAND_BP_START");
 		testCrc.printDataWithCrc(COMMAND_BP_STOP, "COMMAND_BP_STOP");
 		testCrc.printDataWithCrc(COMMAND_BETTERY, "COMMAND_BETTERY");
-		testCrc.printDataWithCrc(COMMAND_YEMP, "COMMAND_YEMP");
+		testCrc.printDataWithCrc(COMMAND_TEMP_START, "COMMAND_YEMP");
 	}
 
-	
 }

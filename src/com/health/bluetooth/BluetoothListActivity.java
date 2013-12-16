@@ -19,9 +19,9 @@ package com.health.bluetooth;
 import java.util.HashSet;
 import java.util.Set;
 
-import cn.younext.R;
-
 import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -29,16 +29,17 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
+import cn.younext.R;
+
+import com.health.util.Constant;
 
 /**
  * This Activity appears as a dialog. It lists any paired devices and devices
@@ -50,42 +51,26 @@ public class BluetoothListActivity extends Activity {
 	// Debugging
 	private static final String TAG = "DeviceListActivity";
 	private static final boolean D = true;
-
-	// Return Intent extra
 	public static String EXTRA_DEVICE_ADDRESS = "device_address";
+	public static final int REQUEST_CONNECT_DEVICE = 111010;
+	public static final int REQUEST_ENABLE_BT = 111011;
 
 	// Member fields
 	private BluetoothAdapter mBtAdapter;
 	private ArrayAdapter<String> mPairedDevicesArrayAdapter;
 	private ArrayAdapter<String> mNewDevicesArrayAdapter;
 	private Set<String> mNewDevicesSet;
-
 	private Button scanButton;
-
-	public static final int REQUEST_CONNECT_DEVICE = 0;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public static final int REQUEST_ENABLE_BT = 1;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		// Setup the window
-		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);	
 		setContentView(R.layout.device_list);
 
 		// Set result CANCELED incase the user backs out
 		setResult(Activity.RESULT_CANCELED);
-
 		// Initialize the button to perform device discovery
 		scanButton = (Button) findViewById(R.id.button_scan);
 		scanButton.setOnClickListener(new OnClickListener() {
@@ -98,9 +83,9 @@ public class BluetoothListActivity extends Activity {
 		// Initialize array adapters. One for already paired devices and
 		// one for newly discovered devices
 		mPairedDevicesArrayAdapter = new ArrayAdapter<String>(this,
-				R.layout.device_name);
+				R.layout.list_item);
 		mNewDevicesArrayAdapter = new ArrayAdapter<String>(this,
-				R.layout.device_name);
+				R.layout.list_item);
 		mNewDevicesSet = new HashSet<String>();
 
 		// Find and set up the ListView for paired devices

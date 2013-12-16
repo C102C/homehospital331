@@ -66,11 +66,28 @@ public class GmpUa {
 	}
 
 	/**
+	 * 检查数据是否有存储数据
+	 * 
+	 * @param data
+	 * @return
+	 */
+	public static boolean checkNull(byte[] data) {
+		byte ones = (byte) 0xff;
+		for (int i = 6; i < 17; i++)
+			// [6,17]全一表示每次数据
+			if (data[i] != ones)
+				return true;
+		return false;
+	}
+
+	/**
 	 * 解析数据记录
 	 * 
 	 * @param data
 	 */
 	public static UaRecord parseRecord(byte[] data) {
+		if (!checkNull(data))
+			return null;
 		// 数据记录从第6（以0为起点）个字节开始[6,7]表示序列号
 		int effective = ((data[8] & 0x07) << 8) | (data[9] & 0xff);// [8,9]表示有效位
 		// [10,11]表示年、月、日
@@ -211,18 +228,9 @@ public class GmpUa {
 			private String vc = null;
 
 			public Builder(int year, int month, int day, int hour, int minute) {
-				StringBuilder sb = new StringBuilder();
-				sb.append("20");
-				sb.append(year);
-				sb.append(" ");
-				sb.append(month);
-				sb.append(" ");
-				sb.append(day);
-				sb.append(" ");
-				sb.append(hour);
-				sb.append(":");
-				sb.append(minute);
-				this.date = sb.toString();
+				this.date = String.format("%04d/%02d/%02d %02d:%02d:00",
+						2000 + year, month, day, hour, minute);
+
 			}
 
 			public UaRecord build() {

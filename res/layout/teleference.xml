@@ -1,245 +1,250 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
-  android:layout_width="fill_parent"
-  android:layout_height="wrap_content"
-  android:scrollbars="none"
-  android:background="@drawable/background">
-  <LinearLayout
-      android:orientation="horizontal"
-      android:layout_width="fill_parent"
-      android:gravity="center_vertical"
-      android:background="@drawable/topbg"
-      android:layout_height="55dp">
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textColor="#fffdfdfd"
-          android:textSize="24px"
-          android:text="@string/teleference_title"
-      />
-      <TextView
-          android:layout_height="wrap_content"
-          android:layout_width="wrap_content"
-          android:textColor="#fffdfdfd"
-          android:textSize="24px"
-          android:paddingLeft="300dp"
-          android:id="@+id/teleference_user"
-      />
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:scrollbars="none" >
 
-          <cn.younext.DigitalClock
-              android:id="@+id/teleference_digitalclock"
-              android:textColor="#fffdfdfd"
-              android:paddingLeft="20dp"
-              android:gravity="center"
-              android:textSize="24px"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"/>
-              <cn.younext.BatteryView
-        android:id="@+id/batteryview"
-        android:gravity="center"
-        android:layout_width="40dp"
-        android:layout_height="20dp"/>      
-  </LinearLayout> 
-   
- <LinearLayout
-  android:orientation="vertical"
-  android:layout_width="fill_parent"
-  android:layout_height="375dp"
-  android:scrollbars="none"
-  android:background="@drawable/background"
-  >    
-<LinearLayout
-  android:orientation="horizontal"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent"
-  android:layout_margin="5px"
-  android:background="@drawable/centerbg"
-  android:scrollbars="none">
-
-      <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:gravity="center_horizontal"
-            android:background="@drawable/myhealth_healthreport_leftbackground"
-            android:layout_height="fill_parent">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:src="@drawable/teleferencelittle"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="60dp"
-                android:textColor="#ff444444"
-                android:textSize="18px"
-                android:text="@string/teleference_isue"/> 
-        </LinearLayout>
-      <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" 
-        android:layout_marginLeft="5px"    
-        android:background="@drawable/teleference_rightbg"> 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:gravity="center_vertical"
-            android:layout_height="68dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:src="@drawable/teleference_headicon"
-        />
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textColor="#ff575555"
-            android:textSize="24px"
-            android:layout_marginLeft="50dp"
-            android:background="@drawable/teleference_personnametextbtn"
-            android:id="@+id/teleference_personBtn1"
-        />
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="170dp"
-            android:background="@drawable/teleference_dialbtnxml"
-            android:id="@+id/teleference_dialBtn1"
-        />  
-  </LinearLayout> 
-  <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:gravity="center_vertical"
-            android:layout_height="68dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:src="@drawable/teleference_headicon"
-        />
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textColor="#ff575555"
-            android:textSize="24px"
-            android:layout_marginLeft="50dp"
-            android:background="@drawable/teleference_personnametextbtn"
-            android:id="@+id/teleference_personBtn2"
-        />
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="170dp"
-            android:background="@drawable/teleference_dialbtnxml"
-            android:id="@+id/teleference_dialBtn2"
-        />  
-  </LinearLayout> 
-  <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:gravity="center_vertical"
-            android:layout_height="68dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:src="@drawable/teleference_headicon"
-        />
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textColor="#ff575555"
-            android:textSize="24px"
-            android:layout_marginLeft="50dp"
-            android:background="@drawable/teleference_personnametextbtn"
-            android:id="@+id/teleference_personBtn3"
-        />
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="170dp"
-            android:background="@drawable/teleference_dialbtnxml"
-            android:id="@+id/teleference_dialBtn3"
-        />  
-  </LinearLayout> 
-  <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:gravity="center_vertical"
-            android:layout_height="68dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:src="@drawable/teleference_headicon"
-        />
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textColor="#ff575555"
-            android:textSize="24px"
-            android:background="@drawable/teleference_personnametextbtn"
-            android:layout_marginLeft="50dp"
-            android:id="@+id/teleference_personBtn4"
-        />
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="170dp"
-            android:background="@drawable/teleference_dialbtnxml"
-            android:id="@+id/teleference_dialBtn4"
-        />  
-  </LinearLayout> 
-  <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:gravity="center_vertical"
-            android:layout_height="68dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:src="@drawable/teleference_headicon"
-        />
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textColor="#ff575555"
-            android:textSize="24px"
-            android:layout_marginLeft="50dp"
-            android:background="@drawable/teleference_personnametextbtn"
-            android:id="@+id/teleference_personBtn5"
-        />
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="170dp"
-            android:background="@drawable/teleference_dialbtnxml"
-            android:id="@+id/teleference_dialBtn5"
-        />  
-  </LinearLayout> 
-        
-        
-        
-        </LinearLayout>          
-    </LinearLayout>
-    </LinearLayout>
     <LinearLayout
-  android:orientation="horizontal"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent"
-  android:background="@drawable/bottombg"
-  android:gravity="center_vertical"
-  android:scrollbars="none">
-  <Button
-  android:layout_width="wrap_content"
-  android:layout_height="wrap_content"
-  android:background="@drawable/all_homebtn"
-  android:gravity="center"
-     android:id="@+id/teleference_homeBtn"/>    
-  </LinearLayout>  </LinearLayout>
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/topbg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/teleference_title"
+            android:textColor="#fffdfdfd"
+            android:textSize="24px" />
+
+        <TextView
+            android:id="@+id/teleference_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="300dp"
+            android:textColor="#fffdfdfd"
+            android:textSize="24px" />
+
+        <cn.younext.DigitalClock
+            android:id="@+id/teleference_digitalclock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:textColor="#fffdfdfd"
+            android:textSize="24px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="375dp"
+        android:background="@drawable/background"
+        android:orientation="vertical"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="5px"
+            android:background="@drawable/centerbg"
+            android:orientation="horizontal"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@drawable/myhealth_healthreport_leftbackground"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:src="@drawable/teleferencelittle" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="60dp"
+                    android:text="@string/teleference_isue"
+                    android:textColor="#ff444444"
+                    android:textSize="18px" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5px"
+                android:background="@drawable/teleference_rightbg"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="68dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:src="@drawable/teleference_headicon" />
+
+                    <Button
+                        android:id="@+id/teleference_personBtn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:background="@drawable/teleference_personnametextbtn"
+                        android:textColor="#ff575555"
+                        android:textSize="24px" />
+
+                    <Button
+                        android:id="@+id/teleference_dialBtn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="170dp"
+                        android:background="@drawable/teleference_dialbtnxml" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="68dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:src="@drawable/teleference_headicon" />
+
+                    <Button
+                        android:id="@+id/teleference_personBtn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:background="@drawable/teleference_personnametextbtn"
+                        android:textColor="#ff575555"
+                        android:textSize="24px" />
+
+                    <Button
+                        android:id="@+id/teleference_dialBtn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="170dp"
+                        android:background="@drawable/teleference_dialbtnxml" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="68dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:src="@drawable/teleference_headicon" />
+
+                    <Button
+                        android:id="@+id/teleference_personBtn3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:background="@drawable/teleference_personnametextbtn"
+                        android:textColor="#ff575555"
+                        android:textSize="24px" />
+
+                    <Button
+                        android:id="@+id/teleference_dialBtn3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="170dp"
+                        android:background="@drawable/teleference_dialbtnxml" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="68dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:src="@drawable/teleference_headicon" />
+
+                    <Button
+                        android:id="@+id/teleference_personBtn4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:background="@drawable/teleference_personnametextbtn"
+                        android:textColor="#ff575555"
+                        android:textSize="24px" />
+
+                    <Button
+                        android:id="@+id/teleference_dialBtn4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="170dp"
+                        android:background="@drawable/teleference_dialbtnxml" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="68dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:src="@drawable/teleference_headicon" />
+
+                    <Button
+                        android:id="@+id/teleference_personBtn5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:background="@drawable/teleference_personnametextbtn"
+                        android:textColor="#ff575555"
+                        android:textSize="24px" />
+
+                    <Button
+                        android:id="@+id/teleference_dialBtn5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="170dp"
+                        android:background="@drawable/teleference_dialbtnxml" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/bottombg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:scrollbars="none" >
+
+        <Button
+            android:id="@+id/teleference_homeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/all_homebtn"
+            android:gravity="center" />
+    </LinearLayout>
+
+</LinearLayout>

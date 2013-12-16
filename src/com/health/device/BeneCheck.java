@@ -141,12 +141,8 @@ public class BeneCheck {
 		// 记录的data域有9个字节，index两个字节，年月日时分各一个字节,测量值两个字节
 		// $PCL 0x41 0x00 0x00 0x00 0x09 0x00 RECORD
 		// checksum
-		StringBuilder builder = new StringBuilder("20");
-		for (int i = 12; i < 17; i++) {
-			builder.append(data[i]);
-			builder.append(" ");
-		}
-		String date = builder.toString();
+		String date = String.format("%04d-%02d-%02d %02d:%02d:00",
+				2000 + data[12], data[13], data[14], data[15], data[16]);
 		int value = (data[17] & 0xff) + ((data[18] & 0xff) << 8);
 		return new Record(date, value);
 	}

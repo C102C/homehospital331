@@ -28,19 +28,8 @@
           android:id="@+id/healthinformation_user"
       />
 
-          <cn.younext.DigitalClock
-              android:id="@+id/healthinformation_digitalclock"
-              android:textColor="#fffdfdfd"
-              android:paddingLeft="5dp"
-              android:gravity="center"
-              android:textSize="24px"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"/>
-              <cn.younext.BatteryView
-        android:id="@+id/batteryview"
-        android:gravity="center"
-        android:layout_width="40dp"
-        android:layout_height="20dp"/>    
+    
+           
       
 </LinearLayout>
  <LinearLayout
@@ -85,7 +74,7 @@
            android:textColor="#ff444444"
            android:textSize="18px"
            android:id="@+id/healthinfo_bangbangBtn"
-           android:background="@drawable/healthinfo_bangbangbtn"/>
+           />
 </LinearLayout>
              <LinearLayout
                android:orientation="vertical"

@@ -1,301 +1,290 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
-  android:orientation="vertical"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent"
-  android:background="@drawable/background"
-  >
-  <LinearLayout
-    android:orientation="horizontal"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:background="@drawable/topbg"
-    android:layout_height="45dp">
-      <ImageView
-        android:src="@drawable/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-      <LinearLayout
-        android:orientation="vertical"
-        android:gravity="center_vertical"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-      <DigitalClock
-        android:id="@+id/medical_calendar_digitalclock"
-        android:textColor="#ff000000"
-        android:gravity="right"
-        android:layout_gravity="right"
-        android:textSize="24px"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>   
-        </LinearLayout> 
+        android:layout_height="45dp"
+        android:background="@drawable/topbg"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+        </LinearLayout>
     </LinearLayout>
 
- <LinearLayout
-  android:orientation="vertical"
-  android:layout_width="fill_parent"
-  android:layout_height="390dp"
-  android:scrollbars="none"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="390dp"
+        android:orientation="vertical"
+        android:scrollbars="none" >
 
-  >    
-<LinearLayout
-  android:orientation="horizontal"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent"
-  android:layout_marginTop="5px"
-  android:layout_marginLeft="5px"
-  android:layout_marginRight="5px"
-  android:layout_marginBottom="5px"
-  android:background="@drawable/centerbg"
-  android:scrollbars="none"> 
-  
-    <LinearLayout
-       android:orientation="vertical"
-       android:layout_width="200dp"
-       android:layout_height="fill_parent"
-       android:scrollbars="none">
-        
-        <ImageView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:gravity="center"
-          android:layout_marginTop="10px"
-          android:layout_marginLeft="40px"
-          android:src="@drawable/jkrc_icon"
-        />
         <LinearLayout
-          android:orientation="vertical"
-          android:layout_width="fill_parent"
-          android:layout_height="30dp"
-          android:scrollbars="none"></LinearLayout>
-        <Button
-  
-             android:layout_width="190dp"
-             android:layout_height="wrap_content"
-             android:text="@string/medical_calendar_ButtonTiJian"
-             android:textSize="24px"
-             android:layout_marginLeft="5px"
-             android:background="@drawable/myhealth_testrecord_btn"
-             android:gravity="center"
-             />
-        <Button
-             android:id="@+id/drug_calendar"
-             android:layout_width="190dp"
-             android:layout_height="wrap_content"
-             android:layout_marginTop="20px"
-             android:text="@string/medical_calendar_ButtonFuYao"
-             android:layout_marginLeft="5px"
-             android:textSize="24px"
-             android:background="@drawable/myhealth_testrecord_btn"
-             android:gravity="center"
-             /></LinearLayout>
-        
-    <LinearLayout
-       android:orientation="vertical"
-       android:layout_width="fill_parent"
-       android:layout_height="fill_parent"
-       
-       android:background="@drawable/cont_bg03">
-          
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="8px"
-               android:layout_marginLeft="8px"
-               android:layout_gravity="left"
-               android:text="@string/medical_calendar_ShangWu"
-               android:textSize="24px"
-               android:textColor="#ff000000"/>
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="5px"
+            android:layout_marginLeft="5px"
+            android:layout_marginRight="5px"
+            android:layout_marginTop="5px"
+            android:background="@drawable/centerbg"
+            android:orientation="horizontal"
+            android:scrollbars="none" >
+
             <LinearLayout
-               android:layout_width="fill_parent"
-               android:layout_height="45dp"
-               android:orientation="horizontal">
-                 <EditText
-                    android:id="@+id/edittext_am"
-                    android:freezesText="true"
-                    android:layout_width="490dp"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="8px"
-                    android:layout_marginRight="8px"
-                    android:textSize="24px"
-                    android:textColor="#ff000000"
-                    android:background="@drawable/lm_bg"
-                  />
-                  
-                 <Button
-                    android:id="@+id/modify_am"
-                    android:background="@drawable/modify"
-                    android:layout_height="fill_parent"
+                android:layout_width="200dp"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:scrollbars="none" >
+
+                <ImageView
                     android:layout_width="wrap_content"
-                    
-                  /></LinearLayout>
-              <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="8px"
-               android:layout_marginLeft="8px"
-               android:layout_gravity="left"
-               android:text="@string/medical_calendar_WanShang"
-               android:textSize="24px"
-               android:textColor="#ff000000"/> 
-              <LinearLayout
-               android:layout_width="fill_parent"
-               android:layout_height="45dp"
-               android:orientation="horizontal">
-                 <EditText
-                    android:id="@+id/edittext_pm"
-                    android:freezesText="true"
-                    android:layout_width="490dp"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="8px"
-                    android:layout_marginRight="8px"
-                    android:textSize="24px"
-                    android:textColor="#ff000000"
-                    android:background="@drawable/lm_bg"
-                
-                  />
-                 <Button
-                    android:id="@+id/modify_pm"
-                    android:background="@drawable/modify"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginTop="10px"
+                    android:gravity="center"
+                    android:src="@drawable/jkrc_icon" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="30dp"
+                    android:orientation="vertical"
+                    android:scrollbars="none" >
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5px"
+                    android:background="@drawable/myhealth_testrecord_btn"
+                    android:gravity="center"
+                    android:text="@string/medical_calendar_ButtonTiJian"
+                    android:textSize="24px" />
+
+                <Button
+                    android:id="@+id/drug_calendar"
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5px"
+                    android:layout_marginTop="20px"
+                    android:background="@drawable/myhealth_testrecord_btn"
+                    android:gravity="center"
+                    android:text="@string/medical_calendar_ButtonFuYao"
+                    android:textSize="24px" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/cont_bg03"
+                android:orientation="vertical" >
+
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    
-                  /></LinearLayout>
-               <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="8px"
-               android:layout_marginLeft="8px"
-               android:layout_gravity="left"
-               android:text="@string/medical_calendar_YuShe"
-                android:textSize="24px"
-               android:textColor="#ff000000"/>
-              
-                  <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="45dp"
-                        android:orientation="horizontal"
-                        android:background="@drawable/lm_bg"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="8px"
+                    android:layout_marginTop="8px"
+                    android:text="@string/medical_calendar_ShangWu"
+                    android:textColor="#ff000000"
+                    android:textSize="24px" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/edittext_am"
+                        android:layout_width="490dp"
+                        android:layout_height="fill_parent"
                         android:layout_marginLeft="8px"
                         android:layout_marginRight="8px"
-                  >
-                        <Button
-                           android:layout_width="85dp"
-                           android:layout_height="fill_parent"
-                           android:background="@drawable/sj_bg"
-                           android:id="@+id/alarm01"
-                           android:textSize="24px"
-                           />
-                           <Button
-                           android:layout_width="45dp"
-                           android:layout_height="fill_parent"
-                           android:layout_marginLeft="15px"
-                           android:id="@+id/alarm_dele01"
-                           />
-                           <LinearLayout
-                           android:layout_width="45dp"
-                           android:layout_height="fill_parent"
-                           android:orientation="horizontal"/>
-                        <Button
-                           android:layout_width="85dp"
-                           android:layout_height="fill_parent"
-                           android:background="@drawable/sj_bg"
-                           android:id="@+id/alarm02"
-                           android:textSize="24px"
-                           />
-                           <Button
-                           android:layout_width="45dp"
-                           android:layout_height="fill_parent"
-                          
-                           android:layout_marginLeft="15px"
-                           android:id="@+id/alarm_dele02"
-                           />
-                            <LinearLayout
-                           android:layout_width="45dp"
-                           android:layout_height="fill_parent"
-                           android:orientation="horizontal"/>
-                        <Button
-                           android:layout_width="85dp"
-                           android:layout_height="fill_parent"
-                           android:background="@drawable/sj_bg"
-                           android:textSize="24px"
-                           android:id="@+id/alarm03"
-                           />
-                           <Button
-                           android:layout_width="45dp"
-                           android:layout_height="fill_parent"
-                        
-                           android:layout_marginLeft="15px"
-                           android:id="@+id/alarm_dele03"
-                           />
-                           </LinearLayout>
-           
-                    
-                 
-               <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="8px"
-               android:layout_marginLeft="8px"
-               android:layout_gravity="left"
-               android:textSize="24px"
-               android:textColor="#ff000000"
-               android:text="@string/medical_calendar_Date"/>
-               
-                  <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="45dp"
-                        android:orientation="horizontal"
                         android:background="@drawable/lm_bg"
+                        android:freezesText="true"
+                        android:textColor="#ff000000"
+                        android:textSize="24px" />
+
+                    <Button
+                        android:id="@+id/modify_am"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/modify" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="8px"
+                    android:layout_marginTop="8px"
+                    android:text="@string/medical_calendar_WanShang"
+                    android:textColor="#ff000000"
+                    android:textSize="24px" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/edittext_pm"
+                        android:layout_width="490dp"
+                        android:layout_height="fill_parent"
                         android:layout_marginLeft="8px"
                         android:layout_marginRight="8px"
-                  >
-                       <Button
-                           android:layout_width="100dp"
-                           android:layout_height="fill_parent"
-                           android:background="@drawable/sj_bg"
-                           android:textSize="24px"
-                           android:id="@+id/date01"
-                           android:gravity="center"
-                          /> 
-                       <TextView
-                           android:layout_width="100dp"
-                           android:layout_height="fill_parent"
-                           android:text="@string/medical_calendar_To"
-                            android:textSize="24px"
-                           android:textColor="#ff000000"
-                           android:gravity="center"
-                           android:layout_marginLeft="5px"/> 
-                       <Button
-                           android:layout_width="100dp"
-                           android:layout_height="fill_parent"
-                           android:background="@drawable/sj_bg"
-                           android:textSize="24px"
-                           android:id="@+id/date02"
-                           android:layout_marginLeft="5px"/>
-                   </LinearLayout>
-                    
-       
-       </LinearLayout>
- </LinearLayout> </LinearLayout> 
- <LinearLayout
-  android:orientation="horizontal"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent"
-  android:background="@drawable/bottombg"
-  android:gravity="center_vertical"
-  android:scrollbars="none">
-<Button
-  android:layout_width="wrap_content"
-  android:layout_height="wrap_content"
-  android:background="@drawable/all_homebtn"
-  android:gravity="center"
-  android:id="@+id/medical_calendar_homebutton"
-  
-  ></Button>
-  
- 
-  
- 
- 
- </LinearLayout> </LinearLayout>
+                        android:background="@drawable/lm_bg"
+                        android:freezesText="true"
+                        android:textColor="#ff000000"
+                        android:textSize="24px" />
+
+                    <Button
+                        android:id="@+id/modify_pm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/modify" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="8px"
+                    android:layout_marginTop="8px"
+                    android:text="@string/medical_calendar_YuShe"
+                    android:textColor="#ff000000"
+                    android:textSize="24px" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="8px"
+                    android:layout_marginRight="8px"
+                    android:background="@drawable/lm_bg"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/alarm01"
+                        android:layout_width="85dp"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/sj_bg"
+                        android:textSize="24px" />
+
+                    <Button
+                        android:id="@+id/alarm_dele01"
+                        android:layout_width="45dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="15px" />
+
+                    <LinearLayout
+                        android:layout_width="45dp"
+                        android:layout_height="fill_parent"
+                        android:orientation="horizontal" />
+
+                    <Button
+                        android:id="@+id/alarm02"
+                        android:layout_width="85dp"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/sj_bg"
+                        android:textSize="24px" />
+
+                    <Button
+                        android:id="@+id/alarm_dele02"
+                        android:layout_width="45dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="15px" />
+
+                    <LinearLayout
+                        android:layout_width="45dp"
+                        android:layout_height="fill_parent"
+                        android:orientation="horizontal" />
+
+                    <Button
+                        android:id="@+id/alarm03"
+                        android:layout_width="85dp"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/sj_bg"
+                        android:textSize="24px" />
+
+                    <Button
+                        android:id="@+id/alarm_dele03"
+                        android:layout_width="45dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="15px" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="8px"
+                    android:layout_marginTop="8px"
+                    android:text="@string/medical_calendar_Date"
+                    android:textColor="#ff000000"
+                    android:textSize="24px" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="8px"
+                    android:layout_marginRight="8px"
+                    android:background="@drawable/lm_bg"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/date01"
+                        android:layout_width="100dp"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/sj_bg"
+                        android:gravity="center"
+                        android:textSize="24px" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="5px"
+                        android:gravity="center"
+                        android:text="@string/medical_calendar_To"
+                        android:textColor="#ff000000"
+                        android:textSize="24px" />
+
+                    <Button
+                        android:id="@+id/date02"
+                        android:layout_width="100dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="5px"
+                        android:background="@drawable/sj_bg"
+                        android:textSize="24px" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/bottombg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:scrollbars="none" >
+
+        <Button
+            android:id="@+id/medical_calendar_homebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/all_homebtn"
+            android:gravity="center" >
+        </Button>
+    </LinearLayout>
+
+</LinearLayout>

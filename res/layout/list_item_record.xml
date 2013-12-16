@@ -1,0 +1,74 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="2dp" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/latest_record_title"
+        android:orientation="horizontal"
+        android:padding="5dp" >
+
+        <TextView
+            android:id="@+id/list_data_1"
+            android:layout_width="200dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text="2013-11-27 11:28:58"
+            android:textColor="@color/duckgrey"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/list_data_2"
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text="128"
+            android:textColor="@color/duckgrey"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/list_data_3"
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text="84"
+            android:textColor="@color/duckgrey"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/list_data_4"
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text="65"
+            android:textColor="@color/duckgrey"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/list_data_5"
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text="未上传"
+            android:textColor="@color/duckgrey"
+            android:textSize="20sp" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/list_upload_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/upload" >
+            </Button>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

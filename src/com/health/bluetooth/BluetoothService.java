@@ -40,15 +40,15 @@ public class BluetoothService {
 	private static final UUID MY_UUID = UUID.fromString(UUIDS);// 建立蓝牙连接的UUID
 
 	// 控制信息和状态
-	public static final int STATE_NONE = 0; // 空闲状态
-	public static final int STATE_CONNECTING = 2; // 正在连接
-	public static final int STATE_CONNECTED = 3; // 已经建立蓝牙连
+	public static final int STATE_NONE = 0x401180; // 空闲状态
+	public static final int STATE_CONNECTING = 0x401181; // 正在连接
+	public static final int STATE_CONNECTED = 0x401182; // 已经建立蓝牙连
 
-	public static final int MESSAGE_DEVICE = 0;// 传递蓝牙设备名称和地址
-	public static final int MESSAGE_STATE_CHANGE = 1;// 适配器状态改变信号
-	public static final int MESSAGE_READ = 2;// 读入数据信号
-	public static final int MESSAGE_WRITE = 3;// 写入数据信号
-	public static final int MESSAGE_TOAST = 4;// 显示给用户的提示的信号
+	public static final int MESSAGE_DEVICE = 0x401183;// 传递蓝牙设备名称和地址
+	public static final int MESSAGE_STATE_CHANGE = 0x401184;// 适配器状态改变信号
+	public static final int MESSAGE_READ = 0x401185;// 读入数据信号
+	public static final int MESSAGE_WRITE = 0x401186;// 写入数据信号
+	public static final int MESSAGE_TOAST = 0x401187;// 显示给用户的提示的信号
 
 	public static final String TOAST = "toast";// handler传递过去的关键字
 	public static final String DEVICE_NAME = "device_name";
@@ -64,7 +64,7 @@ public class BluetoothService {
 	private BluetoothService(Handler handler, boolean isAsyn) {
 		this.btAdapter = BluetoothAdapter.getDefaultAdapter();
 		if (btAdapter.getState() == BluetoothAdapter.STATE_OFF)
-			btAdapter.enable();// 打开蓝牙
+			btAdapter.enable();// 打开蓝牙		
 		this.handler = handler;
 		BluetoothService.isAsyn = isAsyn;
 		this.state = STATE_NONE;
@@ -124,6 +124,16 @@ public class BluetoothService {
 	 */
 	public BluetoothDevice getRemoteDeviceByAddress(String address) {
 		return btAdapter.getRemoteDevice(address);
+	}
+
+	/**
+	 * 关闭蓝牙
+	 */
+	public static void close() {
+		if (lastInstance != null) {
+			lastInstance.stop();
+			lastInstance.btAdapter.disable();// 关闭蓝牙
+		}
 	}
 
 	/**
@@ -187,6 +197,7 @@ public class BluetoothService {
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
+
 			e.printStackTrace();
 		}
 	}
@@ -199,7 +210,7 @@ public class BluetoothService {
 	 */
 	private void connected(BluetoothSocket socket, BluetoothDevice device) {
 		if (DEBUG)
-			Log.i(TAG, "connected to" + device);
+			Log.i(TAG, "begin connected to" + device);
 		if (state == STATE_CONNECTING) {// 取消正在建立的连接
 			if (connectThread != null) {
 				connectThread.cancel();
@@ -221,7 +232,6 @@ public class BluetoothService {
 		bundle.putString(DEVICE_ADDRESS, device.getAddress());
 		msg.setData(bundle);
 		handler.sendMessage(msg);
-		setState(STATE_CONNECTED);// 更新状态
 	}
 
 	/**
@@ -259,6 +269,7 @@ public class BluetoothService {
 		msg.setData(bundle);
 		handler.sendMessage(msg);
 		if (connectedThread != null) {
+			connectedThread.shutdown();
 			connectedThread.cancel();
 			connectedThread = null;
 		}
@@ -389,6 +400,7 @@ public class BluetoothService {
 
 		@Override
 		public void run() {
+			setState(STATE_CONNECTED);// 更新状态
 			while (!stop & isAsyn) {// 异步方式下，不停的读数据
 				read();
 			}
@@ -412,12 +424,14 @@ public class BluetoothService {
 			try {
 				int tryTime = 2;
 				while (!stop && inStream.available() <= 0 && (tryTime--) >= 0)
-					TimeUnit.MILLISECONDS.sleep(50);
+					TimeUnit.MILLISECONDS.sleep(500);
 				if (stop || tryTime < 0)// 睡一觉起来，蓝牙通道都管了，还读啥呀,回去!
 					return;
 				byte[] buffer = new byte[256];
 				int bytes;
 				bytes = inStream.read(buffer);
+				if (bytes <= 0)
+					return;
 				byte[] contend = new byte[bytes];// 只传递有效数据内容
 				for (int i = 0; i < bytes; i++) {
 					contend[i] = buffer[i];
@@ -449,7 +463,7 @@ public class BluetoothService {
 				}
 			} catch (IOException e) {
 				connectionLost();
-				Log.e(TAG, "write error", e);
+				Log.i(TAG, "write error", e);
 			}
 		}
 

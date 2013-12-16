@@ -2,10 +2,10 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
         <item
                 android:state_pressed="true"
-                android:color="@drawable/dianji"/>
+                android:color="@color/dianji"/>
         <item
                 android:state_focused="true"
-                android:color="@drawable/weidianji" />
+                android:color="@color/weidianji" />
         <item
-                android:color="@drawable/weidianji" />
+                android:color="@color/weidianji" />
 </selector>

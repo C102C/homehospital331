@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?> 
-<TextView 
-xmlns:android="http://schemas.android.com/apk/res/android" 
-android:id="@+id/text1" 
-android:layout_width="fill_parent"
-android:layout_height="24sp" 
-android:textSize="18sp"
-android:textColor="#ff444444"
-android:singleLine="true" 
-style="?android:attr/spinnerDropDownItemStyle" />
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/text1"
+    style="?android:attr/spinnerDropDownItemStyle"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"    
+    android:gravity="center"
+    android:singleLine="true"
+    android:text="test"
+    android:textColor="@color/backColor"
+    android:textSize="30sp" />

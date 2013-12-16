@@ -6,7 +6,7 @@
 
     <application
         android:debuggable="true"
-        android:icon="@drawable/icon"
+        android:icon="@drawable/desk"
         android:label="@string/app_name" >
 
         <!-- 单元测试类 -->
@@ -26,7 +26,8 @@
 
         <activity
             android:name="com.health.Login"
-            android:theme="@style/theme" >
+            android:theme="@style/theme"
+            android:windowSoftInputMode="stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,7 +35,16 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.health.Logup"
+            android:theme="@style/theme"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
             android:name="com.health.MainUi"
+            android:theme="@style/theme" >
+        </activity>
+        <activity
+            android:name="com.health.BaseActivity"
             android:theme="@style/theme" >
         </activity>
         <activity
@@ -48,8 +58,12 @@
             android:theme="@android:style/Theme.Dialog" >
         </activity>
         <activity
-            android:name=".myhealth"
+            android:name="com.health.myhealth.Myhealth"
             android:label="我的健康" >
+        </activity>
+        <activity
+            android:name="com.health.myhealth.LatestMeasure"
+            android:label="最近测量记录" >
         </activity>
         <activity
             android:name="com.health.measurement.Measurement"
@@ -73,6 +87,10 @@
         </activity>
         <activity
             android:name=".myhealth_testrecord"
+            android:label="测试记录" >
+        </activity>
+        <activity
+            android:name="com.health.myhealth.DataGraph"
             android:label="测试记录" >
         </activity>
         <activity
@@ -141,7 +159,7 @@
             android:theme="@android:style/Theme.Dialog" >
         </activity>
         <activity
-            android:name=".history_report"
+            android:name="com.health.myhealth.Historyreport"
             android:label="历史记录" >
         </activity>
         <activity
