@@ -5,6 +5,8 @@ import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.health.BaseActivity;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -30,6 +32,9 @@ public class Cache {
 	public static final String UA = "ua";
 	public static final String CHOL = "chol";
 	public static final String URINE = "urine";
+	private static final String GROUP_ID = "group_id";
+	private static final String CONTAC_NAMES = "names";
+	private static final String CONTACT = "Contact";
 
 	Context context;
 	private SharedPreferences sharedPrefrences;
@@ -42,24 +47,26 @@ public class Cache {
 		editor = sharedPrefrences.edit();
 	}
 
-	/**
-	 * 保存当前用户id
-	 * 
-	 * @param idCard
-	 */
-	public void saveUserId(String idCard) {
-		editor.putString(USER_ID, idCard);
-		editor.commit();// 提交
-	}
-
-	/**
-	 * 获取当前用户id
-	 * 
-	 * @return
-	 */
-	public String getUserId() {
-		return sharedPrefrences.getString(USER_ID, null);
-	}
+	//
+	// /**
+	// * 保存当前用户id
+	// *
+	// * @param idCard
+	// */
+	// public void saveUserId(String idCard) {
+	// editor.putString(USER_ID, idCard);
+	// editor.commit();// 提交
+	// }
+	//
+	// /**
+	// * 获取当前用户id
+	// *
+	// * @return
+	// */
+	// public String getUserId() {
+	// return sharedPrefrences.getString(USER_ID,
+	// null);
+	// }
 
 	/**
 	 * 保存设备地址
@@ -90,9 +97,20 @@ public class Cache {
 	 */
 	public void saveItem(String item, Map<String, String> dataMap) {
 		JSONObject json = new JSONObject(dataMap);
-		String id = getUserId();
+		saveItem(item, json);
+	}
+
+	/***
+	 * 保存当前用户item测量数据
+	 * 
+	 * @param item
+	 * @param json
+	 */
+	public void saveItem(String item, JSONObject json) {
+		String id = BaseActivity.getUser().getCardNo();
 		editor.putString(id + item, json.toString());
 		editor.commit();// 提交
+
 	}
 
 	/**
@@ -102,7 +120,7 @@ public class Cache {
 	 * @return
 	 */
 	public JSONObject getItem(String item) {
-		String id = getUserId();
+		String id = BaseActivity.getUser().getCardNo();
 		String itemString = sharedPrefrences.getString(id + item, null);
 		if (null == itemString)
 			return null;
@@ -155,4 +173,59 @@ public class Cache {
 		return userName;
 
 	}
+
+	/***
+	 * 保存机构号
+	 * 
+	 * @param count
+	 */
+	public void saveGroupId(String count) {
+		editor.putString(GROUP_ID, count);
+		editor.commit();// 提交
+	}
+
+	/**
+	 * 获取当前用户id
+	 * 
+	 * @return
+	 */
+	public String getGroupId() {
+		return sharedPrefrences.getString(GROUP_ID, null);
+	}
+
+	/***
+	 * 保存所有用户的名字
+	 * 
+	 * @param count
+	 */
+	public boolean saveContactNames(String names) {
+		editor.putString(CONTAC_NAMES, names);
+		return editor.commit();// 提交
+	}
+
+	public String getContactNames() {
+		return sharedPrefrences.getString(CONTAC_NAMES, null);
+	}
+
+	/***
+	 * 保存联系人姓名和电话
+	 * 
+	 * @param name
+	 * @param phone
+	 */
+	public boolean saveContact(String name, String phone) {
+		editor.putString(CONTACT + name, phone);
+		return editor.commit();// 提交
+	}
+
+	/**
+	 * 根据姓名获取电话
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public String getContact(String name) {
+		return sharedPrefrences.getString(CONTACT + name, null);
+	}
+
 }

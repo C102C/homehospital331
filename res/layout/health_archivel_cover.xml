@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background" >
+
+    <RelativeLayout
+        android:id="@+id/topbar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/topbar_height"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="居民健康档案"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_3" />
+
+        <Button
+            android:id="@+id/modify_archive"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/text_button_selector"
+            android:onClick="modifyArchive"
+            android:text="修改" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/archive_content_sv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"      
+        android:layout_below="@id/topbar"
+        android:background="@drawable/centerbg"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/archive_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="5dp"
+            android:clickable="false"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:clickable="false"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:text="姓  名："
+                    android:textColor="@color/backColor"
+                    android:textSize="@dimen/text_size_4" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="100dp"
+                    android:gravity="center"
+                    android:background="@drawable/archive_edit_bg"
+                    android:text="小二"
+                    android:textSize="@dimen/text_size_4" />
+            </LinearLayout>
+               <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:clickable="false"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:text="现 住 址："
+                    android:textColor="@color/backColor"
+                    android:textSize="@dimen/text_size_4" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="100dp"
+                    android:gravity="center"
+                     android:background="@drawable/archive_edit_bg"
+                    android:text="广东省深圳市南山区西丽镇大学城"
+                    android:textSize="@dimen/text_size_4" />
+            </LinearLayout>
+               <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:clickable="false"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:text="户籍地址："
+                    android:textColor="@color/backColor"
+                    android:textSize="@dimen/text_size_4" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="100dp"
+                    android:gravity="center"
+                     android:background="@drawable/archive_edit_bg"
+                    android:text="广东省深圳市南山区西丽镇大学城"
+                    android:textSize="@dimen/text_size_4" />
+            </LinearLayout>
+               <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:clickable="false"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:text="联系电话："
+                    android:textColor="@color/backColor"
+                    android:textSize="@dimen/text_size_4" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="100dp"
+                    android:gravity="center"
+                    android:text="1884848438"
+                     android:background="@drawable/archive_edit_bg"
+                    android:textSize="@dimen/text_size_4" />
+            </LinearLayout>
+               <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:clickable="false"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:text="乡镇（街道）名称："
+                    android:textColor="@color/backColor"
+                    android:textSize="@dimen/text_size_4" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="100dp"
+                    android:gravity="center"
+                    android:text="广东省深圳市南山区西丽镇大学城"
+                     android:background="@drawable/archive_edit_bg"
+                    android:textSize="@dimen/text_size_4" />
+            </LinearLayout>
+               <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:clickable="false"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:text="村（居）委会名称："
+                    android:textColor="@color/backColor"
+                    android:textSize="@dimen/text_size_4" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="100dp"
+                    android:gravity="center"
+                     android:background="@drawable/archive_edit_bg"
+                    android:text="广东省深圳市南山区西大学城村委会"
+                    android:textSize="@dimen/text_size_4" />
+            </LinearLayout>
+               <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="200dp"
+                android:clickable="false"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:text="建档单位："
+                    android:textColor="@color/backColor"
+                    android:textSize="@dimen/text_size_4" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="100dp"
+                    android:gravity="center"
+                     android:background="@drawable/archive_edit_bg"
+                    android:text="广东省深圳市南山区西大学城村委会"
+                    android:textSize="@dimen/text_size_4" />
+            </LinearLayout>
+               <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:clickable="false"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:text="建 档 人："
+                    android:textColor="@color/backColor"
+                    android:textSize="@dimen/text_size_4" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="100dp"
+                    android:gravity="center"
+                    android:text="张胜仪"
+                     android:background="@drawable/archive_edit_bg"
+                    android:textSize="@dimen/text_size_4" />
+            
+            </LinearLayout>
+               <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:clickable="false"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:text="责任医生："
+                    android:textColor="@color/backColor"
+                    android:textSize="@dimen/text_size_4" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="100dp"
+                    android:gravity="center"
+                    android:text="王医生"
+                     android:background="@drawable/archive_edit_bg"
+                    android:textSize="@dimen/text_size_4" />
+            
+            </LinearLayout>
+             <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:clickable="false"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:text="建档日期："
+                    android:textColor="@color/backColor"
+                    android:textSize="@dimen/text_size_4" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="100dp"
+                    android:gravity="center"
+                    android:text="2014-04-04"
+                     android:background="@drawable/archive_edit_bg"
+                    android:textSize="@dimen/text_size_4" />
+            
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

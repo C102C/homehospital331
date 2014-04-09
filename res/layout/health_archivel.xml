@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background" >
+
+    <RelativeLayout
+        android:id="@+id/topbar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/topbar_height"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/topbg"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="健康档案"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_3" />
+
+        <Button
+            android:id="@+id/modify_archive"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/text_button_selector"
+            android:onClick="modifyArchive"
+            android:text="修改" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/archive_content_sv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottombar"
+        android:layout_below="@id/topbar"
+        android:background="@drawable/centerbg"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/archive_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:clickable="false"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="基本信息:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_2" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="0dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="姓名:"
+                    android:textColor="@color/key_color" />
+
+                <TextView
+                    android:id="@+id/name_tv"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text=""
+                    android:textColor="@color/value_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="性别:"
+                    android:textColor="@color/key_color" />
+
+                <TextView
+                    android:id="@+id/sex_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:text=""
+                    android:textColor="@color/value_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="年龄:"
+                    android:textColor="@color/key_color" />
+
+                <TextView
+                    android:id="@+id/birthday_tv"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text=""
+                    android:textColor="@color/value_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="民族："
+                    android:visibility="gone"
+                    android:textColor="@color/key_color" />
+
+                <EditText
+                    android:id="@+id/race_et"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text=""
+                    android:visibility="gone"
+                    android:textColor="@color/value_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="文化程度："
+                    android:textColor="@color/key_color" />
+
+                <RadioGroup
+                    android:id="@+id/degree_rg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/degree_rb0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="未知"
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/degree_rb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="初中及以下"
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/degree_rb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="中专或高中 "
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/degree_rb3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="专科 "
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/degree_rb4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="本科"
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/degree_rb5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="硕士研究生 "
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/degree_rb6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="博士研究生及以上 "
+                        android:textColor="@color/key_color" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="身份证号："
+                    android:textColor="@color/key_color" />
+
+                <TextView
+                    android:id="@+id/idcard_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:text="330772197809100005"
+                    android:textColor="@color/value_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="家庭地址："
+                    android:textColor="@color/key_color" />
+
+                <EditText
+                    android:id="@+id/address_et"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:text=""
+                    android:textColor="@color/value_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="联系电话："
+                    android:textColor="@color/key_color" />
+
+                <EditText
+                    android:id="@+id/phone_et"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:text=""
+                    android:textColor="@color/value_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:text="邮箱："
+                    android:textColor="@color/key_color" />
+
+                <EditText
+                    android:id="@+id/email_et"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:text=""
+                    android:textColor="@color/value_color" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="一般状况:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_2" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="婚姻状况："
+                    android:textColor="@color/key_color" />
+
+                <RadioGroup
+                    android:id="@+id/marrey_status_rg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/marrey_status_rb0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="未知"
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/marrey_status_rb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="已婚"
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/marrey_status_rb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="未婚"
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/marrey_status_rb3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="其他"
+                        android:textColor="@color/key_color" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="居住类型："
+                    android:textColor="@color/key_color" />
+
+                <RadioGroup
+                    android:id="@+id/live_style_rg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/live_style_rb0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="其他 "
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/live_style_rb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="独自"
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/live_style_rb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="同配偶在一起"
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/live_style_rb3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="和子女在一起 "
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/live_style_rb4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="和配偶子女在一起 "
+                        android:textColor="@color/key_color" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="住房类型："
+                    android:textColor="@color/key_color" />
+
+                <RadioGroup
+                    android:id="@+id/house_style_rg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/house_style_rb0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="其他 "
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/house_style_rb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="有电梯楼房 "
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/house_style_rb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="无电梯楼房"
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/house_style_rb3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="平房  "
+                        android:textColor="@color/key_color" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="主要生活来源："
+                    android:textColor="@color/key_color" />
+
+                <RadioGroup
+                    android:id="@+id/income_rg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/income_rb0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="其他 "
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/income_rb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="离退休金 "
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/income_rb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="儿女 "
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/income_rb3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="救济金 "
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/income_rb4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="储蓄 "
+                        android:textColor="@color/key_color" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="医疗费支付方式："
+                    android:textColor="@color/key_color" />
+
+                <RadioGroup
+                    android:id="@+id/hospital_cost_pay_rg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/hospital_cost_pay_rb0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="自费 "
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/hospital_cost_pay_rb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="半自费 "
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/hospital_cost_pay_rb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="劳保  "
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/hospital_cost_pay_rb3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="公费"
+                        android:textColor="@color/key_color" />
+
+                    <RadioButton
+                        android:id="@+id/hospital_cost_pay_rb4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="社会保险"
+                        android:textColor="@color/key_color" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="中医体质："
+                    android:textColor="@color/key_color" />
+
+                <RadioButton
+                    android:id="@+id/tizhi_rb0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:hint="平和质 "
+                    android:textColor="@color/key_color" />
+
+                <RadioButton
+                    android:id="@+id/tizhi_rb1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:hint="气虚质  "
+                    android:textColor="@color/key_color" />
+
+                <RadioButton
+                    android:id="@+id/tizhi_rb2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:hint="阳虚质"
+                    android:textColor="@color/key_color" />
+
+                <RadioButton
+                    android:id="@+id/tizhi_rb3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:hint="阴虚质 "
+                    android:textColor="@color/key_color" />
+
+                <RadioButton
+                    android:id="@+id/tizhi_rb4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:hint="痰湿质 "
+                    android:textColor="@color/key_color" />
+
+                <RadioButton
+                    android:id="@+id/tizhi_rb5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:hint="痰湿质 "
+                    android:textColor="@color/key_color" />
+
+                <RadioButton
+                    android:id="@+id/tizhi_rb6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:hint="湿热质  "
+                    android:textColor="@color/key_color" />
+
+                <RadioButton
+                    android:id="@+id/tizhi_rb7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:hint="血瘀质"
+                    android:textColor="@color/key_color" />
+
+                <RadioButton
+                    android:id="@+id/tizhi_rb8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:hint="气郁质"
+                    android:textColor="@color/key_color" />
+
+                <RadioButton
+                    android:id="@+id/tizhi_rb9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:hint="特禀质"
+                    android:textColor="@color/key_color" />
+            </LinearLayout>
+
+            <TableLayout
+                android:id="@+id/tl_phys_exam_record"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:text="您的体检记录 (可点击查看)"
+                    android:textSize="20dp" />
+
+                <TableRow android:layout_marginBottom="20dp" >
+
+                    <TextView
+                        android:id="@+id/tv_rec_xueya"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="血压"
+                        android:textColor="@color/blue"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/tv_rec_mailv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="脉率"
+                        android:textColor="@color/blue"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/tv_rec_xueyang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="血氧"
+                        android:textColor="@color/blue"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/tv_rec_tiwen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="体温"
+                        android:textColor="@color/blue"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/tv_rec_putaotang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="葡萄糖"
+                        android:textColor="@color/blue"
+                        android:textSize="20dp" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="20dp" >
+
+                    <TextView
+                        android:id="@+id/tv_rec_niaosuan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="尿酸"
+                        android:textColor="@color/blue"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/tv_rec_zongduangucun"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="总胆固醇"
+                        android:textColor="@color/blue"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/tv_rec_baixibao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="白细胞"
+                        android:textColor="@color/blue"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/tv_rec_niaochanggui"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="尿常规"
+                        android:textColor="@color/blue"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="" />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/bottombar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/bottombar_height"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottombg" >
+
+        <Button
+            android:id="@+id/to_home_button"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/all_homebtn"
+            android:visibility="gone" >
+        </Button>
+
+        <Button
+            android:id="@+id/return_button"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/all_returnbtn"
+            android:visibility="gone" >
+        </Button>
+    </RelativeLayout>
+
+</RelativeLayout>

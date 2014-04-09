@@ -26,24 +26,27 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@drawable/centerbg" >
+        android:background="@drawable/centerbg"
+        android:gravity="center"
+        android:orientation="horizontal" >
 
-        <RelativeLayout
+        <LinearLayout
+            android:id="@+id/loginLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@drawable/centerbg" >
+            android:layout_weight="0"
+            android:background="@drawable/cont_bg03"
+            android:orientation="vertical"
+            android:padding="10dp" >
 
             <LinearLayout
-                android:id="@+id/loginLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/cont_bg03"
-                android:orientation="vertical"
-                android:padding="10dp" >
+                android:layout_weight="0"
+                android:orientation="horizontal" >
 
                 <EditText
                     android:id="@+id/name"
@@ -54,37 +57,57 @@
                     android:inputType="text"
                     android:maxLength="18" />
 
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:hint="*"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:orientation="horizontal" >
+
                 <EditText
                     android:id="@+id/cardNo"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:hint="身份证号码"
-                    android:inputType="number"
                     android:maxLength="18" />
 
-                <EditText
-                    android:id="@+id/mobile"
-                    android:layout_width="300dp"
+                <TextView
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:hint="手机号码"
-                    android:inputType="phone"
-                    android:maxLength="11" />
+                    android:hint="*"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
 
-                <EditText
-                    android:id="@+id/email"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:hint="邮箱"
-                    android:inputType="textEmailAddress"
-                    android:maxLength="50" />
+            <EditText
+                android:id="@+id/mobile"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="手机号码"
+                android:inputType="phone"
+                android:maxLength="11" />
 
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" >
-                </RelativeLayout>
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="邮箱"
+                android:inputType="textEmailAddress"
+                android:maxLength="50" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:orientation="horizontal" >
 
                 <EditText
                     android:id="@+id/password"
@@ -95,6 +118,19 @@
                     android:inputType="textPassword"
                     android:maxLength="16" />
 
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:hint="*"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:orientation="horizontal" >
+
                 <EditText
                     android:id="@+id/confirm_password"
                     android:layout_width="300dp"
@@ -104,20 +140,68 @@
                     android:inputType="textPassword"
                     android:maxLength="16" />
 
-                <RelativeLayout
-                    android:layout_width="fill_parent"
+                <TextView
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp" >
-
-                    <Button
-                        android:id="@+id/logupButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/test_handinput_okbtnxml" />
-                </RelativeLayout>
+                    android:hint="*"
+                    android:textSize="@dimen/text_size_3" />
             </LinearLayout>
-        </RelativeLayout>
-    </RelativeLayout>
+
+            <Button
+                android:id="@+id/logupButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/test_handinput_okbtnxml" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/btn_find_id_reader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="搜索读卡器" />
+
+                <Button
+                    android:id="@+id/btnInit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="读取身份信息" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivImageview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+            </ImageView>
+
+            <TextView
+                android:id="@+id/tv_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue"
+                android:textSize="20dp" />
+
+            <Button
+                android:id="@+id/btn_go_to_measure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="前去测量"
+                android:visibility="invisible" />
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

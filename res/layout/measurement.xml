@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="55dp"
+        android:layout_height="@dimen/topbar_height"
         android:background="@drawable/topbg"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
@@ -18,7 +18,7 @@
             android:layout_marginLeft="10dp"
             android:text="@string/test_title"
             android:textColor="#fffdfdfd"
-            android:textSize="24sp" />
+            android:textSize="@dimen/text_size_2" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/myhealth_Welcome"
                 android:textColor="#fffdfdfd"
-                android:textSize="24sp" />
+                android:textSize="@dimen/text_size_2" />
 
             <TextView
                 android:id="@+id/user_name"
@@ -40,17 +40,8 @@
                 android:layout_marginLeft="20dp"
                 android:text="@string/user_name"
                 android:textColor="#fffdfdfd"
-                android:textSize="24sp" />
+                android:textSize="@dimen/text_size_2" />
         </LinearLayout>
-
-        <cn.younext.DigitalClock
-            android:id="@+id/digitalclock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingRight="10dp"
-            android:textColor="#fffdfdfd"
-            android:textSize="24sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -77,10 +68,7 @@
 
             <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:paddingBottom="40dp"
-                android:paddingTop="60dp" >
+                android:layout_height="match_parent" >
 
                 <TableRow
                     android:layout_weight="1"
@@ -143,6 +131,17 @@
                     android:gravity="center" >
 
                     <Button
+                        android:id="@+id/test_ecg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/measure_ecg_btn_bgl" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_weight="1"
+                    android:gravity="center" >
+
+                    <Button
                         android:id="@+id/test_xueyang"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -163,7 +162,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/temp_button_bg"
-                        android:textSize="24sp" />
+                        android:textSize="@dimen/text_size_2" />
                 </TableRow>
             </TableLayout>
 
@@ -198,7 +197,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ua_button_bg"
-                        android:textSize="24sp" />
+                        android:textSize="@dimen/text_size_2" />
                 </TableRow>
 
                 <TableRow
@@ -210,14 +209,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/chol_button_bg"
-                        android:textSize="24sp" />
+                        android:textSize="@dimen/text_size_2" />
                 </TableRow>
             </TableLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/cont_bg03"
                 android:gravity="center"
@@ -227,15 +225,27 @@
                     android:id="@+id/test_niaoyifenxi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/urine_button_bg"
-                    android:textSize="24sp" />
+                    android:background="@drawable/urine_button_bg" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@color/black" />
+
+                <Button
+                    android:id="@+id/test_baixibao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/measure_baixibao_btn_bg" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="@dimen/bottombar_height"
         android:background="@drawable/bottombg"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
@@ -245,7 +255,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/all_homebtn" >
+            android:background="@drawable/all_homebtn"
+            android:visibility="gone" >
         </Button>
     </LinearLayout>
 

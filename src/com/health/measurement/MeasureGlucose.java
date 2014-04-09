@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
@@ -34,9 +37,12 @@ import com.health.database.DatabaseService;
 import com.health.database.Tables;
 import com.health.device.BeneCheck;
 import com.health.device.HealthDevice;
+import com.health.util.T;
 import com.health.util.TimeHelper;
+import com.health.web.BackGroundThread;
 import com.health.web.Uploader;
 import com.health.web.WebService;
+import com.health.web.BackGroundThread.BackGroundTask;
 
 /**
  * 血糖测量
@@ -69,9 +75,12 @@ public class MeasureGlucose extends BaseActivity {
 	private static String gluDate;
 	private static String uaDate;
 	private static String cholDate;
+	private EditText glu_data;
+	private EditText ua_data;
+	private EditText chol_data;
 
 	private static DatabaseService dbService;
-
+	public static final int UPLOAD_RESULT = 0x10040;
 	OnClickListener clickListener;
 
 	@Override
@@ -109,14 +118,14 @@ public class MeasureGlucose extends BaseActivity {
 					sendCommd(BeneCheck.QUERY_UA_NUM);
 					sendCommd(BeneCheck.QUERY_CHOL_NUM);
 					uploadButton.setEnabled(true);// 设置上传按钮可以点击
-				} else if (view == homeButton) {
-					MeasureGlucose.this.setResult(RESULT_OK);
-					MeasureGlucose.this.finish();
-				} else if (view == returnButton) {
-					MeasureGlucose.this.finish();
 				} else if (view == uploadButton) {
 					uploadButton.setEnabled(false);// 上传后button不可点击
-					upload();
+					try {
+						upload();
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					Toast.makeText(context, "后台开始上传", Toast.LENGTH_SHORT)
 							.show();
 				}
@@ -132,10 +141,10 @@ public class MeasureGlucose extends BaseActivity {
 	/**
 	 * 上传数据
 	 */
-	protected void upload() {
+	/*protected void upload() {
 		Tables tables = new Tables();
 		ExecutorService exec = Executors.newSingleThreadExecutor();// 单线程池
-		String glu = glueEditText.getText().toString();// 舒张压
+		String glu=glueEditText.getText().toString();
 		if (glu.length() > 0) {// 葡萄糖有数据，可以上传
 			Map<String, String> dataMap = getDefaltAttrs();
 			dataMap.put(Tables.GLU, glu);
@@ -166,21 +175,45 @@ public class MeasureGlucose extends BaseActivity {
 			exec.execute(uploader);
 		}
 	}
-
+	*/
+	protected void upload() throws JSONException {
+		String glu=glueEditText.getText().toString();
+		if (glu.length() > 0) {// 葡萄糖有数据，可以上传
+			JSONObject data = getDefaltAttrs();
+			data.put(Tables.GLU,glu);
+			data.put(Tables.TIME, gluDate);
+			uploadInBack(data, WebService.PATH_GLU);
+		}
+		String ua = uaEditText.getText().toString();//尿酸数据上传
+		if (ua.length() > 0) {
+			JSONObject data = getDefaltAttrs();
+			data.put(Tables.UA,ua);
+			data.put(Tables.TIME, uaDate);
+			uploadInBack(data, WebService.PATH_UA);
+		}
+		String chol = cholEditText.getText().toString();
+		if (chol.length() > 0) {// 总胆固醇有数据，可以上传
+			JSONObject data = getDefaltAttrs();
+			data.put(Tables.CHOL,chol);
+			data.put(Tables.TIME, cholDate);
+			uploadInBack(data, WebService.PATH_CHOL);
+		}
+	}
 	/***
 	 * 获取几个测量项目都有的几个属性
 	 * 
 	 * @return
 	 */
-	private Map<String, String> getDefaltAttrs() {
-		String idCard = cache.getUserId();
+	/*private Map<String, String> getDefaltAttrs() {
+		String idCard = BaseActivity.getUser().getCardNo();
 		Map<String, String> dataMap = new HashMap<String, String>();
 		dataMap.put(Tables.DEVICEMAC, btMac);
 		dataMap.put(Tables.DEVICENAME, btName);
 		dataMap.put(Tables.CARDNO, idCard);
 		dataMap.put(WebService.STATUS, WebService.UNUPLOAD);// 状态为未上传
+		dataMap.put(WebService.PLAT_ID_KEY, WebService.PLAT_ID_VALUE);//
 		return dataMap;
-	}
+	}*/
 
 	/**
 	 * 初始化控件
@@ -200,6 +233,9 @@ public class MeasureGlucose extends BaseActivity {
 		gluImageView = (ImageView) findViewById(R.id.glu_image);
 		uaImageView = (ImageView) findViewById(R.id.ua_image);
 		cholImageView = (ImageView) findViewById(R.id.chol_image);
+		glu_data=(EditText)findViewById(R.id.xt_data);
+		ua_data=(EditText)findViewById(R.id.ua_data);
+		chol_data=(EditText)findViewById(R.id.dgc_data);
 	}
 	/**
 	 * 设置几个button的显示与隐藏
@@ -212,7 +248,7 @@ public class MeasureGlucose extends BaseActivity {
 				&& bluetoothService.getState() == BluetoothService.STATE_CONNECTED) {
 			status = View.VISIBLE;// 连接时设置可见
 		} else {
-			status = View.GONE;// 未连接时设置不可见
+			status = View.INVISIBLE;// 未连接时设置不可见
 		}
 		getDataButton.setVisibility(status);		
 	}
@@ -309,7 +345,7 @@ public class MeasureGlucose extends BaseActivity {
 
 	}
 
-	private static class BCHandler extends Handler {
+	private class BCHandler extends Handler {
 		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -355,7 +391,7 @@ public class MeasureGlucose extends BaseActivity {
 						int num = BeneCheck.getNum(datas.get(datas.size() - 1));
 						if (num >= 1) {// 有记录时才去数据
 							byte[] command = BeneCheck.getLatestRecordCommand(
-									token, num);
+									token, 1);
 							sendCommd(command);// 得到了记录数目后,马上发送查询记录命令
 						} else {
 							noDataCount++;
@@ -369,18 +405,21 @@ public class MeasureGlucose extends BaseActivity {
 								.get(datas.size() - 1));
 						gluDate = gluRecord.date;
 						glueEditText.setText("" + gluRecord.value);
+						glu_data.setText(gluDate);
 						break;
 					case BeneCheck.TOKEN_UA_RECORD:
 						BeneCheck.Record uaRecord = BeneCheck.getRecord(datas
 								.get(datas.size() - 1));
 						uaDate = uaRecord.date;
-						uaEditText.setText("" + uaRecord.value);
+						uaEditText.setText(""+uaRecord.value);
+						ua_data.setText(uaDate);
 						break;
 					case BeneCheck.TOKEN_CHOL_RECORD:
 						BeneCheck.Record cholRecord = BeneCheck.getRecord(datas
 								.get(datas.size() - 1));
 						cholDate = cholRecord.date;
 						cholEditText.setText("" + cholRecord.value);
+						chol_data.setText(cholDate);
 						break;
 					}
 				}
@@ -396,7 +435,7 @@ public class MeasureGlucose extends BaseActivity {
 						BluetoothService.DEVICE_ADDRESS);
 				cache.saveDeviceAddress(Cache.BENECHECK, address);// 保存地址,以便下次自带连接
 				break;
-			case Uploader.MESSAGE_UPLOADE_RESULT:
+			/*case Uploader.MESSAGE_UPLOADE_RESULT:
 				Bundle bundler = msg.getData();
 				String item = bundler.getString(Cache.ITEM);
 				int status = bundler.getInt(Uploader.STUTAS);
@@ -407,21 +446,32 @@ public class MeasureGlucose extends BaseActivity {
 					setImageView(uaImageView, status);
 				if (Cache.CHOL.equals(item))
 					setImageView(cholImageView, status);
-				break;
+				break;*/
+			case UPLOAD_RESULT:
+				int status = msg.arg1;
+				String item = (String) msg.obj;
+				if (WebService.PATH_GLU.equals(item)) {
+					setImageView(gluImageView, status);
+				} else if (WebService.PATH_UA.equals(item))
+					setImageView(uaImageView, status);
+				else if (WebService.PATH_CHOL.equals(item))
+					setImageView(cholImageView, status);
+				break;	
+				}
+				
 			}
 
 		}
-	};
 
-	private static void setImageView(ImageView imageview, int color) {
-		if (color == Uploader.FAILURE || color == Uploader.NET_ERROR)
-			imageview.setImageResource(R.drawable.light_red);
-		else if (color == Uploader.OK)
+
+	private static void setImageView(ImageView imageview, int status) {
+		if (status == WebService.OK)
 			imageview.setImageResource(R.drawable.light_greed);
-		else
+		else if (status == -1)
 			imageview.setImageResource(R.drawable.light_blue);
+		else
+			imageview.setImageResource(R.drawable.light_red);
 	}
-
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_MENU) {
@@ -443,4 +493,39 @@ public class MeasureGlucose extends BaseActivity {
 				&& command != null)
 			bluetoothService.write(command);
 	}
+	
+	private JSONObject getDefaltAttrs() throws JSONException {	
+		JSONObject data = new JSONObject();	
+		data.put(WebService.DEVICENAME, btName);
+		data.put(WebService.DEVICEMAC, btMac);
+		return data;
+	}
+	private void uploadInBack(final JSONObject data, final String path) {
+		new BackGroundThread(new BackGroundTask() {
+
+			@Override
+			public void process() {
+				upload(data, path);
+			}
+		}).start();
+	}
+	public static void upload(JSONObject data, String path) {
+		try {
+			JSONObject para = new JSONObject();
+			String idCard = BaseActivity.getUser().getCardNo();
+			para.put(WebService.CARDNO, idCard);
+			para.put(WebService.GUID_KEY, WebService.GUID_VALUE);
+			para.put(WebService.DATA, data);
+			para.put(WebService.CRC, "");
+			JSONObject result = WebService.postConenction(para, path);
+			int status = result.getInt(WebService.STATUS_CODE);
+			handler.obtainMessage(UPLOAD_RESULT, status, 0, path)
+					.sendToTarget();
+		} catch (Exception e) {
+			handler.obtainMessage(UPLOAD_RESULT, WebService.NETERROE, 0, path)
+					.sendToTarget();
+		}
+	}
 }
+
+

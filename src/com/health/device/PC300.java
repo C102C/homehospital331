@@ -2,15 +2,14 @@ package com.health.device;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
+
+import com.health.util.FileManger;
+import com.health.util.L;
 
 import android.util.Log;
 import android.util.SparseArray;
-
-import com.health.bluetooth.BluetoothService;
-
-import com.health.util.MyArrays;
 
 public class PC300 {
 	// 用于计算校验和的表
@@ -40,6 +39,10 @@ public class PC300 {
 			0x02, 0x01, -56 };// 电池电量命令
 	public static final byte[] COMMAND_TEMP_START = { (byte) 0xaa, 0x55, 0x70,
 			0x03, 0x01, (byte) 0x40, (byte) 0x1A };// 体温开始测量命令
+	public static final byte[] COMMAND_ECG_START = { (byte) 0xaa, 0x55, 0x30,
+			0x02, 0x01, -58 };// 心电开始测量命令
+	public static final byte[] COMMAND_ECG_STOP = { (byte) 0xaa, 0x55, 0x30,
+			0x02, 0x02, 36 };// 心电停止测量命令
 
 	public static final byte TOKEN_BP_CURRENT = 0x42;// 当前血压令牌
 	public static final byte TOKEN_BP_RESULT = 0x43;// 血压测量结果令牌
@@ -47,17 +50,32 @@ public class PC300 {
 	public static final byte TOKEN_POWER_OFF = (byte) 0xD0;// 测量仪关机令牌
 	public static final byte TOKEN_BO_PAKAGE = (byte) 0x53;// 上传参数数据包令牌
 	public static final byte TOKEN_TEMP = (byte) 0x72;// 上传体温令牌
+	public static final byte TOKEN_ECG_WAVE = (byte) 0x32;// 心电波形图令牌
+	public static final byte TOKEN_ECG_RESULT = (byte) 0x33;// 心电测量结果令牌
 
+	public static final int PROBE_OFF = 0x02;// 探针脱落
+	// 血压错误类型
 	public static final int ERROR_RESULT = -1;// 测量结果错误
 	public static final int ILLEGAL_PULSE = 0;// 测量不到有效的脉搏
 	public static final int BAD_BOUND = 1;// 气袋没有绑好
 	public static final int ERROR_VALUE = 2;// 测量数值结果有误
-
+	// public static final int PRESSS_TOO_HIGH = 3;//
+	// 气袋压力超过295mmHg .进入超压保护
+	// public static final int MOVED_TOO_MANY = 4;//
+	// 干预过多（测量中移动、说话等）
 	private static final int MIN_DATA_SIZE = 6;// 最小字节数
 
-	private static final byte[] HEAD = { (byte) 0xaa, 0x55 };// 最小字节数
+	private static final byte[] HEAD = { (byte) 0xaa, 0x55 };
 
-	private static final String TAG = "PC300";
+	private static final String TAG = "PC300.this";
+
+	public static final String[] ECG_RESULT = { "波形未见异常", "波形疑似心跳稍快请注意休息",
+			"波形疑似心跳过快请注意休息", "波形疑似阵发性心跳过快请咨询医生", "波形疑似心跳稍缓请注意休息",
+			"波形疑似心跳过缓请注意休息", "波形疑似偶发心跳间期缩短请咨询医生", "波形疑似心跳间期不规则请咨询医生",
+			"波形疑似心跳稍快伴有偶发心跳间期缩短请咨询医生", "波形疑似心跳稍缓伴有偶发心跳间期缩短请咨询医生",
+			"波形疑似心跳稍缓伴有心跳间期不规则请咨询医生", "波形有漂移请重新测量", "波形疑似心跳过快伴有波形漂移请咨询医生",
+			"波形疑似心跳过缓伴有波形漂移请咨询医生", "波形疑似偶发心跳间期缩短伴有波形漂移请咨询医生",
+			"波形疑似心跳间期不规则伴有波形漂移请咨询医生", "信号较差请重新测量" };
 
 	/**
 	 * 计算字节序列的校验和
@@ -158,21 +176,22 @@ public class PC300 {
 	 * @return
 	 */
 	public int[] getBoWave(byte[] data) {
-		if (data[4] == 0x01 && data[4] == 0x02) {
+		if (data[4] == 0x01) {
 			int[] value = { data[5] & 0x7f, data[6] & 0x7f };
 			return value;
 		}
-		return null;
+		return new int[] {};
 	}
 
 	/**
-	 * 血氧含量
+	 * 血氧含量\脉率\探头状态
 	 * 
 	 * @param data
 	 * @return
 	 */
-	public int getSpO2(byte[] data) {
-		return 0xff & data[5];
+	public int[] getSpO2(byte[] data) {
+		return new int[] { 0xff & data[5], (data[7] << 8) + data[6],
+				data[9] & PROBE_OFF };
 	}
 
 	/**
@@ -250,4 +269,126 @@ public class PC300 {
 		testCrc.printDataWithCrc(COMMAND_TEMP_START, "COMMAND_YEMP");
 	}
 
+	/***
+	 * 获取心电的波形数据
+	 * 
+	 * @param each
+	 * @return
+	 */
+	public EcgFrame getEcgFram(byte[] data) {
+		if (data.length != 59)// 每一帧的数据长为59
+			return null;
+		int framNum = data[5] & 0xff;
+		int[] ecg = new int[25];
+		int index = 0;
+		for (int i = 7; i < 56; i += 2)
+			ecg[index++] = data[i] & 0xff;
+		// data[56]为实时心率值，暂时保留
+		boolean flag = (data[57] & 0x80) == 1 ? true : false;
+		return new EcgFrame(framNum, ecg, flag);
+	}
+
+	/***
+	 * 心电数据的帧
+	 * 
+	 * @author jiqunpeng
+	 * 
+	 *         创建时间：2014-3-17 下午8:45:26
+	 */
+	public class EcgFrame implements Comparable<EcgFrame> {
+		private int framNum;// 帧号
+		private int[] ecg;// 心电值
+		private boolean isDeviceOff;// 导联脱落
+		private long time;// 测试时间
+
+		public EcgFrame(int framNum, int[] ecg, boolean isDeviceOff) {
+			super();
+			this.framNum = framNum;
+			this.ecg = ecg;
+			this.isDeviceOff = isDeviceOff;
+			this.time = System.currentTimeMillis();
+		}
+
+		public int getFramNum() {
+			return framNum;
+		}
+
+		public int[] getEcg() {
+			return ecg;
+		}
+
+		public boolean isDeviceOff() {
+			return isDeviceOff;
+		}
+		public long getTime() {
+			return time;
+		}
+
+		@Override
+		public int compareTo(EcgFrame other) {
+			return framNum - other.framNum;
+		}
+
+	}
+
+	// 保存心电的所有帧
+	public static List<EcgFrame> ecgFrames = new ArrayList<EcgFrame>();
+
+	/***
+	 * 添加一个帧
+	 * 
+	 * @param frame
+	 */
+	public void addEcgFrameAndSort(EcgFrame frame) {
+		// saveEcgFrams(frame);
+		L.i("addEcgFrameAndSort",
+				frame.getFramNum() + ":" + Arrays.toString(frame.ecg));
+		ecgFrames.add(frame);
+		Collections.sort(ecgFrames);
+	}
+
+	/***
+	 * 查找一个帧所在下标
+	 * 
+	 * @param frameNum
+	 * @return
+	 */
+	private int findEcgFrameIndex(int frameNum) {
+		for (int i = 0; i < ecgFrames.size(); i++)
+			if (ecgFrames.get(i).getFramNum() == frameNum)
+				return i;
+		return -1;
+	}
+
+	public EcgFrame getNextFrame(int curFrameNum) {
+		int index = findEcgFrameIndex(curFrameNum);
+		if (index != -1) {
+			if (index < ecgFrames.size() - 1
+					&& ecgFrames.get(index + 1).getFramNum() == curFrameNum + 1)
+				return ecgFrames.get(index + 1);
+		}
+		return null;
+	}
+
+	/**
+	 * 心电测量分析结果与心率值
+	 * 
+	 * @param bs
+	 * @return
+	 */
+	public int[] getEcgResult(byte[] data) {
+		return new int[] { data[5] & 0xff, data[7] & 0xff };
+	}
+
+	public void saveEcgFrams(EcgFrame frame) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(frame.framNum);
+		sb.append(":");
+		int[] ecg = frame.getEcg();
+		for (int j = 0; j < ecg.length; j++) {
+			sb.append(ecg[j]);
+		}
+		sb.append("\n");
+		FileManger.getInstance().append(sb.toString());
+	}
 }

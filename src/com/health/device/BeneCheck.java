@@ -1,5 +1,7 @@
 package com.health.device;
 
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,7 +9,6 @@ import java.util.List;
 import android.util.Log;
 import android.util.SparseArray;
 
-import com.health.device.BeneCheck.Record;
 import com.health.util.MyArrays;
 
 /**
@@ -143,7 +144,32 @@ public class BeneCheck {
 		// checksum
 		String date = String.format("%04d-%02d-%02d %02d:%02d:00",
 				2000 + data[12], data[13], data[14], data[15], data[16]);
-		int value = (data[17] & 0xff) + ((data[18] & 0xff) << 8);
+		int ivalue = (data[17] & 0xff) + ((data[18] & 0xff) << 8);
+		byte token = getToken(data);
+		double value = 0;
+		DecimalFormat df=new DecimalFormat("0.00");
+		switch(token)
+		{
+			case TOKEN_GLU_RECORD:
+			{
+				value=Double.parseDouble(df.format(ivalue*1.11/20.0));
+				break;
+			}
+			case TOKEN_UA_RECORD:
+			{
+				value=Double.parseDouble(df.format(ivalue/16.67));
+				break;
+			}
+			case TOKEN_CHOL_RECORD:
+			{
+				value=Double.parseDouble(df.format(ivalue/38.63));
+				break;
+			}
+			
+		}
+		if (token == TOKEN_GLU_RECORD || token == TOKEN_UA_RECORD
+				|| token == TOKEN_CHOL_RECORD)
+			System.out.println(Arrays.toString(data));
 		return new Record(date, value);
 	}
 
@@ -156,11 +182,11 @@ public class BeneCheck {
 	 */
 	public static class Record {
 		public final String date;
-		public final int value;
+		public final double value;
 
-		public Record(String date, int value) {
+		public Record(String date, double value2) {
 			this.date = date;
-			this.value = value;
+			this.value = value2;
 		}
 	}
 

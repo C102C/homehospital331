@@ -1,0 +1,82 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/record_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="50dp"
+    android:layout_margin="5dp"
+    android:background="@color/record_content"
+    android:padding="1dp"
+    android:stretchColumns="*" >
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/list_item_1"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="2dp"
+            android:text="姓名"
+            android:textColor="@color/duckgrey"
+            android:textSize="@dimen/text_size_3" />
+
+
+
+        <TextView
+            android:id="@+id/list_item_2"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="当当"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_3" />
+
+        <TextView
+            android:id="@+id/list_item_3"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="当当"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_3" />
+
+        <TextView
+            android:id="@+id/list_item_4"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="当当"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_3" />
+
+        <TextView
+            android:id="@+id/list_item_5"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="当当"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_3" />
+
+        <TextView
+            android:id="@+id/list_item_6"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="当当"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_3" />
+
+        <TextView
+            android:id="@+id/list_item_7"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="当当"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_3" />
+    </TableRow>
+
+</TableLayout>

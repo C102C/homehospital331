@@ -7,7 +7,7 @@ public class Tables {
 
 	// 表名
 	public static final String TABLE_NAME = "tableName";
-	
+
 	// 每个表都有的四个属性
 	public static final String CARDNO = "cardNo";
 	public static final String TIME = "checkTime";
@@ -23,6 +23,8 @@ public class Tables {
 	public static final String GLU = "glu";
 	public static final String UA = "ua";
 	public static final String CHOL = "chol";
+	// 白细胞
+	public static final String WBC = "wbc";
 	// 尿液11项
 	public static final String LEU = "leu";
 	public static final String BLD = "bld";
@@ -33,8 +35,10 @@ public class Tables {
 	public static final String SG = "sg";
 	public static final String KET = "ket";
 	public static final String BIL = "bil";
-	public static final String UGLU = "uglu";
+	public static final String UGLU = "glu";
 	public static final String VC = "vc";
+
+	private static final String ECG = "ecg";
 
 	public Map<String, String> pulseTable() {
 		Map<String, String> pulseMap = defaultAttrs();
@@ -123,5 +127,12 @@ public class Tables {
 		defaultMap.put(DEVICENAME, "varchar(20)");// 数据来源设备名称
 		defaultMap.put(DEVICEMAC, "varchar(20)");// 设备蓝牙mac地址
 		return defaultMap;
+	}
+
+	public Map<String, String> ecgTable() {
+		Map<String, String> ecgMap = defaultAttrs();
+		ecgMap.put(TABLE_NAME, "ECG");
+		ecgMap.put(ECG, "integer");// 总胆固醇
+		return ecgMap;
 	}
 }

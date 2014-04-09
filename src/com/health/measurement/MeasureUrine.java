@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
@@ -35,8 +38,12 @@ import com.health.database.Tables;
 import com.health.device.GmpUa;
 import com.health.device.GmpUa.UaRecord;
 import com.health.device.HealthDevice;
+import com.health.util.Constants;
+import com.health.util.TimeHelper;
+import com.health.web.BackGroundThread;
 import com.health.web.Uploader;
 import com.health.web.WebService;
+import com.health.web.BackGroundThread.BackGroundTask;
 
 /**
  * 尿液分析仪,可以测量 白细胞 亚硝酸盐 尿胆原 蛋白质 pH值 潜血 比重 酮体 胆红素 葡萄糖
@@ -49,7 +56,7 @@ import com.health.web.WebService;
 public class MeasureUrine extends BaseActivity {
 
 	private static TextView statusView = null;// 蓝牙连接状态
-	private static String btName = "BeneCheck";// 蓝牙名称
+	private static String btName = "EMP-UI";// 蓝牙名称
 	private static String btMac = null;// 蓝牙mac
 	private static UAHandler handler = null;
 	private static Context context;
@@ -77,6 +84,7 @@ public class MeasureUrine extends BaseActivity {
 
 	private static DatabaseService dbService;
 	private static final String TAG = "MeasureUrine";
+	private static final int UPLOADE_RESULT = 0x10245;
 	private static BluetoothService bluetoothService = null;
 	OnClickListener clickListener;
 	EditText user;
@@ -120,7 +128,13 @@ public class MeasureUrine extends BaseActivity {
 					startDeviceListActivity();// 开启查找蓝牙activity
 				} else if (view == uploadButton) {
 					uploadButton.setEnabled(false);// 按钮不可用，避免多次上传
-					upload();
+					try {
+						upload();
+					} catch (JSONException e) {
+						// TODO Auto-generated catch
+						// block
+						e.printStackTrace();
+					}
 					Toast.makeText(context, "后台开始上传", Toast.LENGTH_SHORT)
 							.show();
 				}
@@ -134,8 +148,9 @@ public class MeasureUrine extends BaseActivity {
 		findButton.setOnClickListener(clickListener);
 	}
 
-	protected void upload() {
-		ExecutorService exec = Executors.newSingleThreadExecutor();// 单线程池
+	protected void upload() throws JSONException {
+		// ExecutorService exec =
+		// Executors.newSingleThreadExecutor();// 单线程池
 		String leu = leuEditText.getText().toString();
 		if (leu.length() > 0) {
 			String nit = nitEditText.getText().toString();
@@ -149,25 +164,29 @@ public class MeasureUrine extends BaseActivity {
 			String uglu = gluEditText.getText().toString();
 			String vc = vcEditText.getText().toString();
 			String time = dateEditText.getText().toString();
-			Map<String, String> dataMap = getDefaltAttrs();
-			dataMap.put(Tables.LEU, leu);
-			dataMap.put(Tables.NIT, nit);
-			dataMap.put(Tables.UBG, ubg);
-			dataMap.put(Tables.PRO, pro);
-			dataMap.put(Tables.PH, ph);
-			dataMap.put(Tables.SG, sg);
-			dataMap.put(Tables.BLD, bld);
-			dataMap.put(Tables.KET, ket);
-			dataMap.put(Tables.BLD, bld);
-			dataMap.put(Tables.BIL, bil);
-			dataMap.put(Tables.UGLU, uglu);
-			dataMap.put(Tables.VC, vc);
-			dataMap.put(Tables.TIME, time);
+			JSONObject data = getDefaltAttrs();
+			data.put(Tables.LEU, leu);
+			data.put(Tables.NIT, nit);
+			data.put(Tables.UBG, ubg);
+			data.put(Tables.PRO, pro);
+			data.put(Tables.PH, ph);
+			data.put(Tables.SG, sg);
+			data.put(Tables.BLD, bld);
+			data.put(Tables.KET, ket);
+			data.put(Tables.BLD, bld);
+			data.put(Tables.BIL, bil);
+			data.put(Tables.UGLU, uglu);
+			data.put(Tables.VC, vc);
+			data.put(Tables.TIME, time);
 			Tables tables = new Tables();
-			Uploader uploader = new Uploader(dataMap, Cache.URINE,
-					WebService.PATH_URINE, cache, dbService, handler,
-					tables.urineTable());
-			exec.execute(uploader);
+			uploadInBack(data, WebService.PATH_URINE);
+			// Uploader uploader = new
+			// Uploader(dataMap, Cache.URINE,
+			// WebService.PATH_URINE, cache, dbService,
+			// handler,
+			// tables.urineTable());
+			// exec.execute(uploader);
+
 		}
 	}
 
@@ -176,15 +195,19 @@ public class MeasureUrine extends BaseActivity {
 	 * 
 	 * @return
 	 */
-	private Map<String, String> getDefaltAttrs() {
-		String idCard = cache.getUserId();
-		Map<String, String> dataMap = new HashMap<String, String>();
-		dataMap.put(Tables.DEVICEMAC, btMac);
-		dataMap.put(Tables.DEVICENAME, btName);
-		dataMap.put(Tables.CARDNO, idCard);
-		dataMap.put(WebService.STATUS, WebService.UNUPLOAD);// 状态为未上传
-		return dataMap;
-	}
+	/*
+	 * private Map<String, String> getDefaltAttrs() {
+	 * String idCard =
+	 * BaseActivity.getUser().getCardNo(); Map<String,
+	 * String> dataMap = new HashMap<String, String>();
+	 * dataMap.put(Tables.DEVICEMAC, btMac);
+	 * dataMap.put(Tables.DEVICENAME, btName);
+	 * dataMap.put(Tables.CARDNO, idCard);
+	 * dataMap.put(WebService.STATUS,
+	 * WebService.UNUPLOAD);// 状态为未上传
+	 * dataMap.put(WebService.PLAT_ID_KEY,
+	 * WebService.PLAT_ID_VALUE);// return dataMap; }
+	 */
 
 	/**
 	 * 初始化控件
@@ -343,17 +366,17 @@ public class MeasureUrine extends BaseActivity {
 						BluetoothService.DEVICE_ADDRESS);
 				cache.saveDeviceAddress(Cache.GMPUA, address);// 保存地址,以便下次自带连接
 				break;
-			case Uploader.MESSAGE_UPLOADE_RESULT:
-				Bundle bundler = msg.getData();
-				int status = bundler.getInt(Uploader.STUTAS);
+			case UPLOADE_RESULT:
+
+				int status = msg.arg1;
 				String result = "上传失败";
-				if (status == Uploader.OK) {
+				setImageViews(status);
+				if (status == WebService.OK) {
 					result = "上传成功";
-					setImageViews(status);
+
 				}
-				if (status == Uploader.NET_ERROR) {
+				if (status == WebService.NETERROE) {
 					result = "网络异常";
-					setImageViews(status);
 				}
 				Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
 				break;
@@ -372,7 +395,7 @@ public class MeasureUrine extends BaseActivity {
 				&& bluetoothService.getState() == BluetoothService.STATE_CONNECTED) {
 			status = View.VISIBLE;// 连接时设置可见
 		} else {
-			status = View.GONE;// 未连接时设置不可见
+			status = View.INVISIBLE;// 未连接时设置不可见
 		}
 		getDataButton.setVisibility(status);
 	}
@@ -416,12 +439,12 @@ public class MeasureUrine extends BaseActivity {
 	}
 
 	private static void setImageView(ImageView imageview, int status) {
-		if (status == Uploader.FAILURE || status == Uploader.NET_ERROR)
-			imageview.setImageResource(R.drawable.light_red);
-		else if (status == Uploader.OK)
+		if (status == WebService.OK)
 			imageview.setImageResource(R.drawable.light_greed);
-		else
+		else if (status == -1)
 			imageview.setImageResource(R.drawable.light_blue);
+		else
+			imageview.setImageResource(R.drawable.light_red);
 	}
 
 	@Override
@@ -453,4 +476,41 @@ public class MeasureUrine extends BaseActivity {
 		return super.onKeyDown(keyCode, event);
 	}
 
+	private JSONObject getDefaltAttrs() throws JSONException {
+		JSONObject data = new JSONObject();
+		data.put(WebService.DEVICENAME, btName);
+		data.put(WebService.DEVICEMAC, btMac);
+		return data;
+	}
+
+	private void uploadInBack(final JSONObject data, final String path) {
+		new BackGroundThread(new BackGroundTask() {
+
+			@Override
+			public void process() {
+				upload(data, path);
+			}
+		}).start();
+	}
+
+	public static void upload(JSONObject data, String path) {
+		try {
+			JSONObject para = new JSONObject();
+			String idCard = BaseActivity.getUser().getCardNo();
+			para.put(WebService.CARDNO, idCard);
+			para.put(WebService.GUID_KEY, WebService.GUID_VALUE);
+			para.put(WebService.DATA, data);
+			para.put(WebService.CRC, "");
+
+			// JSONObject result =
+			// WebService.httpConenction(WebService.DOMAIN_V2+"?"+path+para.toString());
+			JSONObject result = WebService.postConenction(para, path);
+			int status = result.getInt(WebService.STATUS_CODE);
+			handler.obtainMessage(UPLOADE_RESULT, status, 0, path)
+					.sendToTarget();
+		} catch (Exception e) {
+			handler.obtainMessage(UPLOADE_RESULT, WebService.NETERROE, 0, path)
+					.sendToTarget();
+		}
+	}
 }

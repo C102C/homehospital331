@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/topbar"
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/topbg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/calendar_title"
+            android:textColor="#fffdfdfd"
+            android:textSize="24px" />
+
+        <TextView
+            android:id="@+id/calendar_medical_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="300dp"
+            android:textColor="#fffdfdfd"
+            android:textSize="24px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/bottombar"
+        android:layout_below="@+id/topbar"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="5dp"
+            android:background="@drawable/centerbg"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@drawable/myhealth_healthreport_leftbackground"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:src="@drawable/calendar_little" />
+
+            </LinearLayout>
+            
+            <LinearLayout
+    			android:layout_width="match_parent"
+    			android:layout_height="match_parent"
+    			android:orientation="vertical" >
+                
+            	<LinearLayout
+               	 	android:id="@+id/toolbar"
+                	android:layout_width="match_parent"
+                	android:layout_height="wrap_content"
+                	android:orientation="horizontal" >
+
+                	<TextView
+                    	android:id="@+id/title_bar"
+                    	android:layout_width="0dp"
+                    	android:layout_height="50dp"
+                    	android:layout_weight="1"
+                    	android:gravity="center_vertical"
+                    	android:paddingLeft="5dp"
+                    	android:text="您的巡防计划"
+                    	android:textColor="@color/black"
+                    	android:textSize="30dp" />
+
+                	<ImageButton
+                    	android:id="@+id/button_new"
+                    	android:layout_width="wrap_content"
+                    	android:layout_height="50dp"
+                    	android:layout_weight="0"
+                    	android:src="@android:drawable/ic_menu_add" />
+            	</LinearLayout>
+
+            	<View
+                	android:id="@+id/title_border_bottom"
+                	android:layout_width="fill_parent"
+                	android:layout_height="2dp"
+                	android:layout_margin="0dp"
+                	android:padding="0dp"
+                	android:background="#46A3FF" />
+
+            	<ListView
+            	    android:id="@android:id/list"
+            	    android:layout_width="match_parent"
+            	    android:layout_height="wrap_content"
+            	    android:cacheColorHint="#ffffff"
+            	    android:longClickable="true" >
+
+            	</ListView>
+
+            	<TextView
+                	android:id="@android:id/empty"
+                	android:layout_width="match_parent"
+                	android:layout_height="wrap_content"
+                	android:padding="10dp"
+                	android:text="目前您没有任何巡防计划"
+                	android:textColor="#000000" />
+        	</LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottombar"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottombg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:scrollbars="none" >
+
+        <Button
+            android:id="@+id/calendar_medical_homeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/all_homebtn"
+            android:gravity="center" >
+        </Button>
+    </LinearLayout>
+
+</RelativeLayout>

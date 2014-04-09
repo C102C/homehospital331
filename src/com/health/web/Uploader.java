@@ -1,11 +1,7 @@
 package com.health.web;
 
-import java.io.IOException;
-import java.net.URLEncoder;
-import java.util.HashMap;
 import java.util.Map;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.os.Bundle;
@@ -20,7 +16,7 @@ public class Uploader implements Runnable {
 	public static final String STUTAS = "data";
 	public static final int OK = 0;
 	public static final int FAILURE = 1;// 失败
-	public static final int NET_ERROR = 1;// 网络异常
+	public static final int NET_ERROR = 2;// 网络异常
 	private Map<String, String> dataMap;
 	private String path;
 	private String item;
@@ -49,25 +45,22 @@ public class Uploader implements Runnable {
 		cache.saveItem(item, dataMap);// 保存单项测量值
 		dataMap.remove(WebService.STATUS);// 删除上传状态
 		dataMap.put(WebService.PATH, path);
-		Map<String, String> newMap = WebService.UrlEncode(dataMap);
-		JSONObject json = new JSONObject(newMap);
+		JSONObject json = new JSONObject(dataMap);
 		JSONObject resultJson;
 		int status;
 		try {
 			resultJson = WebService.upload(json);
 			int statusCode = resultJson.getInt(WebService.STATUS_CODE);
 			if (statusCode != WebService.OK) {// 上传不成功的数据，保存在数据库
-				dbService.insert(table, dataMap);
+				if (dbService != null)
+					dbService.insert(table, dataMap);
 				status = FAILURE;
 			} else {
 				dataMap.put(WebService.STATUS, WebService.UPLOADED);// 上传成功,更新标志
 				cache.saveItem(item, dataMap);
 				status = OK;
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-			status = NET_ERROR;
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			status = NET_ERROR;
 		}

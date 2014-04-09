@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
 <style name="theme" parent="android:Theme.Black">
-<item name="android:windowNoTitle">true</item>
-<item name="android:textSize">14sp</item> 
-<item name="android:textColor">#FFFF0000</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:textSize">14sp</item>
+    <item name="android:textColor">#FFFF0000</item>
 </style>
+
+
+<style name="big_button_style" parent="android:Theme.Black">
+    <item name="android:background">@drawable/button_selector</item>
+    <item name="android:textSize">14sp</item>
+    <item name="android:textColor">#FFFF0000</item>
+</style>
+
 </resources> 

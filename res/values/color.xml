@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="value_color">#0000FF</color>
+    <color name="key_color">#ff444444</color>
     <color name="white">#FFFFFFFF</color>
     <color name="black">#000000</color>
     <color name="blue">#0000FF</color>
@@ -10,7 +12,39 @@
     <color name="dianji">#294262</color>
     <color name="duckgrey">#ff444444</color>
     <color name="datacolor">#0000FF</color>
-    <color name="latest_record_title">#EEB4B4</color>
+    <color name="record_title">#EEB4B4</color>
+    <color name="record_content">#F7F7F7</color>
     <color name="latest_uploaded">#D1EEEE</color>
+    <color name="c1">#C71585</color>
+    <color name="c2">#C6E2FF</color>
+    <color name="c3">#C67171</color>
+    <color name="c4">#C5C1AA</color>
+    <color name="c5">#C0FF3E</color>
+    <color name="center_bg_blue">#e5e9f0</color>
+
+    <!-- main activity color -->
+    <color name="color_main_red">#ff0000</color>
+    <color name="color_main_blue">#0000ff</color>
+    <color name="color_main_green">#00ff00</color>
+    <color name="color_main_black">#000000</color>
+    <color name="color_main_white">#ffffff</color>
+    <color name="color_main_tile_bg">#39a4ff</color>
+    <color name="color_main_menu">#545252</color>
+    <color name="color_main_histogram1">#d2eea2</color>
+    <color name="color_main_histogram2">#a0fb00</color>
+    <color name="color_main_histogram3">#f3f103</color>
+    <color name="color_main_histogram4">#e100fb</color>
+    <color name="color_main_histogram5">#ff0000</color>
+    <color name="color_main_histogram6">#7d0407</color>
+    <color name="color_main_button_bg">#e2ebfe</color>
+    <color name="color_bloodpressure">#00ffff</color>
+    <color name="color_spo2">#f400b2</color>
+    <color name="color_pulse">#179a17</color>
+    <color name="color_temp">#39a4ff</color>
+    <color name="color_battery">#00fe24</color>
+    <color name="color_wave">#ff0000</color>
+    <color name="color_gray">#858585</color>
+    <color name="color_layoutbg">#f4faff</color>
+    <color name="color_useradd">#000000</color>
 
 </resources>

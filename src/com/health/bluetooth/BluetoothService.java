@@ -56,6 +56,7 @@ public class BluetoothService {
 
 	private static boolean isAsyn = true;// 异步方式传递数据
 	private static BluetoothService lastInstance = null;
+	private  int sleepTime = 100;
 
 	// 调试信息
 	private static final String TAG = "BluetoothService";
@@ -64,7 +65,7 @@ public class BluetoothService {
 	private BluetoothService(Handler handler, boolean isAsyn) {
 		this.btAdapter = BluetoothAdapter.getDefaultAdapter();
 		if (btAdapter.getState() == BluetoothAdapter.STATE_OFF)
-			btAdapter.enable();// 打开蓝牙		
+			btAdapter.enable();// 打开蓝牙
 		this.handler = handler;
 		BluetoothService.isAsyn = isAsyn;
 		this.state = STATE_NONE;
@@ -95,6 +96,28 @@ public class BluetoothService {
 			String n = d.getName();
 			if (name.equals(n)) {
 				return d;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * 根据设备名字前缀找蓝牙
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public BluetoothDevice getBondedDeviceByPrefix(String... names) {
+		Set<BluetoothDevice> pairedDevices = btAdapter.getBondedDevices();
+		for (BluetoothDevice d : pairedDevices) {
+			for (String name : names) {
+				String dName = d.getName();
+				if (dName.length() >= name.length()) {
+					String n = dName.substring(0, name.length());
+					if (name.equalsIgnoreCase(n)) {
+						return d;
+					}
+				}
 			}
 		}
 		return null;
@@ -322,10 +345,13 @@ public class BluetoothService {
 				} else {
 					tempSocket = device
 							.createRfcommSocketToServiceRecord(MY_UUID);
-					method = device.getClass().getMethod("createRfcommSocket",
-							new Class[] { int.class });
+					if (!tempSocket.isConnected())
+						method = device.getClass()
+								.getMethod("createRfcommSocket",
+										new Class[] { int.class });
 				}
-				tempSocket = (BluetoothSocket) method.invoke(device, 1);
+				if (!tempSocket.isConnected())
+					tempSocket = (BluetoothSocket) method.invoke(device, 1);
 			} catch (IOException e) {
 				Log.e(TAG, "create() failed", e);
 			}
@@ -424,7 +450,7 @@ public class BluetoothService {
 			try {
 				int tryTime = 2;
 				while (!stop && inStream.available() <= 0 && (tryTime--) >= 0)
-					TimeUnit.MILLISECONDS.sleep(500);
+					TimeUnit.MILLISECONDS.sleep(sleepTime);
 				if (stop || tryTime < 0)// 睡一觉起来，蓝牙通道都管了，还读啥呀,回去!
 					return;
 				byte[] buffer = new byte[256];
@@ -493,6 +519,10 @@ public class BluetoothService {
 			}
 
 		}
+	}
+	
+	public void setSleepTime(int time) {
+		sleepTime = time;
 	}
 
 }

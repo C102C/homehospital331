@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/record_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/button_selector"
+    android:orientation="horizontal"
+    android:padding="5dp" >
+
+    <TextView
+        android:id="@+id/list_item_2"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="当当"
+        android:textColor="@color/duckgrey"
+        android:textSize="@dimen/text_size_3" />
+
+    <TextView
+        android:id="@+id/list_item_1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="姓名姓名姓名姓名姓名姓名"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_3" />
+
+</LinearLayout>

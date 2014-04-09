@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="疫苗种类:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_3" />
+
+            <EditText
+                android:id="@+id/vacc_kind"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/archive_edit_bg"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="剂次:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_3" />
+
+            <EditText
+                android:id="@+id/vacc_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/archive_edit_bg"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="接种日期："
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_3" />
+
+            <DatePicker
+                android:id="@+id/vacc_date_dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="接种部位:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_3" />
+
+            <EditText
+                android:id="@+id/vacc_location_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/archive_edit_bg"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="接种批号:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_3" />
+
+            <EditText
+                android:id="@+id/vacc_serial_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/archive_edit_bg"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="接种医生:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_3" />
+
+            <EditText
+                android:id="@+id/vacc_doctor_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/archive_edit_bg"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="备注:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_3" />
+
+            <EditText
+                android:id="@+id/vacc_note_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/archive_edit_bg"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_3" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

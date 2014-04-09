@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="ecg_measureres">
+        <item>波形未见异常</item>
+        <item>波形疑似心跳稍快 请注意休息</item>
+        <item>波形疑似心跳过快 请注意休息</item>
+        <item>波形疑似阵发性心跳过快 请咨询医生</item>
+        <item>波形疑似心跳稍缓 请注意休息</item>
+        <item>波形疑似心跳过缓 请注意休息</item>
+        <item>波形疑似偶发心跳间期缩短 请咨询医生</item>
+        <item>波形疑似心跳间期不规则 请咨询医生</item>
+        <item>波形疑似心跳稍快伴有偶发心跳间期缩短 请咨询医生</item>
+        <item>波形疑似心跳稍缓伴有偶发心跳间期缩短 请咨询医生</item>
+        <item>波形疑似心跳稍缓伴有心跳间期不规则 请咨询医生</item>
+        <item>波形有漂移 请重新测量</item>
+        <item>波形疑似心跳过快伴有波形漂移 请咨询医生</item>
+        <item>波形疑似心跳过缓伴有波形漂移 请咨询医生</item>
+        <item>波形疑似偶发心跳间期缩短伴有波形漂移 请咨询医生</item>
+        <item>波形疑似心跳间期不规则伴有波形漂移 请咨询医生</item>
+        <item>信号较差请重新测量</item>
+    </string-array>
+    <string-array name="color_names">
+        <item>1、封面</item>
+        <item>2、个人基本信息表</item>
+        <item>3、健康体检表</item>
+        <item>4、接诊记录表</item>
+        <item>5、会诊记录表</item>
+        <item>6、双向转诊（转出）单</item>
+        <item>7、双向转诊（回转）单</item>
+        <item>8、居民健康档案信息卡</item>
+        <item>9、预防接种卡</item>
+        <item>10、新生儿家庭访视记录表</item>
+        <item>11、1岁以内儿童健康检查记录表</item>
+        <item>12、3～6岁儿童健康检查记录表</item>
+        <item>13、第1次产前随访服务记录表</item>
+        <item>14、第2～5次产前随访服务记录表</item>
+        <item>15、产后访视记录表</item>
+        <item>16、产后42天健康检查记录表</item>
+        <item>17、老年人生活自理能力评估表</item>
+        <item>18、老年人中医药健康管理服务记录表</item>
+        <item>19、体质判定标准表</item>
+        <item>20、高血压患者随访服务记录表</item>
+        <item>21、2型糖尿病患者随访服务记录表</item>
+        <item>22、重性精神疾病患者个人信息补充表</item>
+        <item>23、重性精神疾病患者随访服务记录表</item>
+        <item>24、老年人生活自理能力评估表</item>
+        <item>25、老年人中医药健康管理服务记录表</item>
+        <item>26、体质判定标准表</item>
+    </string-array>
+
+</resources>
