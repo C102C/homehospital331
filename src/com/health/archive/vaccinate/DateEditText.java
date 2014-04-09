@@ -4,7 +4,12 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.EditText;
-
+/***
+ * 选择日期的textview
+ * @author jiqunpeng
+ *
+ * 创建时间：2014-4-9 下午2:04:36
+ */
 public class DateEditText extends EditText {
 	private Context context;
 
