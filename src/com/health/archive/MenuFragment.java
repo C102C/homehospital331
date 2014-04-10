@@ -1,6 +1,7 @@
 package com.health.archive;
 
-
+import java.util.HashMap;
+import java.util.Map;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,8 +14,9 @@ import android.widget.ListView;
 import cn.younext.R;
 
 import com.health.archive.vaccinate.Vaccinate;
+import com.health.util.L;
 
-public class ColorMenuFragment extends ListFragment {
+public class MenuFragment extends ListFragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -25,9 +27,7 @@ public class ColorMenuFragment extends ListFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-
 		String[] colors = getResources().getStringArray(R.array.color_names);
-
 		ArrayAdapter<String> colorAdapter = new ArrayAdapter<String>(
 				getActivity(), android.R.layout.simple_list_item_1,
 				android.R.id.text1, colors);
@@ -36,7 +36,8 @@ public class ColorMenuFragment extends ListFragment {
 
 	@Override
 	public void onListItemClick(ListView lv, View v, int position, long id) {
-		Fragment newContent = null;		
+		Fragment newContent = null;
+
 		switch (position) {
 		case 0:
 			newContent = new ArchiveCover();
@@ -45,17 +46,16 @@ public class ColorMenuFragment extends ListFragment {
 			newContent = new BasicInfoFragment();
 			break;
 		case 2:
-			newContent =new Vaccinate();
+			newContent = new Vaccinate();
 			break;
-		case 3:
-			newContent = ColorFragment.getColorFragment(android.R.color.holo_green_light);
+		case 3:			
 			break;
-		case 4:
-			newContent = new BasicInfoFragment();
+		case 4:			
 			break;
 		}
-		if (newContent != null)
+		if (newContent != null) {
 			switchFragment(newContent);
+		}
 	}
 
 	// «–ªªFragment ”Õºƒ⁄ring

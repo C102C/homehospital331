@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="45.0dip"
+    android:layout_height="fill_parent"
     android:background="@drawable/bg_title_bar"
     android:gravity="center_vertical" >
 
-    <ImageView
+    <Button
         android:id="@+id/title_bar_menu_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,7 +14,7 @@
         android:layout_marginRight="3.0dip"
         android:layout_marginTop="3.0dip"
         android:gravity="center"
-        android:src="@drawable/ic_top_bar_category" />
+        android:background="@drawable/ic_top_bar_category" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -29,11 +29,17 @@
         android:layout_centerInParent="true"
         android:ellipsize="end"
         android:gravity="center"
-        android:paddingLeft="75.0dip"
-        android:paddingRight="75.0dip"
         android:singleLine="true"
         android:text="Title"
         android:textColor="#ffffff"
         android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/title_bar_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="修改" />
 
 </RelativeLayout>

@@ -40,6 +40,12 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.health.archive.vaccinate.DialogVaccEdit"
+            android:label="疫苗接种记录"
+       
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+        </activity>
+        <activity
             android:name="com.health.DoctorMainUi"
             android:theme="@style/theme" >
         </activity>
@@ -244,9 +250,9 @@
             android:name="com.health.alarm.AlarmService"
             android:process="com.health.alarm.serviceProcess" >
         </service>
--
+-
         <receiver android:name="com.health.alarm.AlarmServiceBroadcastReciever" >
--            
+-            
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
@@ -257,9 +263,9 @@
 
         <receiver android:name="com.health.alarm.AlarmAlertBroadcastReciever" >
         </receiver>
--
+-
         <receiver android:name="com.health.alarm.PhoneStateChangedBroadcastReciever" >
--
+-
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE" />
             </intent-filter>

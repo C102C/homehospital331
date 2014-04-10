@@ -10,6 +10,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#666"
+            android:text="填写疫苗接种记录"
+            android:textSize="@dimen/text_size_3" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,6 +34,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/archive_edit_bg"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_3" />
@@ -158,6 +167,30 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/archive_edit_bg"
                 android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/vacc_save_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="保存"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_3" />
+
+            <Button
+                android:id="@+id/vacc_cancel_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="取消"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_3" />
         </LinearLayout>

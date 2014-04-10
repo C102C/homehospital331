@@ -213,7 +213,7 @@ public class HealthArchive extends BaseActivity {
 	private void check(JSONObject data, String key, RadioGroup group, int[] ids)
 			throws JSONException {
 		int index = data.getInt(key);
-		if (index >= 0 && index <= ids.length)
+		if (index >= 0 && index < ids.length)
 			group.check(ids[index]);
 	}
 

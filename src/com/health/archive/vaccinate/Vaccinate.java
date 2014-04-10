@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import cn.younext.R;
 
+import com.health.archive.ArchiveMain;
+import com.health.archive.ArchiveMain.ActionBarEditable;
+import com.health.archive.vaccinate.DialogVaccEdit.ResultTask;
+import com.health.util.L;
 import com.health.util.ListViewForScrollView;
 import com.health.util.TimeHelper;
 
@@ -34,7 +39,11 @@ public class Vaccinate extends Fragment {
 	private ListViewForScrollView vaccListView;
 	private VaccinateAdapter adapter;
 	private LayoutInflater inflater;
-	private Dialog dialog = null;
+	private List<String[]> datas;
+
+	private View focusView;
+
+	private boolean lock = false;
 
 	public Vaccinate() {
 		setRetainInstance(true);
@@ -58,10 +67,29 @@ public class Vaccinate extends Fragment {
 	private void initView(View view) {
 		vaccListView = (ListViewForScrollView) view
 				.findViewById(R.id.vaccinate_list_view);
-		List<String[]> datas = initDatas();
+		datas = initDatas();
 		adapter = new VaccinateAdapter(getActivity(), datas);
 		vaccListView.setAdapter(adapter);
 		setListener(vaccListView);
+		ArchiveMain.getInstance().setTitle("预防接种卡");
+		ArchiveMain.getInstance().setButtonText("修改");
+		ArchiveMain.getInstance().setActionBarEdit(new ActionBarEditable() {
+
+			@Override
+			public void processOnButton() {
+				lock = !lock;
+				ArchiveMain.getInstance().setLock(lock);
+				setButtonText();
+			}
+		});
+
+	}
+
+	private void setButtonText() {
+		if (lock)
+			ArchiveMain.getInstance().setButtonText("保存");
+		else
+			ArchiveMain.getInstance().setButtonText("修改");
 	}
 
 	private void setListener(ListView listView) {
@@ -71,8 +99,11 @@ public class Vaccinate extends Fragment {
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				String[] item = (String[]) parent.getItemAtPosition(position);
-				editVaccRecord(item);
-				return false;
+				focusView = parent.getChildAt(position);
+				parent.setSelection(position);
+				setFocus(focusView);
+				startEditVacc(item, position);
+				return true;
 			}
 		});
 
@@ -98,6 +129,7 @@ public class Vaccinate extends Fragment {
 				.findViewById(R.id.vacc_doctor_et);
 		final EditText vaccNoteET = (EditText) view
 				.findViewById(R.id.vacc_note_et);
+		vaccKindET.clearFocus();
 		vaccKindET.setText(item[0]);
 		vaccTimesET.setText(item[1]);
 		builder.setView(view);
@@ -118,7 +150,48 @@ public class Vaccinate extends Fragment {
 		});
 		builder.setNegativeButton("取消", null);
 		builder.show();
+	}
 
+	final ResultTask resultTask = new ResultTask() {
+
+		@Override
+		public void process(String[] item) {
+			if (item[0].equals("其他疫苗")) {
+				String[] other = new String[item.length];
+				other[0] = "其他疫苗";
+				other[1] = "1";
+				datas.add(other);
+			}
+			adapter.notifyDataSetChanged();
+			setFocus(focusView);
+			// focusView.clearFocus();
+			// vaccListView.setSelection(position);
+		}
+
+		@Override
+		public void cancel() {
+			// focusView.clearFocus();
+			setFocus(focusView);
+		}
+
+	};
+
+	private void setFocus(View view) {
+		if (view != null) {
+			// view.setFocusableInTouchMode(true);
+			// view.setFocusable(true);
+			// boolean state =
+			// focusView.requestFocus();
+			// L.i("setFocus",
+			// "state:"+state+" focusView:"+focusView);
+		}
+	}
+
+	private void startEditVacc(String[] item, int p) {
+		Intent serverIntent = new Intent(getActivity(), DialogVaccEdit.class);
+		DialogVaccEdit.setResultTask(resultTask);
+		DialogVaccEdit.setEditItem(item);
+		getActivity().startActivity(serverIntent);
 	}
 
 	private List<String[]> initDatas() {

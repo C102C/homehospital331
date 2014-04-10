@@ -1,8 +1,0 @@
-*.class
-
-*.dex
-*.war
-*.ear
-*.apk
-bin/
-bin
