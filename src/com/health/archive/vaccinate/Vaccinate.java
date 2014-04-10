@@ -6,25 +6,25 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import cn.younext.R;
 
 import com.health.archive.ArchiveMain;
 import com.health.archive.ArchiveMain.ActionBarEditable;
 import com.health.archive.vaccinate.DialogVaccEdit.ResultTask;
-import com.health.util.L;
 import com.health.util.ListViewForScrollView;
 import com.health.util.TimeHelper;
 
@@ -41,6 +41,8 @@ public class Vaccinate extends Fragment {
 	private LayoutInflater inflater;
 	private List<String[]> datas;
 
+	private Button editHelpBtn;
+	private ScrollView bodySv;
 	private View focusView;
 
 	private boolean lock = false;
@@ -67,7 +69,9 @@ public class Vaccinate extends Fragment {
 	private void initView(View view) {
 		vaccListView = (ListViewForScrollView) view
 				.findViewById(R.id.vaccinate_list_view);
+		bodySv = (ScrollView) view.findViewById(R.id.table_body_sv);
 		datas = initDatas();
+		editHelpBtn = (Button) view.findViewById(R.id.edit_help_button);
 		adapter = new VaccinateAdapter(getActivity(), datas);
 		vaccListView.setAdapter(adapter);
 		setListener(vaccListView);
@@ -82,14 +86,22 @@ public class Vaccinate extends Fragment {
 				setButtonText();
 			}
 		});
+		view.setFocusable(false);
 
 	}
 
 	private void setButtonText() {
-		if (lock)
+		if (lock) {
 			ArchiveMain.getInstance().setButtonText("±£´æ");
-		else
+			editHelpBtn.setVisibility(View.GONE);
+			bodySv.setBackgroundColor(getResources().getColor(
+					android.R.color.white));
+		} else {
 			ArchiveMain.getInstance().setButtonText("ÐÞ¸Ä");
+			editHelpBtn.setVisibility(View.VISIBLE);
+			bodySv.setBackgroundColor(getResources().getColor(
+					R.color.shallow_blue));
+		}
 	}
 
 	private void setListener(ListView listView) {
