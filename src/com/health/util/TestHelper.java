@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import android.test.AndroidTestCase;
 import android.util.Log;
 
+import com.health.database.DataOpenHelper;
 import com.health.database.DatabaseService;
 import com.health.database.Tables;
 import com.health.web.WebService;
@@ -102,11 +103,17 @@ public class TestHelper extends AndroidTestCase {
 	}
 
 	public void testGroupLogin() throws JSONException, IOException {
-//		JSONObject json = WebService.groupLogin("patadmin", "patadmin");
-//		System.out.println(json);
+		// JSONObject json =
+		// WebService.groupLogin("patadmin",
+		// "patadmin");
+		// System.out.println(json);
 	}
 
 	public void testGetUserList() throws JSONException, IOException {
 		WebService.getUserList("patadmin", 0);
+	}
+
+	public void testDeleteDb() {
+		DataOpenHelper.deleteDb();
 	}
 }

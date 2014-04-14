@@ -165,8 +165,10 @@ public class ArchiveMain extends SlidingFragmentActivity implements
 	public void setButtonText(String text) {
 		barButton.setText(text);
 	}
+
 	/**
 	 * 设置菜单的可用
+	 * 
 	 * @param isLock
 	 */
 	public void setLock(boolean isLock) {
@@ -174,18 +176,26 @@ public class ArchiveMain extends SlidingFragmentActivity implements
 		getSlidingMenu().setSlidingEnabled(!lock);
 	}
 
+	private long lastClick = System.currentTimeMillis();
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.title_bar_btn:			
+		case R.id.title_bar_btn:
 			if (actionBarEdit != null)
 				actionBarEdit.processOnButton();
 			break;
 		case R.id.title_bar_menu_btn:
 			if (!lock)
 				toggle();
-			else
-				T.showShort(this, "请先保存当前内容");
+			else{
+				T.showShort(this, "内容有修改，请先保存！");
+//				long c = System.currentTimeMillis();
+//				if(c-lastClick<1000)
+//					setLock(false);
+//				lastClick = c;
+				
+			}
 			break;
 		default:
 			break;

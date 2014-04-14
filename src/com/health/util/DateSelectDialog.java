@@ -1,4 +1,4 @@
-package com.health.archive.vaccinate;
+package com.health.util;
 
 import java.util.Locale;
 

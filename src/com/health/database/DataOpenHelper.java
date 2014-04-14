@@ -1,14 +1,19 @@
 package com.health.database;
 
+import java.io.File;
 import java.util.Map;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.health.util.L;
+
 public class DataOpenHelper extends SQLiteOpenHelper {
 	private static final String DATABASENAME = "health.db";
 	private static final int DATABASVERSION = 1;
+	private static final String TAG = "DataOpenHelper";
 
 	public DataOpenHelper(Context context) {
 		super(context, DATABASENAME, null, DATABASVERSION);
@@ -26,6 +31,8 @@ public class DataOpenHelper extends SQLiteOpenHelper {
 		db.execSQL(createSql(tables.uaTable()));
 		db.execSQL(createSql(tables.cholTable()));
 		db.execSQL(createSql(tables.urineTable()));
+		db.execSQL(createSql(tables.vaccHeadTable()));
+		db.execSQL(createSql(tables.vaccRecordTable()));
 	}
 
 	@Override
@@ -54,6 +61,16 @@ public class DataOpenHelper extends SQLiteOpenHelper {
 		String sql = builder.toString();
 		sql = sql.substring(0, sql.length() - 1);// 删掉最后一个逗号
 		return sql + ")";
+
+	}
+
+	/***
+	 * 刪除整個数据库
+	 */
+	@SuppressLint("NewApi")
+	public static void deleteDb() {
+		boolean state = SQLiteDatabase.deleteDatabase(new File(DATABASENAME));
+		L.i(TAG, "deleteDb:" + state);
 
 	}
 }

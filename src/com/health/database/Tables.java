@@ -3,6 +3,8 @@ package com.health.database;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.health.archive.vaccinate.VaccTables;
+
 public class Tables {
 
 	// 表名
@@ -134,5 +136,51 @@ public class Tables {
 		ecgMap.put(TABLE_NAME, "ECG");
 		ecgMap.put(ECG, "integer");// 总胆固醇
 		return ecgMap;
+	}
+
+	/***
+	 * 疫苗接种卡记录信息表
+	 * 
+	 * @return
+	 */
+	public Map<String, String> vaccRecordTable() {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put(TABLE_NAME, "Vacc_record");
+		map.put(VaccTables.id_card, "char(18)");//身份证号
+		map.put(VaccTables.serial_id, "varchar(20)");// 编号
+		map.put(VaccTables.vacc_kind, "varchar(20)");// 疫苗
+		map.put(VaccTables.vacc_time, "integer");// 剂次
+		map.put(VaccTables.vacc_date, "date");// 接种日期
+		map.put(VaccTables.vacc_part, "varchar(20)");// 接种部位
+		map.put(VaccTables.vacc_serial, "varchar(20)");// 疫苗批号
+		map.put(VaccTables.vacc_doctor, "varchar(20)");// 接种医生
+		map.put(VaccTables.vacc_note, "varchar(100)");// 备注
+		return map;
+	}
+
+	/***
+	 * 疫苗接种卡表头信息
+	 * 
+	 * @return
+	 */
+	public Map<String, String> vaccHeadTable() {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put(TABLE_NAME, "Vacc_head");
+		map.put(VaccTables.id_card, "char(18)");//身份证号
+		map.put(VaccTables.serial_id, "varchar(20)");// 编号
+		map.put(VaccTables.guardian, "varchar(20)");// 监护人姓名
+		map.put(VaccTables.relation, "varchar(20)");// 与儿童关系
+		map.put(VaccTables.phone, "varchar(20)");// 联系电话
+		map.put(VaccTables.addr, "varchar(100)");// 家庭现住址
+		map.put(VaccTables.register_addr, "varchar(100)");// 户籍地址
+		map.put(VaccTables.in_time, "date");// 迁入时间
+		map.put(VaccTables.out_time, "date");// 迁出时间
+		map.put(VaccTables.out_reason, "varchar(100)");// 迁出原因
+		map.put(VaccTables.abnormal_history, "varchar(100)");// 疫苗异常反应史
+		map.put(VaccTables.vacc_taboo, "varchar(100)");// 接种禁忌
+		map.put(VaccTables.infection_history, "varchar(100)");// 传染病史
+		map.put(VaccTables.add_date, "date");// 建卡日期
+		map.put(VaccTables.add_person, "varchar(20)");// 建卡人
+		return map;
 	}
 }
