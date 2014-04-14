@@ -302,7 +302,7 @@ public class Vaccinate extends Fragment {
 		setTextFromCursor(cursor, VaccTables.serial_id, R.id.serial_id);
 		setTextFromCursor(cursor, VaccTables.guardian, R.id.guardian_et);
 		setTextFromCursor(cursor, VaccTables.relation, R.id.relation_et);
-		setTextFromCursor(cursor, VaccTables.phone, R.id.phone_et);
+		setTextFromCursor(cursor, VaccTables.phone, R.id.guardian_phone_et);
 		setTextFromCursor(cursor, VaccTables.addr, R.id.addr_et);
 		setTextFromCursor(cursor, VaccTables.register_addr, R.id.r_addr_et);
 		setTextFromCursor(cursor, VaccTables.in_time, R.id.intime_det);
@@ -417,7 +417,6 @@ public class Vaccinate extends Fragment {
 					recoredContent);
 		}
 		handler.obtainMessage(SAVE_OK).sendToTarget();
-
 	}
 
 	/***
@@ -448,7 +447,7 @@ public class Vaccinate extends Fragment {
 		putValue(content, VaccTables.serial_id, R.id.serial_id);
 		putValue(content, VaccTables.guardian, R.id.guardian_et);
 		putValue(content, VaccTables.relation, R.id.relation_et);
-		putValue(content, VaccTables.phone, R.id.phone_et);
+		putValue(content, VaccTables.phone, R.id.guardian_phone_et);
 		putValue(content, VaccTables.addr, R.id.addr_et);
 		putValue(content, VaccTables.register_addr, R.id.r_addr_et);
 		putValue(content, VaccTables.in_time, R.id.intime_det);
@@ -482,10 +481,6 @@ public class Vaccinate extends Fragment {
 	 * @return
 	 */
 	private String getEtString(int id) {
-		Editable text = ((EditText) cView.findViewById(id)).getText();
-		if (text != null)
-			return text.toString();
-		else
-			return null;
+		return ((EditText) cView.findViewById(id)).getText().toString();
 	}
 }
