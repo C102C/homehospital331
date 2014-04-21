@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import cn.younext.R;
 
+import com.health.archive.baby.BabyHomeVistit;
+import com.health.archive.baby.BabyHomeVistitList;
 import com.health.archive.vaccinate.Vaccinate;
 import com.health.util.L;
 
@@ -45,12 +47,17 @@ public class MenuFragment extends ListFragment {
 		case 1:
 			newContent = new BasicInfoFragment();
 			break;
-		case 2:
-			newContent = new Vaccinate();
+		case 2:			
 			break;
 		case 3:			
 			break;
 		case 4:			
+			break;
+		case 8:
+			newContent = new Vaccinate();
+			break;
+		case 9:
+			newContent = new BabyHomeVistitList();
 			break;
 		}
 		if (newContent != null) {

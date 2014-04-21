@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +30,7 @@ import com.health.archive.ArchiveMain;
 import com.health.archive.ArchiveMain.ActionBarEditable;
 import com.health.archive.vaccinate.DialogVaccEdit.ResultTask;
 import com.health.database.DatabaseService;
+import com.health.database.Tables;
 import com.health.util.L;
 import com.health.util.ListViewForScrollView;
 import com.health.util.T;
@@ -77,7 +77,7 @@ public class Vaccinate extends Fragment {
 	public static final String OTHER = "其他疫苗";
 	private static final String[] VACCS = new String[] { "乙肝疫苗", "卡介苗", "脊灰疫苗",
 			"百白破疫苗", "白破疫苗", "麻风疫苗", "麻腮风疫苗", "麻腮疫苗", "麻疹疫苗", "A群流脑疫苗",
-			"A+C群流脑疫苗", "乙脑（减毒）活疫苗", "乙脑灭活疫苗", "甲肝减毒活疫苗", "甲肝灭活疫苗", OTHER };
+			"A+C群流脑疫苗", "乙脑（减毒）活疫苗", "乙脑灭活疫苗", "甲肝减毒活疫苗", "甲肝灭活疫苗" };
 	// 接种次数
 	private static final Integer[] TIMES = { 3, 1, 4, 4, 1, 1, 2, 1, 2, 2, 2,
 			2, 4, 1, 2, 1 };
@@ -294,8 +294,9 @@ public class Vaccinate extends Fragment {
 	 */
 	private boolean initHeadFromDb() {
 		Cursor cursor = dbService.query(VaccTables.vacc_head_table,
-				VaccTables.serial_id, VaccTables.getSerialId());
+				VaccTables.serial_id, Tables.getSerialId());
 		if (cursor.getCount() == 0) {// 数据库中无记录
+			L.i("initHeadFromDb ", "数据库中无记录");
 			return false;
 		}
 		cursor.moveToNext();
@@ -314,6 +315,7 @@ public class Vaccinate extends Fragment {
 				R.id.infection_det);
 		setTextFromCursor(cursor, VaccTables.add_date, R.id.add_date_det);
 		setTextFromCursor(cursor, VaccTables.add_person, R.id.add_person_et);
+		cursor.close();
 		return true;
 	}
 
@@ -359,7 +361,7 @@ public class Vaccinate extends Fragment {
 	private List<String[]> getRecordFromDb() {
 		List<String[]> result = new ArrayList<String[]>();
 		Cursor cursor = dbService.query(VaccTables.vacc_record_table,
-				VaccTables.serial_id, VaccTables.getSerialId());
+				VaccTables.serial_id, Tables.getSerialId());
 		if (cursor.getCount() == 0) {// 数据库中无记录
 			return result;
 		}
@@ -374,6 +376,7 @@ public class Vaccinate extends Fragment {
 			line[6] = getCursorString(cursor, VaccTables.vacc_note);
 			result.add(line);
 		}
+		cursor.close();
 		return result;
 	}
 
@@ -383,20 +386,23 @@ public class Vaccinate extends Fragment {
 	private void initToDB() {
 		// 插入表头基本信息
 		ContentValues headContent = new ContentValues();
-		headContent.put(VaccTables.serial_id, VaccTables.getSerialId());
+		headContent.put(VaccTables.serial_id, Tables.getSerialId());
 		dbService.insert(VaccTables.vacc_head_table, headContent);
 
 		// 插入前先删除,以免重复
 		dbService.delete(VaccTables.vacc_record_table, VaccTables.serial_id,
-				VaccTables.getSerialId());
+				Tables.getSerialId());
 		// 插入疫苗记录
 		ContentValues recordContent = new ContentValues();
-		recordContent.put(VaccTables.serial_id, VaccTables.getSerialId());
+		recordContent.put(VaccTables.serial_id, Tables.getSerialId());
+		int rowNum = 0;
 		for (int i = 0; i < VACCS.length; i++) {
 			for (int j = 0; j < TIMES[i]; j++) {
+				recordContent.put(VaccTables.row_num, rowNum);
 				recordContent.put(VaccTables.vacc_kind, VACCS[i]);
-				recordContent.put(VaccTables.vacc_time, j);
+				recordContent.put(VaccTables.vacc_time, j + 1);
 				dbService.insert(VaccTables.vacc_record_table, recordContent);
+				rowNum++;
 			}
 		}
 	}
@@ -409,11 +415,13 @@ public class Vaccinate extends Fragment {
 		// 更新表头基本信息
 		ContentValues headContent = getHeadContent();
 		dbService.update(VaccTables.vacc_head_table, VaccTables.serial_id,
-				VaccTables.getSerialId(), headContent);
-		for (String[] line : datas) {
-			ContentValues recoredContent = getRecordContent(line);
-			dbService.update(VaccTables.vacc_record_table,
-					VaccTables.serial_id, VaccTables.getSerialId(),
+				Tables.getSerialId(), headContent);
+
+		for (int i = 1; i < datas.size(); i++) {
+			ContentValues recoredContent = getRecordContent(datas.get(i));
+			dbService.update(VaccTables.vacc_record_table, VaccTables.serial_id
+					+ "=? and " + VaccTables.row_num + "=?", new String[] {
+					Tables.getSerialId(), String.valueOf(i - 1) },
 					recoredContent);
 		}
 		handler.obtainMessage(SAVE_OK).sendToTarget();
@@ -423,10 +431,12 @@ public class Vaccinate extends Fragment {
 	 * 将表格行的数据存放在k-v的ContentValues中
 	 * 
 	 * @param line
+	 * @param rowNum
 	 * @return
 	 */
 	private ContentValues getRecordContent(String[] line) {
 		ContentValues content = new ContentValues();
+		// content.put(VaccTables.row_num, rowNum);
 		content.put(VaccTables.vacc_kind, line[0]);
 		content.put(VaccTables.vacc_time, line[1]);
 		content.put(VaccTables.vacc_date, line[2]);

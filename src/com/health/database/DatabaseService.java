@@ -143,6 +143,26 @@ public class DatabaseService {
 		return cursor;
 	}
 
+	/**
+	 * 根据一个或多个列值查询记录, 调用示例query("TABLE", *
+	 * "sysId=? and id_card=?",{"1","320"})
+	 * 
+	 * @param table
+	 * @param where
+	 * @param para
+	 * @return
+	 */
+	public Cursor query(String table, String where, String[] para) {
+		L.i(TAG, "(query)" + table + ": " + where + "=" + Arrays.toString(para));
+		StringBuilder sql = new StringBuilder("select * from ");
+		sql.append(table);
+		sql.append(" where ");
+		sql.append(where);
+		SQLiteDatabase queryDb = dbOpenHelper.getReadableDatabase();
+		Cursor cursor = queryDb.rawQuery(sql.toString(), para);
+		return cursor;
+	}
+
 	/***
 	 * 
 	 * @param table
@@ -153,6 +173,7 @@ public class DatabaseService {
 		L.i(TAG, "(insert)" + table + ": " + values.toString());
 		SQLiteDatabase insertDb = dbOpenHelper.getWritableDatabase();
 		long rawId = insertDb.insert(table, null, values);
+		insertDb.close();
 		L.i(TAG, "(inserted) rawId:" + rawId);
 		return rawId;
 	}
@@ -170,6 +191,7 @@ public class DatabaseService {
 		SQLiteDatabase deleteDb = dbOpenHelper.getWritableDatabase();
 		int raws = deleteDb.delete(table, cloumn + " = ?",
 				new String[] { value });
+		deleteDb.close();
 		L.i(TAG, "(deleted) raws:" + raws);
 		return raws;
 	}
@@ -178,8 +200,8 @@ public class DatabaseService {
 	 * 更新数据
 	 * 
 	 * @param table
-	 * @param cloumn
-	 * @param value
+	 * @param cloumn要更的列的key
+	 * @param value要更新的列value
 	 * @param values
 	 */
 	public void update(String table, String cloumn, String value,
@@ -189,7 +211,40 @@ public class DatabaseService {
 		SQLiteDatabase db = dbOpenHelper.getWritableDatabase();
 		int rows = db.update(table, values, cloumn + "=?",
 				new String[] { value });
+		db.close();
 		L.i(TAG, "(update) raws:" + rows);
+	}
+
+	/***
+	 * 
+	 * @param table
+	 * @param where
+	 *            条件子句
+	 * @param para
+	 *            条件子句中占位符对应的参数
+	 * @param values
+	 */
+	public void update(String table, String where, String[] para,
+			ContentValues values) {
+		L.i(TAG,
+				"(update)" + table + ": " + where + ":" + Arrays.toString(para)
+						+ " " + values);
+		SQLiteDatabase db = dbOpenHelper.getWritableDatabase();
+		int rows = db.update(table, values, where, para);
+		db.close();
+		L.i(TAG, "(update) raws:" + rows);
+	}
+
+	/***
+	 * 删除表
+	 * 
+	 * @param table
+	 */
+	public void delateTale(String table) {
+		L.i(TAG, "(delateTale)" + table);
+		SQLiteDatabase db = dbOpenHelper.getWritableDatabase();
+		db.execSQL("drop table " + table);
+		db.close();
 	}
 
 }

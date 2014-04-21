@@ -152,7 +152,6 @@ public class WebService {
 	 */
 	public static JSONObject login(String cardNo, String password) {
 		JSONObject json = new JSONObject();
-
 		JSONObject result = null;
 		try {
 			json.put("cardNo", cardNo);
@@ -562,7 +561,7 @@ public class WebService {
 		public static final int OUT_DATE_LOGIN = 10;
 		public static final int ERROE_DATA_PROVE = 11;
 		public static final int EXISTS_USER = 12;
-		public static final int UNKNOWN_ERROR = 255;
+		public static final int UNKNOWN_ERROR = 255;		
 
 	}
 }

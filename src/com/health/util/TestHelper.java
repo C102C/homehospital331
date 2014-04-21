@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import android.test.AndroidTestCase;
 import android.util.Log;
 
+import com.health.archive.vaccinate.VaccTables;
 import com.health.database.DataOpenHelper;
 import com.health.database.DatabaseService;
 import com.health.database.Tables;
@@ -115,5 +116,10 @@ public class TestHelper extends AndroidTestCase {
 
 	public void testDeleteDb() {
 		DataOpenHelper.deleteDb();
+	}
+
+	public void testDeleteTable() {
+		DatabaseService dbService = new DatabaseService(getContext());
+		dbService.delateTale(VaccTables.vacc_record_table);
 	}
 }

@@ -14,7 +14,7 @@
         android:gravity="center"
         android:text="12/19 15:05"
         android:textColor="@color/duckgrey"
-        android:textSize="@dimen/text_size_2" />
+        android:textSize="@dimen/text_size_3" />
 
     <TextView
         android:id="@+id/list_data_2"
@@ -23,7 +23,7 @@
         android:layout_centerHorizontal="true"
         android:text="测量值"
         android:textColor="@color/duckgrey"
-        android:textSize="@dimen/text_size_2" />
+        android:textSize="@dimen/text_size_3" />
 
     <TextView
         android:id="@+id/list_data_3"
@@ -33,6 +33,6 @@
         android:gravity="center"
         android:text="分析结果 "
         android:textColor="@color/duckgrey"
-        android:textSize="@dimen/text_size_2" />
+        android:textSize="@dimen/text_size_3" />
 
 </RelativeLayout>

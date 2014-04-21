@@ -1,0 +1,1312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/top_title_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bg_title_bar"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/title_bar_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="新生儿随访记录表"
+            android:textColor="#ffffff"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/baby_title_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="修改" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/table_body_sv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_title_layout"
+        android:background="@color/shallow_blue"
+        android:fadeScrollbars="false"
+        android:orientation="vertical"
+        android:scrollbarStyle="outsideOverlay" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/right_blank_size"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" >
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="姓名:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_name"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/name"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/serial_id"
+                    android:text="编号:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/serial_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/archive_edit_bg"
+                    android:focusable="false"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="性别:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_sex"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="出生日期："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.util.DateEditText
+                    android:id="@+id/baby_birthday"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="身份证号:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_idcard"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"                 
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="家庭住址："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_addr"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"                   
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="父亲:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_f_name"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                   
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="职业："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_f_job"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                   
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="联系电话"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_f_phone"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="phone"
+                   
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="出生日期"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.util.DateEditText
+                    android:id="@+id/baby_f_birthday"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="phone"
+                   
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="母亲:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_m_name"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                  
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="职业："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_m_job"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                   
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="联系电话"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_m_phone"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="phone"
+                   
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="出生日期"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.util.DateEditText
+                    android:id="@+id/baby_m_birthday"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="phone"
+                   
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="出生孕周:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_birth_week"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="number"
+                   
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="周   "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  母亲妊娠期患病情况："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.MultiChoiceEditText
+                    android:id="@+id/baby_m_health"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                   
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="助产机构名称:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_birth_organize"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                  
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="出生情况："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_birth_state"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="新生儿窒息:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_apnea"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                  
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Apgar评分:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_apgar_score"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                  
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="是否有畸型："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_malformation"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                   
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="新生儿听力筛查:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_hearing_check"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                   
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="新生儿疾病筛查："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_sick_check"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                  
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="新生儿出生体重:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_birth_weight"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="numberDecimal"
+                  
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="kg 目前体重："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_c_weight"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="numberDecimal"
+                  
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="kg 出生身长："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_birth_height"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="numberDecimal"
+                  
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="cm"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="喂养方式:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_nurse_pattern"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                   
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="吃奶量："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_milk_amount"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ml/次 吃奶次数："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_milk_times"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="number"
+                  
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="次/日"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="呕吐:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_emesis"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                  
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="大便："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_excrement"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="大便次数："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_excrement_time"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="number"                   
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="次/日"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="体温:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_temp"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="numberDecimal"                    
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="℃ 脉率："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_pulse"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="number"                  
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="次/分钟  呼吸频率："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_frequence"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="number"                   
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="次/分钟　"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="面色:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_complexion"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"                   
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="黄疸部位："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.MultiChoiceEditText
+                    android:id="@+id/baby_jaundice_part"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="前囟大小:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_bregma_size_a"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="number"
+                    
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="cm × "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_bregma_size_b"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="cm"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="前囟状况："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_bregma_state"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="眼外观:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_eye"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"                
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="四肢活动度："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_limbs"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="耳外观:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_ear"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                  
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="颈部包块："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_neck_block"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="鼻:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_nose"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="皮肤："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.MultiChoiceEditText
+                    android:id="@+id/baby_skin"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="口腔:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_mouth"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                   
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="肛门："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_anus"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="心肺听诊:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_heart_hear"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"                   
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="外生殖器："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_externalia"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="腹部触诊:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_abdomen_touch"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"                  
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="脊柱："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_spine"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="脐带:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_funicle"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"                   
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="转诊建议:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/baby_transfer_advise"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"                  
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="原因："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_transfer_reason"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="机构及科室："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_transfer_org"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="指导:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.MultiChoiceEditText
+                    android:id="@+id/baby_guide"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"                    
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="本次访视日期:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.util.DateEditText
+                    android:id="@+id/baby_visit_date"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"                  
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="下次随访地点："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_next_place"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="下次随访日期:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.util.DateEditText
+                    android:id="@+id/baby_next_date"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="随访医生签名："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/baby_visite_doctor"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/edit_help_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/right_blank_size"
+        android:background="@android:color/transparent"
+        android:visibility="gone" />
+
+</RelativeLayout>

@@ -14,6 +14,7 @@ public class DataOpenHelper extends SQLiteOpenHelper {
 	private static final String DATABASENAME = "health.db";
 	private static final int DATABASVERSION = 1;
 	private static final String TAG = "DataOpenHelper";
+	public static final String SYS_ID = "sysId";
 
 	public DataOpenHelper(Context context) {
 		super(context, DATABASENAME, null, DATABASVERSION);
@@ -33,6 +34,7 @@ public class DataOpenHelper extends SQLiteOpenHelper {
 		db.execSQL(createSql(tables.urineTable()));
 		db.execSQL(createSql(tables.vaccHeadTable()));
 		db.execSQL(createSql(tables.vaccRecordTable()));
+		db.execSQL(createSql(tables.babyVisitTable()));
 	}
 
 	@Override
@@ -51,7 +53,9 @@ public class DataOpenHelper extends SQLiteOpenHelper {
 		builder.append("create table ");
 		builder.append(tableDesc.get(Tables.TABLE_NAME));
 		tableDesc.remove(Tables.TABLE_NAME);// É¾³ý±íÃû
-		builder.append("(sysId integer PRIMARY KEY autoincrement,");
+		builder.append("(");
+		builder.append(SYS_ID);
+		builder.append(" integer PRIMARY KEY autoincrement,");
 		for (Map.Entry<String, String> entry : tableDesc.entrySet()) {
 			builder.append(entry.getKey());
 			builder.append(" ");
