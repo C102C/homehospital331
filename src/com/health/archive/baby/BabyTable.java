@@ -146,6 +146,7 @@ public class BabyTable {
 					put(next_date, R.id.baby_next_date);
 					put(visite_doctor, R.id.baby_visite_doctor);
 				}
+				
 			});
 
 	/***
