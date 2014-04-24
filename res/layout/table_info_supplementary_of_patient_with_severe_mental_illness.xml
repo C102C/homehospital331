@@ -3,13 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
     <RelativeLayout
         android:id="@+id/topbar"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/topbar_height"
         android:layout_alignParentTop="true"
-       
         android:gravity="center_vertical" >
 
         <TextView
@@ -85,7 +84,6 @@
                     android:textSize="@dimen/text_size_3" />
             </RelativeLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -127,8 +125,8 @@
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
-                
-                 <TextView
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -145,8 +143,8 @@
                     android:gravity="center"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_3" />      
-                    
+                    android:textSize="@dimen/text_size_3" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -188,8 +186,8 @@
                     android:gravity="center"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_3" /> 
-                    
+                    android:textSize="@dimen/text_size_3" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -209,12 +207,12 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
             </LinearLayout>
-            
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="5dp" >
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -223,78 +221,78 @@
                     android:text="知情同意"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
-                
+
                 <LinearLayout
-                	android:layout_width="match_parent"
-                	android:layout_height="wrap_content"
-                	android:layout_margin="5dp" >
-                	
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp" >
+
                     <RadioGroup
-                    	android:id="@+id/informed_consent_rg"
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                   		android:layout_marginLeft="35dp"
-                    	android:orientation="horizontal" >
+                        android:id="@+id/informed_consent_rg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:orientation="horizontal" >
 
-                    	<RadioButton
-                        	android:id="@+id/informed_consent_rg0"
-                        	android:layout_width="wrap_content"
-                        	android:layout_height="wrap_content"
-                        	android:text="0 不同意参加管理" />
+                        <RadioButton
+                            android:id="@+id/informed_consent_rg0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0 不同意参加管理" />
 
-                    	<RadioButton
-                        	android:id="@+id/informed_consent_rg1"
-                        	android:layout_width="wrap_content"
-                        	android:layout_height="wrap_content"
-                        	android:layout_marginLeft="20dp"
-                        	android:text="1 同意参加管理" />
-                	</RadioGroup>
+                        <RadioButton
+                            android:id="@+id/informed_consent_rg1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="1 同意参加管理" />
+                    </RadioGroup>
 
-                	<TextView
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_centerVertical="true"
-                    	android:layout_marginLeft="20dp"
-                    	android:text="签字："
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="签字："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
 
-                	<EditText
-                    	android:id="@+id/informed_consent_signature_et"
-                    	android:layout_width="100dp"
-                    	android:layout_height="wrap_content"
-                    	android:background="@drawable/archive_edit_bg"
-                    	android:gravity="center"
-                    	android:text=""
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-                	
-                	<TextView
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_centerVertical="true"
-                    	android:layout_marginLeft="20dp"
-                    	android:text="签字时间："
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
+                    <EditText
+                        android:id="@+id/informed_consent_signature_et"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/archive_edit_bg"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
 
-                	<com.health.archive.vaccinate.DateEditText
-                	    android:id="@+id/informed_consent_signature_date"
-                    	android:layout_width="220dp"
-                    	android:layout_height="wrap_content"
-                    	android:background="@drawable/archive_edit_bg"
-                    	android:gravity="center"
-                    	android:text=""
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-            	</LinearLayout>           
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="签字时间："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+
+                    <com.health.util.DateEditText
+                        android:id="@+id/informed_consent_signature_date"
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/archive_edit_bg"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+                </LinearLayout>
             </LinearLayout>
-            
-            <LinearLayout 
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp" >
-                
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -303,7 +301,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
 
-                <com.health.archive.vaccinate.DateEditText
+                <com.health.util.DateEditText
                     android:id="@+id/initial_onset_date"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
@@ -317,8 +315,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="5dp" >
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -327,132 +325,143 @@
                     android:text="既往主要症状:"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
-                
-                <LinearLayout
-                	android:layout_width="match_parent"
-                	android:layout_height="wrap_content"
-                	android:layout_margin="5dp" >
-                	
-                	<CheckBox
-                	    android:id="@+id/symptoms_of_past_0_cb"
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_marginLeft="35dp"
-                    	android:text="1 幻觉"
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-                	<CheckBox
-                	    android:id="@+id/symptoms_of_past_1_cb"
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_marginLeft="20dp"
-                    	android:text="2 交流困难"
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-                	<CheckBox
-                	    android:id="@+id/symptoms_of_past_2_cb"
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_marginLeft="20dp"
-                    	android:text="3 猜疑"
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-                	<CheckBox
-                	    android:id="@+id/symptoms_of_past_3_cb"
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_marginLeft="20dp"
-                    	android:text="4 喜怒无常"
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-                	<CheckBox
-                	    android:id="@+id/symptoms_of_past_4_cb"
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_marginLeft="20dp"
-                    	android:text="5 行为怪异"
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-                	<CheckBox
-                	    android:id="@+id/symptoms_of_past_5_cb"
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_marginLeft="20dp"
-                    	android:text="6 兴奋话多"
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />                    
-                </LinearLayout>
-                <LinearLayout
-                	android:layout_width="match_parent"
-                	android:layout_height="wrap_content"
-                	android:layout_margin="5dp" >
-                	
-                	<CheckBox
-                	    android:id="@+id/symptoms_of_past_6_cb"
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_marginLeft="35dp"
-                    	android:text="7 伤人毁物"
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-                	<CheckBox
-                	    android:id="@+id/symptoms_of_past_7_cb"
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_marginLeft="20dp"
-                    	android:text="8 悲观厌世"
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-                	<CheckBox
-                	    android:id="@+id/symptoms_of_past_8_cb"
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_marginLeft="20dp"
-                    	android:text="9 无故外走"
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-                	<CheckBox
-                	    android:id="@+id/symptoms_of_past_9_cb"
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_marginLeft="20dp"
-                    	android:text="10 自语自笑"
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-                	<CheckBox
-                	    android:id="@+id/symptoms_of_past_10_cb"
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_marginLeft="20dp"
-                    	android:text="11 孤僻懒散"
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-                	<CheckBox
-                	    android:id="@+id/symptoms_of_past_11_cb"
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_marginLeft="20dp"
-                    	android:text="12 其他"
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />                	
 
-                	<EditText
-                	    android:id="@+id/symptoms_of_past_other_et"
-                    	android:layout_width="100dp"
-                    	android:layout_height="wrap_content"
-                    	android:background="@drawable/archive_edit_bg"
-                    	android:gravity="center"
-                    	android:text=""
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />                    
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp" >
+
+                    <CheckBox
+                        android:id="@+id/symptoms_of_past_0_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:text="1 幻觉"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+
+                    <CheckBox
+                        android:id="@+id/symptoms_of_past_1_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="2 交流困难"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+
+                    <CheckBox
+                        android:id="@+id/symptoms_of_past_2_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="3 猜疑"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+
+                    <CheckBox
+                        android:id="@+id/symptoms_of_past_3_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="4 喜怒无常"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+
+                    <CheckBox
+                        android:id="@+id/symptoms_of_past_4_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="5 行为怪异"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+
+                    <CheckBox
+                        android:id="@+id/symptoms_of_past_5_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="6 兴奋话多"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp" >
+
+                    <CheckBox
+                        android:id="@+id/symptoms_of_past_6_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:text="7 伤人毁物"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+
+                    <CheckBox
+                        android:id="@+id/symptoms_of_past_7_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="8 悲观厌世"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+
+                    <CheckBox
+                        android:id="@+id/symptoms_of_past_8_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="9 无故外走"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+
+                    <CheckBox
+                        android:id="@+id/symptoms_of_past_9_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="10 自语自笑"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+
+                    <CheckBox
+                        android:id="@+id/symptoms_of_past_10_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="11 孤僻懒散"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+
+                    <CheckBox
+                        android:id="@+id/symptoms_of_past_11_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="12 其他"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+
+                    <EditText
+                        android:id="@+id/symptoms_of_past_other_et"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/archive_edit_bg"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="5dp" >
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -461,7 +470,7 @@
                     android:text="既往治疗情况"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
-                
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -471,72 +480,71 @@
                     android:text="门诊："
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
-                
+
                 <LinearLayout
-                	android:layout_width="match_parent"
-                	android:layout_height="wrap_content"
-                	android:layout_marginTop="5dp"
-                	android:layout_marginLeft="15dp" >
-                	
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp" >
+
                     <RadioGroup
-                    	android:id="@+id/outpatient_rg"
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                   		android:layout_marginLeft="70dp"
-                    	android:orientation="horizontal" >
+                        android:id="@+id/outpatient_rg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="70dp"
+                        android:orientation="horizontal" >
 
-                    	<RadioButton
-                        	android:id="@+id/outpatient_rg0"
-                        	android:layout_width="wrap_content"
-                        	android:layout_height="wrap_content"
-                        	android:text="1 未治" />
+                        <RadioButton
+                            android:id="@+id/outpatient_rg0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1 未治" />
 
-                    	<RadioButton
-                        	android:id="@+id/outpatient_rg1"
-                        	android:layout_width="wrap_content"
-                        	android:layout_height="wrap_content"
-                        	android:layout_marginLeft="20dp"
-                        	android:text="2 间断门诊治疗" />
-                    	
-                    	<RadioButton
-                        	android:id="@+id/outpatient_rg2"
-                        	android:layout_width="wrap_content"
-                        	android:layout_height="wrap_content"
-                        	android:layout_marginLeft="20dp"
-                        	android:text="3 连续门诊治疗" />
-                	</RadioGroup>
-                	
+                        <RadioButton
+                            android:id="@+id/outpatient_rg1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="2 间断门诊治疗" />
+
+                        <RadioButton
+                            android:id="@+id/outpatient_rg2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="3 连续门诊治疗" />
+                    </RadioGroup>
                 </LinearLayout>
-                <LinearLayout 
-                	android:layout_width="match_parent"
-                	android:layout_height="wrap_content"
-                	android:layout_marginTop="5dp"
-                	android:layout_marginBottom="5dp"
-                	android:layout_marginLeft="70dp" >
-                
-                	<TextView
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_centerVertical="true"
-                    	android:text="首次抗精神病药治疗时间："
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
 
-                	<com.health.archive.vaccinate.DateEditText
-                	    android:id="@+id/initial_drug_treatment_date"
-                	    android:layout_width="220dp"
-                	    android:layout_height="wrap_content"
-                	    android:background="@drawable/archive_edit_bg"
-                	    android:ems="10"
-                	    android:gravity="center"
-                	    android:textColor="@color/black"
-                	    android:textSize="@dimen/text_size_3" >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginTop="5dp" >
 
-                	    <requestFocus />
-                	</com.health.archive.vaccinate.DateEditText>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="首次抗精神病药治疗时间："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
 
-            	</LinearLayout>
-                
+                    <com.health.util.DateEditText
+                        android:id="@+id/initial_drug_treatment_date"
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/archive_edit_bg"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" >
+
+                        <requestFocus />
+                    </com.health.util.DateEditText>
+                </LinearLayout>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -545,38 +553,38 @@
                     android:text="住院："
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
-                
+
                 <LinearLayout
-                	android:layout_width="match_parent"
-                	android:layout_height="wrap_content"
-                	android:layout_margin="5dp" >
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp" >
 
-                	<TextView
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_marginLeft="70dp"
-                    	android:layout_centerVertical="true"
-                    	android:text="曾住精神专科医院/综合医院精神专科的次数:"
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="70dp"
+                        android:text="曾住精神专科医院/综合医院精神专科的次数:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
 
-                	<EditText
-                    	android:id="@+id/hospital_num_et"
-                    	android:layout_width="50dp"
-                    	android:layout_height="wrap_content"
-                    	android:background="@drawable/archive_edit_bg"
-                    	android:gravity="center"
-                    	android:text=""
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />        
-            	</LinearLayout>
+                    <EditText
+                        android:id="@+id/hospital_num_et"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/archive_edit_bg"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+                </LinearLayout>
             </LinearLayout>
-            
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="5dp" >
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -585,75 +593,75 @@
                     android:text="目前诊断情况"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
-                
+
                 <LinearLayout
-                	android:layout_width="match_parent"
-                	android:layout_height="wrap_content"
-                	android:layout_margin="5dp" >
-                	
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp" >
+
                     <TextView
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_centerVertical="true"
-                    	android:layout_marginLeft="35dp"
-                    	android:text="诊断结果："
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="35dp"
+                        android:text="诊断结果："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
 
-                	<EditText
-                    	android:id="@+id/current_diagnosis_result_et"
-                    	android:layout_width="200dp"
-                    	android:layout_height="wrap_content"
-                    	android:background="@drawable/archive_edit_bg"
-                    	android:gravity="center"
-                    	android:text=""
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-                	
-                	<TextView
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_centerVertical="true"
-                    	android:layout_marginLeft="20dp"
-                    	android:text="确诊医院："
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
+                    <EditText
+                        android:id="@+id/current_diagnosis_result_et"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/archive_edit_bg"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
 
-                	<EditText
-                    	android:id="@+id/current_diagnosis_hospital_et"
-                    	android:layout_width="200dp"
-                    	android:layout_height="wrap_content"
-                    	android:background="@drawable/archive_edit_bg"
-                    	android:gravity="center"
-                    	android:text=""
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-                	
-                	<TextView
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_centerVertical="true"
-                    	android:text="确诊日期："
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="确诊医院："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
 
-                	<com.health.archive.vaccinate.DateEditText
-                	    android:id="@+id/current_diagnosis_date"
-                    	android:layout_width="220dp"
-                    	android:layout_height="wrap_content"
-                    	android:background="@drawable/archive_edit_bg"
-                    	android:gravity="center"
-                    	android:text=""
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-            	</LinearLayout>           
+                    <EditText
+                        android:id="@+id/current_diagnosis_hospital_et"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/archive_edit_bg"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="确诊日期："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+
+                    <com.health.util.DateEditText
+                        android:id="@+id/current_diagnosis_date"
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/archive_edit_bg"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+                </LinearLayout>
             </LinearLayout>
-            
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_margin="5dp" >
+                android:layout_margin="5dp"
+                android:gravity="center_vertical" >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -662,53 +670,53 @@
                     android:text="最近一次治疗效果："
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
-                
+
                 <LinearLayout
-                	android:layout_width="match_parent"
-                	android:layout_height="wrap_content" >
-                	
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
                     <RadioGroup
-                    	android:id="@+id/last_treatment_rg"
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                   		android:layout_marginLeft="20dp"
-                    	android:orientation="horizontal" >
+                        android:id="@+id/last_treatment_rg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="horizontal" >
 
-                    	<RadioButton
-                        	android:id="@+id/last_treatment_rg0"
-                        	android:layout_width="wrap_content"
-                        	android:layout_height="wrap_content"
-                        	android:text="1 痊愈" />
+                        <RadioButton
+                            android:id="@+id/last_treatment_rg0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1 痊愈" />
 
-                    	<RadioButton
-                        	android:id="@+id/last_treatment_rg1"
-                        	android:layout_width="wrap_content"
-                        	android:layout_height="wrap_content"
-                        	android:layout_marginLeft="20dp"
-                        	android:text="2 好转" />
-                    	
-                    	<RadioButton
-                        	android:id="@+id/last_treatment_rg2"
-                        	android:layout_width="wrap_content"
-                        	android:layout_height="wrap_content"
-                        	android:layout_marginLeft="20dp"
-                        	android:text="3 无变化" />
+                        <RadioButton
+                            android:id="@+id/last_treatment_rg1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="2 好转" />
 
-                    	<RadioButton
-                        	android:id="@+id/last_treatment_rg3"
-                        	android:layout_width="wrap_content"
-                        	android:layout_height="wrap_content"
-                        	android:layout_marginLeft="20dp"
-                        	android:text="4 加重" />
-                	</RadioGroup>
-            	</LinearLayout>           
+                        <RadioButton
+                            android:id="@+id/last_treatment_rg2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="3 无变化" />
+
+                        <RadioButton
+                            android:id="@+id/last_treatment_rg3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="4 加重" />
+                    </RadioGroup>
+                </LinearLayout>
             </LinearLayout>
-            
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="5dp" >
+                android:layout_margin="5dp"
+                android:orientation="vertical" >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -717,124 +725,123 @@
                     android:text="患病对家庭社会的影响"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
-                
+
                 <LinearLayout
-                	android:layout_width="match_parent"
-                	android:layout_height="wrap_content"
-                	android:layout_margin="5dp" >
-                	
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp" >
+
                     <TextView
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_centerVertical="true"
-                    	android:layout_marginLeft="35dp"
-                    	android:text="1 轻度滋事次数："
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="35dp"
+                        android:text="1 轻度滋事次数："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
 
-                	<EditText
-                    	android:id="@+id/info_mild_disturbances_num_et"
-                    	android:layout_width="50dp"
-                    	android:layout_height="wrap_content"
-                    	android:background="@drawable/archive_edit_bg"
-                    	android:gravity="center"
-                    	android:text=""
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-                	
-                	<TextView
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_centerVertical="true"
-                    	android:layout_marginLeft="20dp"
-                    	android:text="2 肇事次数："
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
+                    <EditText
+                        android:id="@+id/info_mild_disturbances_num_et"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/archive_edit_bg"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
 
-                	<EditText
-                    	android:id="@+id/info_make_trouble_num_et"
-                    	android:layout_width="50dp"
-                    	android:layout_height="wrap_content"
-                    	android:background="@drawable/archive_edit_bg"
-                    	android:gravity="center"
-                    	android:text=""
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-                	
-                	<TextView
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_centerVertical="true"
-                    	android:layout_marginLeft="20dp"
-                    	android:text="3 肇祸次数："
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="2 肇事次数："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
 
-                	<EditText
-                    	android:id="@+id/info_make_disaster_num_et"
-                    	android:layout_width="50dp"
-                    	android:layout_height="wrap_content"
-                    	android:background="@drawable/archive_edit_bg"
-                    	android:gravity="center"
-                    	android:text=""
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-                	
-                	<TextView
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_centerVertical="true"
-                    	android:layout_marginLeft="20dp"
-                    	android:text="4 自伤次数："
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
+                    <EditText
+                        android:id="@+id/info_make_trouble_num_et"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/archive_edit_bg"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
 
-                	<EditText
-                    	android:id="@+id/info_hurt_himself_num_et"
-                    	android:layout_width="50dp"
-                    	android:layout_height="wrap_content"
-                    	android:background="@drawable/archive_edit_bg"
-                    	android:gravity="center"
-                    	android:text=""
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-                	
-                	<TextView
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_centerVertical="true"
-                    	android:layout_marginLeft="20dp"
-                    	android:text="5 自杀未遂次数："
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="3 肇祸次数："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
 
-                	<EditText
-                    	android:id="@+id/info_attempted_suicide_num_et"
-                    	android:layout_width="50dp"
-                    	android:layout_height="wrap_content"                    	
-                    	android:background="@drawable/archive_edit_bg"
-                    	android:gravity="center"
-                    	android:text=""
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-                	
-                	<CheckBox
-                	    android:id="@+id/info_no_impact_on_family_and_society_cb"
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_marginLeft="20dp"
-                    	android:text="6 无"
-                    	android:textColor="@color/black"
-                    	android:textSize="@dimen/text_size_3" />
-                	
-            	</LinearLayout>           
+                    <EditText
+                        android:id="@+id/info_make_disaster_num_et"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/archive_edit_bg"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="4 自伤次数："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+
+                    <EditText
+                        android:id="@+id/info_hurt_himself_num_et"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/archive_edit_bg"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="5 自杀未遂次数："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+
+                    <EditText
+                        android:id="@+id/info_attempted_suicide_num_et"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/archive_edit_bg"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+
+                    <CheckBox
+                        android:id="@+id/info_no_impact_on_family_and_society_cb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="6 无"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_3" />
+                </LinearLayout>
             </LinearLayout>
-            
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_margin="5dp" >
+                android:layout_margin="5dp"
+                android:gravity="center_vertical" >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -842,46 +849,46 @@
                     android:text="关锁情况："
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
-                
+
                 <LinearLayout
-                	android:layout_width="match_parent"
-                	android:layout_height="wrap_content" >
-                	
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
                     <RadioGroup
-                    	android:id="@+id/info_shut_case_rg"
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                   		android:layout_marginLeft="20dp"
-                    	android:orientation="horizontal" >
+                        android:id="@+id/info_shut_case_rg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="horizontal" >
 
-                    	<RadioButton
-                        	android:id="@+id/info_shut_case_rg0"
-                        	android:layout_width="wrap_content"
-                        	android:layout_height="wrap_content"
-                        	android:text="1 无关" />
+                        <RadioButton
+                            android:id="@+id/info_shut_case_rg0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1 无关" />
 
-                    	<RadioButton
-                        	android:id="@+id/info_shut_case_rg1"
-                        	android:layout_width="wrap_content"
-                        	android:layout_height="wrap_content"
-                        	android:layout_marginLeft="20dp"
-                        	android:text="2 关锁" />
-                    	
-                    	<RadioButton
-                        	android:id="@+id/info_shut_case_rg2"
-                        	android:layout_width="wrap_content"
-                        	android:layout_height="wrap_content"
-                        	android:layout_marginLeft="20dp"
-                        	android:text="3 关锁已解除" />
-                	</RadioGroup>
-            	</LinearLayout>           
+                        <RadioButton
+                            android:id="@+id/info_shut_case_rg1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="2 关锁" />
+
+                        <RadioButton
+                            android:id="@+id/info_shut_case_rg2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="3 关锁已解除" />
+                    </RadioGroup>
+                </LinearLayout>
             </LinearLayout>
-            
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_margin="5dp" >
+                android:layout_margin="5dp"
+                android:gravity="center_vertical" >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -890,41 +897,41 @@
                     android:text="经济状况："
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
-                
+
                 <LinearLayout
-                	android:layout_width="match_parent"
-                	android:layout_height="wrap_content" >
-                	
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
                     <RadioGroup
-                    	android:id="@+id/economic_condition_rg"
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                   		android:layout_marginLeft="20dp"
-                    	android:orientation="horizontal" >
+                        android:id="@+id/economic_condition_rg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="horizontal" >
 
-                    	<RadioButton
-                        	android:id="@+id/economic_condition_rg0"
-                        	android:layout_width="wrap_content"
-                        	android:layout_height="wrap_content"
-                        	android:text="1 贫困，在当地贫困线标准以下" />
+                        <RadioButton
+                            android:id="@+id/economic_condition_rg0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1 贫困，在当地贫困线标准以下" />
 
-                    	<RadioButton
-                        	android:id="@+id/economic_condition_rg1"
-                        	android:layout_width="wrap_content"
-                        	android:layout_height="wrap_content"
-                        	android:layout_marginLeft="20dp"
-                        	android:text="2 非贫困" />
-                    	
-                    	<RadioButton
-                        	android:id="@+id/economic_condition_rg2"
-                        	android:layout_width="wrap_content"
-                        	android:layout_height="wrap_content"
-                        	android:layout_marginLeft="20dp"
-                        	android:text="3 不详" />
-                	</RadioGroup>
-            	</LinearLayout>           
+                        <RadioButton
+                            android:id="@+id/economic_condition_rg1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="2 非贫困" />
+
+                        <RadioButton
+                            android:id="@+id/economic_condition_rg2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="3 不详" />
+                    </RadioGroup>
+                </LinearLayout>
             </LinearLayout>
-            
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -946,14 +953,14 @@
                     android:gravity="center"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_3" />        
+                    android:textSize="@dimen/text_size_3" />
             </LinearLayout>
-            
-            <LinearLayout 
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp" >
-                
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -962,7 +969,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
 
-                <com.health.archive.vaccinate.DateEditText
+                <com.health.util.DateEditText
                     android:id="@+id/info_fill_date"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
@@ -971,7 +978,7 @@
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
-                
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -989,10 +996,9 @@
                     android:gravity="center"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_3" />      	
-                	
+                    android:textSize="@dimen/text_size_3" />
             </LinearLayout>
-            
-		</LinearLayout>
+        </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

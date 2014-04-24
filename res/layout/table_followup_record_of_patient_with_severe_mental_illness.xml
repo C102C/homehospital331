@@ -98,7 +98,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
 
-                <com.health.archive.vaccinate.DateEditText
+                <com.health.util.DateEditText
                     android:id="@+id/followup_date"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
@@ -923,7 +923,7 @@
                     	android:textColor="@color/black"
                     	android:textSize="@dimen/text_size_3" />
 
-                	<com.health.archive.vaccinate.DateEditText
+                	<com.health.util.DateEditText
                 	    android:id="@+id/last_time_to_discharge"
                     	android:layout_width="220dp"
                     	android:layout_height="wrap_content"
@@ -1566,7 +1566,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
 
-                <com.health.archive.vaccinate.DateEditText
+                <com.health.util.DateEditText
                     android:id="@+id/next_followup_date"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"

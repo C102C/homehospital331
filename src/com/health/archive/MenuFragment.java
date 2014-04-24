@@ -11,6 +11,7 @@ import android.widget.ListView;
 import cn.younext.R;
 
 import com.health.archive.baby.BabyHomeVistitList;
+import com.health.archive.baby.oneold.OneOldChilldVistitList;
 import com.health.archive.vaccinate.Vaccinate;
 
 public class MenuFragment extends ListFragment {
@@ -40,7 +41,7 @@ public class MenuFragment extends ListFragment {
 			newContent = new ArchiveCover();
 			break;
 		case 1:
-			newContent = new BasicInfoFragment();
+			//newContent = new BasicInfoFragment();
 			break;
 		case 2:			
 			break;
@@ -55,11 +56,10 @@ public class MenuFragment extends ListFragment {
 			newContent = new BabyHomeVistitList();
 			break;
 		case 10:
-			//newContent = new OneOldChilldVistitList();
+			newContent = new OneOldChilldVistitList();
 			break;
 		case 16:
-			newContent = new OldPeopleSelfCare();
-			
+			newContent = new OldPeopleSelfCare();			
 			break;
 		case 21:
 			newContent = new SevereMentalIllnessPatientInfoSupplementary();
@@ -76,7 +76,6 @@ public class MenuFragment extends ListFragment {
 	private void switchFragment(Fragment fragment) {
 		if (getActivity() == null)
 			return;
-
 		if (getActivity() instanceof ArchiveMain) {
 			ArchiveMain fca = (ArchiveMain) getActivity();
 			fca.switchContent(fragment);

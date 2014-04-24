@@ -36,6 +36,7 @@
                     android:textSize="@dimen/text_size_4" />
 
                 <EditText
+                    android:id="@+id/name"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="100dp"

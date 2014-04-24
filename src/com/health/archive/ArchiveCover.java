@@ -1,11 +1,14 @@
 package com.health.archive;
 
-import cn.younext.R;
+import com.health.BaseActivity;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import cn.younext.R;
 
 /**
  * µµ∞∏∑‚√Ê
@@ -24,6 +27,8 @@ public class ArchiveCover extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.health_archivel_cover, null);
+		((EditText) v.findViewById(R.id.name)).setText(BaseActivity.getUser()
+				.getName());
 		return v;
 	}
 

@@ -155,7 +155,6 @@ public class BabyTable {
 	 * @return
 	 */
 	public static Map<String, String> babyVisitTable() {
-
 		Map<String, String> map = new HashMap<String, String>();
 		map.put(Tables.TABLE_NAME, baby_table);
 		map.put(serial_id, "varchar(18)");

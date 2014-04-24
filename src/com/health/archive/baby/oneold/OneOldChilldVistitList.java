@@ -109,7 +109,7 @@ public class OneOldChilldVistitList extends Fragment {
 
 	private void jump(String sysId) {
 		Intent intent = new Intent(getActivity(), OneOldChilldVistit.class);
-		intent.putExtra("", sysId);
+		intent.putExtra(OneOldChilldVistit.SYS_ID, sysId);
 		// intent.putExtra(HANDLER, handler);
 		startActivityForResult(intent, BabyHomeVistit.REQUEST_FRESH);
 	}
@@ -149,13 +149,13 @@ public class OneOldChilldVistitList extends Fragment {
 	private List<String[]> getFromDb() {
 		List<String[]> content = new ArrayList<String[]>();
 		Cursor cursor = dbService.query(OneOldChildTable.oneold_table,
-				BabyTable.serial_id, Tables.getSerialId());
+				OneOldChildTable.serial_id, Tables.getSerialId());
 		L.i("getFromDb cursor.getCount()", cursor.getCount() + "");
 		while (cursor.moveToNext()) {
 			String[] line = new String[3];
 			line[0] = getCursorString(cursor, DataOpenHelper.SYS_ID);
-			line[1] = getCursorString(cursor, BabyTable.visit_date);
-			line[2] = getCursorString(cursor, BabyTable.visite_doctor);
+			line[1] = getCursorString(cursor, OneOldChildTable.visit_date);
+			line[2] = getCursorString(cursor, OneOldChildTable.visit_doctor);
 			content.add(line);
 		}
 		cursor.close();
@@ -196,7 +196,7 @@ public class OneOldChilldVistitList extends Fragment {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		L.i("onActivityResult", requestCode + "");
 		switch (requestCode) {
-		case BabyHomeVistit.REQUEST_FRESH:
+		case OneOldChilldVistit.REQUEST_FRESH:
 			addContent();
 			break;
 		}

@@ -79,13 +79,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/serial_id"
+                    android:layout_toLeftOf="@+id/oneold_serial_id"
                     android:text="编号:"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
 
                 <EditText
-                    android:id="@+id/serial_id"
+                    android:id="@+id/oneold_serial_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -109,7 +109,7 @@
                     android:textSize="@dimen/text_size_3" />
 
                 <com.health.viewUtil.SingleChoiceEditText
-                    android:id="@+id/oneold_sex"
+                    android:id="@+id/oneold_age"
                     android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/archive_edit_bg"
@@ -298,6 +298,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="颈部包块:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/oneold_neck_block"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -518,13 +534,14 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/archive_edit_bg"
                     android:gravity="center"
+                    android:inputType="numberDecimal"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="户外活动："
+                    android:text="户外活动(小时/日)："
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
 
@@ -534,6 +551,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/archive_edit_bg"
                     android:gravity="center"
+                    android:inputType="numberDecimal"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_3" />
             </LinearLayout>
@@ -727,7 +745,7 @@
                     android:textSize="@dimen/text_size_3" />
 
                 <EditText
-                    android:id="@+id/oneold_visite_doctor"
+                    android:id="@+id/oneold_visit_doctor"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/archive_edit_bg"
