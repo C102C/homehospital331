@@ -296,8 +296,5 @@ public class BabyHomeVistit extends Activity {
 		if (editableItem != null)
 			cet.setEditableItem(editableItem);
 	}
-	
-	
-
 
 }

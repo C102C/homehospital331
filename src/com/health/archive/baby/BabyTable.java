@@ -150,7 +150,7 @@ public class BabyTable {
 			});
 
 	/***
-	 * 疫苗接种卡表头信息
+	 * 新生儿表格
 	 * 
 	 * @return
 	 */

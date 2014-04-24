@@ -35,6 +35,10 @@ public class DataOpenHelper extends SQLiteOpenHelper {
 		db.execSQL(createSql(tables.vaccHeadTable()));
 		db.execSQL(createSql(tables.vaccRecordTable()));
 		db.execSQL(createSql(tables.babyVisitTable()));
+		db.execSQL(createSql(tables.oneOldChileTalbe()));
+		db.execSQL(createSql(tables.oldPeopleSelfCareEstimateTable()));
+		db.execSQL(createSql(tables.infoSupplementaryOfSevereMentalIllness()));
+		db.execSQL(createSql(tables.followupRecordOfSevereMentalIllness()));
 	}
 
 	@Override

@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background" >
+
+    <RelativeLayout
+        android:id="@+id/topbar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/topbar_height"
+        android:layout_alignParentTop="true"       
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="老年人生活自理能力评估表"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_3" />
+
+        <Button
+            android:id="@+id/save_table_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/text_button_selector"
+            android:onClick="modifyArchive"
+            android:text="保存" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/table_old_people_sv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottombar"
+        android:layout_below="@id/topbar"
+        android:background="@drawable/centerbg"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/table_old_people_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:clickable="false"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/topbar_height"
+        		android:layout_alignParentTop="true"       
+        		android:gravity="center_vertical" >
+                    
+                    <TextView
+                        android:id="@+id/table_title"
+                		android:layout_width="wrap_content"
+                		android:layout_height="wrap_content"
+                		android:text="评估事项、内容与评分:"
+                		android:textColor="@color/black"
+                		android:textSize="@dimen/text_size_2" />
+                    
+                    <TextView 
+                        android:id="@+id/total_estimate_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/table_title"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="#FF0000"/>
+                    
+                    <Button
+            			android:id="@+id/show_estimate_btn"
+            			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_alignParentRight="true"
+            			android:layout_marginRight="5dp"
+            			android:background="@drawable/text_button_selector"
+            			android:text="查看总评分" />
+                    
+            </RelativeLayout>
+            
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <LinearLayout 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    
+                    <TextView
+                    	android:layout_width="wrap_content"
+                    	android:layout_height="wrap_content"
+                    	android:text="（1）进餐：使用餐具将饭菜送入口、咀嚼、吞咽等活动"
+                    	android:textColor="@color/key_color" />
+                    
+                    <TextView 
+                        android:id="@+id/meal_estimate_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="#FF0000"/>
+                    
+                </LinearLayout>
+                
+
+                <RadioGroup
+                    android:id="@+id/meal_rg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="35dp"
+                    android:orientation="vertical" >
+
+                    <RadioButton
+                        android:id="@+id/meal_rg0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="A. 独立完成" />
+
+                    <RadioButton
+                        android:id="@+id/meal_rg1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="B. 需要协助，如切碎、搅拌食物等" />
+
+                    <RadioButton
+                        android:id="@+id/meal_rg2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="C. 完全需要帮助" />
+                </RadioGroup>
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+                
+                <LinearLayout 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    
+                    <TextView
+                    	android:layout_width="wrap_content"
+                    	android:layout_height="wrap_content"
+                    	android:text="（2）梳洗：梳头、洗脸、刷牙、剃须洗澡等活动"
+                    	android:textColor="@color/key_color" />
+                    
+                    <TextView 
+                        android:id="@+id/wash_estimate_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="#FF0000"/>
+                    
+                </LinearLayout>
+
+                <RadioGroup
+                    android:id="@+id/wash_rg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="35dp"
+                    android:orientation="vertical" >
+
+                    <RadioButton
+                        android:id="@+id/wash_rg0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="A. 独立完成" />
+
+                    <RadioButton
+                        android:id="@+id/wash_rg1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="B. 能独立地洗头、梳头、洗脸、刷牙、剃须等；洗澡需要协助" />
+
+                    <RadioButton
+                        android:id="@+id/wash_rg2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="C. 在协助下和适当的时间内，能完成部分梳洗活动" />
+                    
+                    <RadioButton
+                        android:id="@+id/wash_rg3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="D. 完全需要帮助" />
+                </RadioGroup>
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <LinearLayout 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    
+                    <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="（3）穿衣：穿衣裤、袜子、鞋子等活动"
+                    android:textColor="@color/key_color" />
+                    
+                    <TextView 
+                        android:id="@+id/dress_estimate_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="#FF0000"/>
+                    
+                </LinearLayout>            
+
+                <RadioGroup
+                    android:id="@+id/dress_rg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="35dp"
+                    android:orientation="vertical" >
+
+                    <RadioButton
+                        android:id="@+id/dress_rg0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="A. 独立完成" />
+
+                    <RadioButton
+                        android:id="@+id/dress_rg1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="B. 需要协助，在适当的时间内完成部分穿衣" />
+
+                    <RadioButton
+                        android:id="@+id/dress_rg2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="C. 完全需要帮助" />
+                </RadioGroup>
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+                
+                <LinearLayout 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    
+                    <TextView
+                    	android:layout_width="wrap_content"
+                    	android:layout_height="wrap_content"
+                    	android:text="（4）如厕：小便、大便等活动及自控"
+                    	android:textColor="@color/key_color" />
+                    
+                    <TextView 
+                        android:id="@+id/toilet_estimate_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="#FF0000"/>
+                    
+                </LinearLayout>
+                
+                <RadioGroup
+                    android:id="@+id/toilet_rg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="35dp"
+                    android:orientation="vertical" >
+
+                    <RadioButton
+                        android:id="@+id/toilet_rg0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="A. 不需协助，可自控" />
+
+                    <RadioButton
+                        android:id="@+id/toilet_rg1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="B. 偶尔失禁，但基本上能如厕或使用便具" />
+
+                    <RadioButton
+                        android:id="@+id/toilet_rg2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="C. 经常失禁，在很多提示和协助下尚能如厕或使用便具" />
+                    
+                    <RadioButton
+                        android:id="@+id/toilet_rg3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="D. 完全失禁，完全需要帮助" />
+                </RadioGroup>
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <LinearLayout 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    
+                    <TextView
+                    	android:layout_width="wrap_content"
+                    	android:layout_height="wrap_content"
+                    	android:text="（5）活动：站立、室内行走、上下楼梯、户外活动"
+                    	android:textColor="@color/key_color" />
+                    
+                    <TextView 
+                        android:id="@+id/exercise_estimate_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="#FF0000"/>
+                    
+                </LinearLayout>
+                
+
+                <RadioGroup
+                    android:id="@+id/exercise_rg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="35dp"
+                    android:orientation="vertical" >
+
+                    <RadioButton
+                        android:id="@+id/exercise_rg0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="A. 独立完成所有活动" />
+
+                    <RadioButton
+                        android:id="@+id/exercise_rg1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="B. 借助较小的外力或辅助装置能完成站立、行走、上下楼梯等" />
+
+                    <RadioButton
+                        android:id="@+id/exercise_rg2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="C. 借助较大的外力才能完成站立、行走，不能上下楼梯" />
+                    
+                    <RadioButton
+                        android:id="@+id/exercise_rg3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="D. 卧床不起，活动完全需要帮助" />
+                </RadioGroup>
+            </LinearLayout>
+            
+		</LinearLayout>
+           
+    </ScrollView>
+
+</RelativeLayout>

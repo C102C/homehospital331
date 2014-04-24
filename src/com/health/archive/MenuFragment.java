@@ -1,8 +1,5 @@
 package com.health.archive;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
@@ -13,10 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import cn.younext.R;
 
-import com.health.archive.baby.BabyHomeVistit;
 import com.health.archive.baby.BabyHomeVistitList;
 import com.health.archive.vaccinate.Vaccinate;
-import com.health.util.L;
 
 public class MenuFragment extends ListFragment {
 
@@ -59,6 +54,18 @@ public class MenuFragment extends ListFragment {
 		case 9:
 			newContent = new BabyHomeVistitList();
 			break;
+		case 10:
+			//newContent = new OneOldChilldVistitList();
+			break;
+		case 16:
+			newContent = new OldPeopleSelfCare();
+			
+			break;
+		case 21:
+			newContent = new SevereMentalIllnessPatientInfoSupplementary();
+			break;
+		case 22:
+			newContent = new SevereMentalIllnessPatientFollowupRecord();
 		}
 		if (newContent != null) {
 			switchFragment(newContent);
