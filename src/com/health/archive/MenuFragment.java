@@ -11,7 +11,7 @@ import android.widget.ListView;
 import cn.younext.R;
 
 import com.health.archive.baby.BabyHomeVistitList;
-import com.health.archive.baby.oneold.OneOldChilldVistitList;
+import com.health.archive.baby.oneold.VistitList;
 import com.health.archive.vaccinate.Vaccinate;
 
 public class MenuFragment extends ListFragment {
@@ -56,7 +56,7 @@ public class MenuFragment extends ListFragment {
 			newContent = new BabyHomeVistitList();
 			break;
 		case 10:
-			newContent = new OneOldChilldVistitList();
+			newContent = new VistitList();
 			break;
 		case 16:
 			newContent = new OldPeopleSelfCare();			

@@ -75,8 +75,8 @@ public class UserList extends BaseActivity {
 				long id) {
 			if (position > 0 && position < datas.size() - 1) {
 				BaseActivity.setUser(userList.get(position - 1));
-				Intent intent = new Intent(UserList.this, ArchiveMain.class);
-				//Intent intent = new Intent(UserList.this, UserDetail.class);
+				//Intent intent = new Intent(UserList.this, ArchiveMain.class);
+				Intent intent = new Intent(UserList.this, UserDetail.class);
 				startActivity(intent);
 			}
 			if (position == datas.size() - 1) {

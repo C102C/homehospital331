@@ -11,6 +11,7 @@ import android.widget.TextView;
 import cn.younext.R;
 
 import com.health.BaseActivity;
+import com.health.archive.ArchiveMain;
 import com.health.bean.User;
 import com.health.measurement.Measurement;
 import com.health.myhealth.TableRecord;
@@ -94,7 +95,8 @@ public class UserDetail extends BaseActivity {
 	 */
 
 	public void healthArchive(View view) {
-		Intent intent = new Intent(this, HealthArchive.class);
+		Intent intent = new Intent(this, ArchiveMain.class);
+	//	Intent intent = new Intent(this, HealthArchive.class);
 		startActivity(intent);
 	}
 }

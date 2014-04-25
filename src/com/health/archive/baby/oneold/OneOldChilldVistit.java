@@ -2,52 +2,44 @@ package com.health.archive.baby.oneold;
 
 import java.util.Map;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
 import cn.younext.R;
 
+import com.health.archive.VisitBaseActivity;
 import com.health.database.DataOpenHelper;
 import com.health.database.DatabaseService;
 import com.health.database.Tables;
 import com.health.util.L;
 import com.health.util.T;
-import com.health.viewUtil.ChoiceEditText;
 
-public class OneOldChilldVistit extends Activity {
-	public static final int REQUEST_FRESH = 0x0010;
-	// 行号的id，为-1表示来自于新建
-	final static String SYS_ID = "sys_id";
-	private static final String NEW = "-1";
-	private String sysId = NEW;
+public class OneOldChilldVistit extends VisitBaseActivity {
+	
 	private DatabaseService dbService;
 	// 更新界面标志
 	private static final int FRESH_UI = 0x10;
-	// 确认按钮
-	private static final int POSITIVE = 0x11;
 	// 保存成功
 	private static final int SAVE_OK = 0x12;
 	// 保存失败
 	private static final int SAVE_ERROE = 0x13;
 
+	private boolean lock = false;
+	private Button editHelpBtn;
+	private Button saveBtn;
+	private View bodySv;
 	private Handler handler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case FRESH_UI:
 				initView();
-				break;
-			case POSITIVE:
-				// saveToDb();// 保存到数据库
-
 				break;
 			case SAVE_OK:
 				T.showShort(OneOldChilldVistit.this, "保存成功");
@@ -63,10 +55,6 @@ public class OneOldChilldVistit extends Activity {
 		}
 
 	};
-	private boolean lock = false;
-	private Button editHelpBtn;
-	private Button saveBtn;
-	private View bodySv;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -165,13 +153,6 @@ public class OneOldChilldVistit extends Activity {
 				"3摩腹、捏脊", "4健康教育处方" }, null);
 	}
 
-	private void seChoiceEditText(int id, String[] items, String editableItem) {
-		ChoiceEditText cet = (ChoiceEditText) findViewById(id);
-		cet.setFixItems(items);
-		if (editableItem != null)
-			cet.setEditableItem(editableItem);
-	}
-
 	protected void onClickButton(View v) {
 		if (lock)
 			setState(false);
@@ -199,10 +180,6 @@ public class OneOldChilldVistit extends Activity {
 
 	}
 
-	private String getEditTextString(int id) {
-		return ((EditText) findViewById(id)).getText().toString();
-	}
-
 	protected void initFromDb() {
 		Cursor cursor = dbService.query(OneOldChildTable.oneold_table,
 				DataOpenHelper.SYS_ID, sysId);
@@ -213,40 +190,6 @@ public class OneOldChilldVistit extends Activity {
 		for (Map.Entry<String, Integer> entry : map.entrySet()) {
 			setTextFromCursor(cursor, entry.getKey(), entry.getValue());
 		}
-	}
-
-	/***
-	 * 用sql游标设置文本内容
-	 * 
-	 * @param cursor
-	 * @param cloumn
-	 * @param editTextId
-	 */
-	private void setTextFromCursor(Cursor cursor, String cloumn, int editTextId) {
-		String text = getCursorString(cursor, cloumn);
-		setText(editTextId, text);
-	}
-
-	/**
-	 * 设置id对应的EditText的string为text
-	 * 
-	 * @param id
-	 * @param text
-	 */
-	private void setText(int id, String text) {
-		if (text != null)
-			((EditText) findViewById(id)).setText(text);
-	}
-
-	/***
-	 * 封装游标的奇葩方法
-	 * 
-	 * @param cursor
-	 * @param cloumn
-	 * @return
-	 */
-	private String getCursorString(Cursor cursor, String cloumn) {
-		return cursor.getString(cursor.getColumnIndex(cloumn));
 	}
 
 	private void setState(boolean lock) {

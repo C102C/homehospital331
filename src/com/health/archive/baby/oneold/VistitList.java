@@ -3,6 +3,7 @@ package com.health.archive.baby.oneold;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -19,8 +20,7 @@ import cn.younext.R;
 
 import com.health.archive.ArchiveMain;
 import com.health.archive.ArchiveMain.ActionBarEditable;
-import com.health.archive.baby.BabyHomeVistit;
-import com.health.archive.baby.BabyTable;
+import com.health.archive.VisitBaseActivity;
 import com.health.database.DataOpenHelper;
 import com.health.database.DatabaseService;
 import com.health.database.Tables;
@@ -29,11 +29,12 @@ import com.health.util.ThreeCloumAdpter;
 import com.health.web.BackGroundThread;
 import com.health.web.BackGroundThread.BackGroundTask;
 
-public class OneOldChilldVistitList extends Fragment {
+public class VistitList extends Fragment {
 
 	private View cView;
 	private List<String[]> datas;
-	private static final String[] title = new String[] { "编号", "访问时间", "访问医生" };
+	private static final String[] content_title = new String[] { "编号", "访问时间",
+			"访问医生" };
 	// 更新界面标志
 	private static final int LOAD_CONTENT = 0x10;
 	// 确认按钮
@@ -43,6 +44,17 @@ public class OneOldChilldVistitList extends Fragment {
 	// 保存失败
 	private static final int SAVE_ERROE = 0x13;
 	public static final String HANDLER = "Handler";
+
+	private Class<Activity> toActivity;
+	private String title;
+	private String[] cloumns;
+
+	public void setPara(Class<Activity> toActivity, String title,
+			String[] cloumns) {
+		this.toActivity = toActivity;
+		this.cloumns = cloumns;
+		this.title = title;
+	}
 
 	private Handler handler = new Handler() {
 		@Override
@@ -108,10 +120,9 @@ public class OneOldChilldVistitList extends Fragment {
 	}
 
 	private void jump(String sysId) {
-		Intent intent = new Intent(getActivity(), OneOldChilldVistit.class);
-		intent.putExtra(OneOldChilldVistit.SYS_ID, sysId);
-		// intent.putExtra(HANDLER, handler);
-		startActivityForResult(intent, BabyHomeVistit.REQUEST_FRESH);
+		Intent intent = new Intent(getActivity(), toActivity);
+		intent.putExtra(VisitBaseActivity.SYS_ID, sysId);
+		startActivityForResult(intent, VisitBaseActivity.REQUEST_FRESH);
 	}
 
 	protected void addNewVisteTable() {
@@ -120,13 +131,13 @@ public class OneOldChilldVistitList extends Fragment {
 
 	private List<String[]> getDatas() {
 		List<String[]> datas = new ArrayList<String[]>();
-		datas.add(title);
+		datas.add(content_title);
 		return datas;
 	}
 
 	private void clearAndAddTitile() {
 		datas.clear();
-		datas.add(title);
+		datas.add(content_title);
 	}
 
 	private void addContent() {
@@ -153,9 +164,9 @@ public class OneOldChilldVistitList extends Fragment {
 		L.i("getFromDb cursor.getCount()", cursor.getCount() + "");
 		while (cursor.moveToNext()) {
 			String[] line = new String[3];
-			line[0] = getCursorString(cursor, DataOpenHelper.SYS_ID);
-			line[1] = getCursorString(cursor, OneOldChildTable.visit_date);
-			line[2] = getCursorString(cursor, OneOldChildTable.visit_doctor);
+			line[0] = getCursorString(cursor, cloumns[0]);
+			line[1] = getCursorString(cursor, cloumns[1]);
+			line[2] = getCursorString(cursor, cloumns[2]);
 			content.add(line);
 		}
 		cursor.close();
@@ -184,7 +195,7 @@ public class OneOldChilldVistitList extends Fragment {
 				initView();
 			}
 		}, 500);
-		ArchiveMain.getInstance().setTitle("1岁以内儿童健康检查记录表");
+		ArchiveMain.getInstance().setTitle(title);
 		ArchiveMain.getInstance().setButtonText("添加");
 		return cView;
 	}
@@ -196,7 +207,7 @@ public class OneOldChilldVistitList extends Fragment {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		L.i("onActivityResult", requestCode + "");
 		switch (requestCode) {
-		case OneOldChilldVistit.REQUEST_FRESH:
+		case VisitBaseActivity.REQUEST_FRESH:
 			addContent();
 			break;
 		}
