@@ -8,11 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import cn.younext.DatabaseHelper;
 import cn.younext.R;
 
 import com.health.archive.baby.BabyHomeVistitList;
+import com.health.archive.baby.oneold.OneOldChildTable;
 import com.health.archive.baby.oneold.VistitList;
 import com.health.archive.vaccinate.Vaccinate;
+import com.health.database.DataOpenHelper;
 
 public class MenuFragment extends ListFragment {
 
@@ -35,19 +38,19 @@ public class MenuFragment extends ListFragment {
 	@Override
 	public void onListItemClick(ListView lv, View v, int position, long id) {
 		Fragment newContent = null;
-
+		Bundle bundle = new Bundle();
 		switch (position) {
 		case 0:
 			newContent = new ArchiveCover();
 			break;
 		case 1:
-			//newContent = new BasicInfoFragment();
+			// newContent = new BasicInfoFragment();
 			break;
-		case 2:			
+		case 2:
 			break;
-		case 3:			
+		case 3:
 			break;
-		case 4:			
+		case 4:
 			break;
 		case 8:
 			newContent = new Vaccinate();
@@ -57,9 +60,17 @@ public class MenuFragment extends ListFragment {
 			break;
 		case 10:
 			newContent = new VistitList();
+			bundle = new Bundle();
+			bundle.putString(VistitList.TITLE, "1岁以内儿童健康检查记录表");
+			bundle.putString(VistitList.TO_CTIVITY,
+					"com.health.archive.baby.oneold.OneOldChilldVistit");
+			bundle.putStringArray(VistitList.CLOUMNS, new String[] {
+					DataOpenHelper.SYS_ID, OneOldChildTable.visit_date,
+					OneOldChildTable.visit_doctor });
+			newContent.setArguments(bundle);
 			break;
 		case 16:
-			newContent = new OldPeopleSelfCare();			
+			newContent = new OldPeopleSelfCare();
 			break;
 		case 21:
 			newContent = new SevereMentalIllnessPatientInfoSupplementary();

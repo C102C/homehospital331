@@ -45,15 +45,23 @@ public class VistitList extends Fragment {
 	private static final int SAVE_ERROE = 0x13;
 	public static final String HANDLER = "Handler";
 
-	private Class<Activity> toActivity;
+	private Class<?> toActivity;
 	private String title;
 	private String[] cloumns;
+	public final static String TITLE = "title";
+	public final static String TO_CTIVITY = "toActivity";
+	public final static String CLOUMNS = "cloumns";
 
-	public void setPara(Class<Activity> toActivity, String title,
-			String[] cloumns) {
-		this.toActivity = toActivity;
-		this.cloumns = cloumns;
-		this.title = title;
+	@Override
+	public void setArguments(Bundle bundle) {
+		String className = (String) bundle.get(TO_CTIVITY);
+		try {
+			this.toActivity = (Class<?>) Class.forName(className);
+		} catch (ClassNotFoundException e) {
+			L.e("VistitList", e.toString());
+		}
+		this.title = bundle.getString(TITLE);
+		this.cloumns = (String[]) bundle.get(CLOUMNS);
 	}
 
 	private Handler handler = new Handler() {

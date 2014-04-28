@@ -111,7 +111,6 @@ public class DatabaseService {
 	private void insert(String insertSql, String[] insertValue) {
 		Log.i(TAG, insertSql + Arrays.toString(insertValue));
 		SQLiteDatabase insertDb = dbOpenHelper.getWritableDatabase();
-
 		try {
 			insertDb.execSQL(insertSql, insertValue);
 		} catch (Exception e) {
@@ -213,6 +212,7 @@ public class DatabaseService {
 				new String[] { value });
 		db.close();
 		L.i(TAG, "(update) raws:" + rows);
+
 	}
 
 	/***
