@@ -2,29 +2,25 @@ package com.health.archive.baby;
 
 import java.util.Map;
 
-import android.app.Activity;
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
 import cn.younext.R;
 
+import com.health.BaseActivity;
 import com.health.archive.VisitBaseActivity;
-import com.health.bluetooth.BluetoothListActivity;
 import com.health.database.DataOpenHelper;
 import com.health.database.DatabaseService;
 import com.health.database.Tables;
 import com.health.util.L;
 import com.health.util.T;
-import com.health.viewUtil.ChoiceEditText;
 
 /***
  * 新生儿家庭访视记录表
@@ -89,6 +85,7 @@ public class BabyHomeVistit extends VisitBaseActivity {
 	private void initView() {
 
 		setChoiceEditText();
+		setText(R.id.baby_name,BaseActivity.getUser().getName());
 		editHelpBtn = (Button) findViewById(R.id.edit_help_button);
 		saveBtn = (Button) findViewById(R.id.baby_title_btn);
 		saveBtn.setOnClickListener(new OnClickListener() {
@@ -180,77 +177,78 @@ public class BabyHomeVistit extends VisitBaseActivity {
 	 */
 	private void setChoiceEditText() {
 		// 母亲妊娠期患病情况
-		seChoiceEditText(R.id.baby_m_health,
+		setChoiceEditText(R.id.baby_m_health,
 				new String[] { "1糖尿病", "2妊娠期高血压" }, "3异常");
 		// 出生情况
-		seChoiceEditText(R.id.baby_birth_state, new String[] { "1顺产", "2胎头吸引",
+		setChoiceEditText(R.id.baby_birth_state, new String[] { "1顺产", "2胎头吸引",
 				"3产钳", "4剖宫", "5双多胎", "6臀位" }, "7其他");
 		// 新生儿窒息
-		seChoiceEditText(R.id.baby_apnea, new String[] { "1无", "2有" }, null);
+		setChoiceEditText(R.id.baby_apnea, new String[] { "1无", "2有" }, null);
 		// Apgar评分
-		seChoiceEditText(R.id.baby_apgar_score, new String[] { "1一分钟", " 2五分钟",
+		setChoiceEditText(R.id.baby_apgar_score, new String[] { "1一分钟", " 2五分钟",
 				"3不详" }, null);
 		// 是否有畸型
-		seChoiceEditText(R.id.baby_malformation, new String[] { "1无" }, "2有");
+		setChoiceEditText(R.id.baby_malformation, new String[] { "1无" }, "2有");
 		// 新生儿听力筛查
-		seChoiceEditText(R.id.baby_hearing_check, new String[] { "1通过",
+		setChoiceEditText(R.id.baby_hearing_check, new String[] { "1通过",
 				"2未通过 ", "3未筛查", "4不详" }, null);
 		// 新生儿疾病筛查
-		seChoiceEditText(R.id.baby_sick_check,
+		setChoiceEditText(R.id.baby_sick_check,
 				new String[] { "1甲低", "2 苯丙酮尿症" }, "3其他遗传代谢病");
 		// 喂养方式
-		seChoiceEditText(R.id.baby_nurse_pattern, new String[] { "1纯母乳", "2混合",
+		setChoiceEditText(R.id.baby_nurse_pattern, new String[] { "1纯母乳", "2混合",
 				"3人工" }, null);
 		// 呕吐
-		seChoiceEditText(R.id.baby_emesis, new String[] { "1 无", "2 有" }, null);
+		setChoiceEditText(R.id.baby_emesis, new String[] { "1 无", "2 有" }, null);
 		// 大便
-		seChoiceEditText(R.id.baby_excrement, new String[] { "1糊状", " 2 稀" },
+		setChoiceEditText(R.id.baby_excrement, new String[] { "1糊状", " 2 稀" },
 				null);
 		// 面色
-		seChoiceEditText(R.id.baby_complexion, new String[] { "1红润 ", "2黄染" },
+		setChoiceEditText(R.id.baby_complexion, new String[] { "1红润 ", "2黄染" },
 				"3其他");
 		// 黄疸部位
-		seChoiceEditText(R.id.baby_jaundice_part, new String[] { "1面部 ", "2躯干",
+		setChoiceEditText(R.id.baby_jaundice_part, new String[] { "1面部 ", "2躯干",
 				"3四肢", "4 手足" }, null);
 		// 前囟状况
-		seChoiceEditText(R.id.baby_bregma_state, new String[] { "1正常 ", "2膨隆",
+		setChoiceEditText(R.id.baby_bregma_state, new String[] { "1正常 ", "2膨隆",
 				"3凹陷 " }, "4其他");
 		// 眼外观
-		seChoiceEditText(R.id.baby_eye, new String[] { "1未见异常" }, "2异常");
+		setChoiceEditText(R.id.baby_eye, new String[] { "1未见异常" }, "2异常");
 		// 四肢活动度
-		seChoiceEditText(R.id.baby_limbs, new String[] { "1未见异常" }, "2异常");
+		setChoiceEditText(R.id.baby_limbs, new String[] { "1未见异常" }, "2异常");
 		// 耳外观
-		seChoiceEditText(R.id.baby_ear, new String[] { "1未见异常" }, "2异常");
+		setChoiceEditText(R.id.baby_ear, new String[] { "1未见异常" }, "2异常");
 		// 颈部包块
-		seChoiceEditText(R.id.baby_neck_block, new String[] { "1无" }, "2有");
+		setChoiceEditText(R.id.baby_neck_block, new String[] { "1无" }, "2有");
 		// 鼻
-		seChoiceEditText(R.id.baby_nose, new String[] { "1未见异常" }, "2异常");
+		setChoiceEditText(R.id.baby_nose, new String[] { "1未见异常" }, "2异常");
 		// 皮肤
-		seChoiceEditText(R.id.baby_skin,
+		setChoiceEditText(R.id.baby_skin,
 				new String[] { "1未见异常", "2湿疹", " 3糜烂" }, " 4其他");
 		// 口 腔
-		seChoiceEditText(R.id.baby_mouth, new String[] { "1未见异常" }, "2异常");
+		setChoiceEditText(R.id.baby_mouth, new String[] { "1未见异常" }, "2异常");
 		// 肛门
-		seChoiceEditText(R.id.baby_heart_hear, new String[] { "1未见异常" }, "2异常");
+		setChoiceEditText(R.id.baby_heart_hear, new String[] { "1未见异常" }, "2异常");
 		// 心肺听诊
-		seChoiceEditText(R.id.baby_anus, new String[] { "1未见异常" }, "2异常");
+		setChoiceEditText(R.id.baby_anus, new String[] { "1未见异常" }, "2异常");
 		// 外生殖器
-		seChoiceEditText(R.id.baby_externalia, new String[] { "1未见异常" }, "2异常");
+		setChoiceEditText(R.id.baby_externalia, new String[] { "1未见异常" }, "2异常");
 		// 腹部触诊
-		seChoiceEditText(R.id.baby_abdomen_touch, new String[] { "1未见异常" },
+		setChoiceEditText(R.id.baby_abdomen_touch, new String[] { "1未见异常" },
 				"2异常");
 		// 脊柱
-		seChoiceEditText(R.id.baby_spine, new String[] { "1未见异常" }, "2异常");
+		setChoiceEditText(R.id.baby_spine, new String[] { "1未见异常" }, "2异常");
 		// 脐带
-		seChoiceEditText(R.id.baby_funicle, new String[] { "1未脱", " 2脱落",
+		setChoiceEditText(R.id.baby_funicle, new String[] { "1未脱", " 2脱落",
 				" 3脐部有渗出" }, "4其他");
 		// 转诊建议
-		seChoiceEditText(R.id.baby_transfer_advise,
+		setChoiceEditText(R.id.baby_transfer_advise,
 				new String[] { "1无", "2有" }, null);
 		// 指导
-		seChoiceEditText(R.id.baby_guide, new String[] { "1喂养指导", "2发育指导",
+		setChoiceEditText(R.id.baby_guide, new String[] { "1喂养指导", "2发育指导",
 				" 3防病指导", "4预防伤害指导 ", "5口腔保健指导" }, null);
 	}
+	
 	
 
 }

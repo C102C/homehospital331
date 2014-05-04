@@ -13,6 +13,7 @@ import android.view.Window;
 import android.widget.Button;
 import cn.younext.R;
 
+import com.health.BaseActivity;
 import com.health.archive.VisitBaseActivity;
 import com.health.database.DataOpenHelper;
 import com.health.database.DatabaseService;
@@ -68,8 +69,8 @@ public class OneOldChilldVistit extends VisitBaseActivity {
 	}
 
 	private void initView() {
-
 		setChoiceEditText();
+		setText(R.id.oneold_name,BaseActivity.getUser().getName());
 		editHelpBtn = (Button) findViewById(R.id.edit_help_button);
 		saveBtn = (Button) findViewById(R.id.oneold_title_btn);
 		saveBtn.setOnClickListener(new OnClickListener() {
@@ -96,60 +97,60 @@ public class OneOldChilldVistit extends VisitBaseActivity {
 
 	private void setChoiceEditText() {
 		// 月龄
-		seChoiceEditText(R.id.oneold_age, new String[] { "满月", "3月龄", "6月龄",
+		setChoiceEditText(R.id.oneold_age, new String[] { "满月", "3月龄", "6月龄",
 				"8月龄" }, null);
 		// 面色情况
-		seChoiceEditText(R.id.oneold_face, new String[] { "1红润", "2黄染" }, "3其他");
+		setChoiceEditText(R.id.oneold_face, new String[] { "1红润", "2黄染" }, "3其他");
 		// 皮肤
-		seChoiceEditText(R.id.oneold_skin, new String[] { "1未见异常 " }, "2异常");
+		setChoiceEditText(R.id.oneold_skin, new String[] { "1未见异常 " }, "2异常");
 		// 前囟状况
-		seChoiceEditText(R.id.oneold_bregma_state,
+		setChoiceEditText(R.id.oneold_bregma_state,
 				new String[] { "1闭合", "2未闭" }, null);
 		// 颈部包块
-		seChoiceEditText(R.id.oneold_neck_block, new String[] { "有", "无" },
+		setChoiceEditText(R.id.oneold_neck_block, new String[] { "有", "无" },
 				null);
 		// 眼外观
-		seChoiceEditText(R.id.oneold_eye, new String[] { "1未见异常 " }, "2异常");
+		setChoiceEditText(R.id.oneold_eye, new String[] { "1未见异常 " }, "2异常");
 		// 耳外观
-		seChoiceEditText(R.id.oneold_ear, new String[] { "1未见异常 " }, "2异常");// 面色情况
+		setChoiceEditText(R.id.oneold_ear, new String[] { "1未见异常 " }, "2异常");// 面色情况
 		// 听力
-		seChoiceEditText(R.id.oneold_hear, new String[] { "1通过", "2未通过" }, null);
+		setChoiceEditText(R.id.oneold_hear, new String[] { "1通过", "2未通过" }, null);
 		// 口腔
-		seChoiceEditText(R.id.oneold_mouth, new String[] { "1未见异常" }, "2异常");
+		setChoiceEditText(R.id.oneold_mouth, new String[] { "1未见异常" }, "2异常");
 		// 心肺
-		seChoiceEditText(R.id.oneold_heart_hear, new String[] { "1未见异常" },
+		setChoiceEditText(R.id.oneold_heart_hear, new String[] { "1未见异常" },
 				"2异常");
 		// 腹部
-		seChoiceEditText(R.id.oneold_abdomen_touch, new String[] { "1未见异常" },
+		setChoiceEditText(R.id.oneold_abdomen_touch, new String[] { "1未见异常" },
 				"2异常");
 		// 脐部
-		seChoiceEditText(R.id.oneold_funicle, new String[] { "1未见异常" }, "2异常");
+		setChoiceEditText(R.id.oneold_funicle, new String[] { "1未见异常" }, "2异常");
 		// 四肢
-		seChoiceEditText(R.id.oneold_limbs, new String[] { "1未见异常" }, "2异常");
+		setChoiceEditText(R.id.oneold_limbs, new String[] { "1未见异常" }, "2异常");
 		// 可疑佝偻病症状
-		seChoiceEditText(R.id.oneold_rickets_sign, new String[] { "1无", "2夜惊",
+		setChoiceEditText(R.id.oneold_rickets_sign, new String[] { "1无", "2夜惊",
 				"3多汗", "4烦躁" }, null);
 
 		// 可疑佝偻病体征
-		seChoiceEditText(R.id.oneold_rickets_feature,
+		setChoiceEditText(R.id.oneold_rickets_feature,
 				new String[] { "1无", "2颅骨软化", "3方颅", "4枕秃", "5肋串珠", "6肋外翻",
 						"7肋软骨沟", "8鸡胸", "9手镯征" }, null);
 		// 肛门/外生殖器
-		seChoiceEditText(R.id.oneold_externalia, new String[] { "1未见异常" },
+		setChoiceEditText(R.id.oneold_externalia, new String[] { "1未见异常" },
 				"2异常");
 		// 发育评估growth_ assess
-		seChoiceEditText(R.id.oneold_growth_assess,
+		setChoiceEditText(R.id.oneold_growth_assess,
 				new String[] { "通过", "未通过" }, null);
 		// 两次随访间患病情况
-		seChoiceEditText(R.id.oneold_seak_state, new String[] { "1未患病" }, "2患病");
+		setChoiceEditText(R.id.oneold_seak_state, new String[] { "1未患病" }, "2患病");
 		// 转诊建议
-		seChoiceEditText(R.id.oneold_transfer_advise,
+		setChoiceEditText(R.id.oneold_transfer_advise,
 				new String[] { "1无", "2有" }, null);
 		// 指导
-		seChoiceEditText(R.id.oneold_guide, new String[] { "1科学喂养", "2生长发育",
+		setChoiceEditText(R.id.oneold_guide, new String[] { "1科学喂养", "2生长发育",
 				"3疾病预防", "4预防意外伤害", "5口腔保健" }, null);
 		// 中医健康管理
-		seChoiceEditText(R.id.oneold_TCM, new String[] { "1饮食调养指导", "2起居调摄指导",
+		setChoiceEditText(R.id.oneold_TCM, new String[] { "1饮食调养指导", "2起居调摄指导",
 				"3摩腹、捏脊", "4健康教育处方" }, null);
 	}
 

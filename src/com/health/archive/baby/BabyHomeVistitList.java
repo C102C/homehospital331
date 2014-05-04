@@ -109,8 +109,7 @@ public class BabyHomeVistitList extends Fragment {
 	private void jump(String sysId) {
 		Intent intent = new Intent(getActivity(), BabyHomeVistit.class);
 		intent.putExtra(BabyHomeVistit.SYS_ID, sysId);
-		// intent.putExtra(HANDLER, handler);
-
+		// intent.putExtra(HANDLER, handler);		
 		startActivityForResult(intent, BabyHomeVistit.REQUEST_FRESH);
 	}
 
@@ -155,7 +154,7 @@ public class BabyHomeVistitList extends Fragment {
 			String[] line = new String[3];
 			line[0] = getCursorString(cursor, DataOpenHelper.SYS_ID);
 			line[1] = getCursorString(cursor, BabyTable.visit_date);
-			line[2] = getCursorString(cursor, BabyTable.visite_doctor);
+			line[2] = getCursorString(cursor, BabyTable.visit_doctor);
 			content.add(line);
 		}
 		cursor.close();

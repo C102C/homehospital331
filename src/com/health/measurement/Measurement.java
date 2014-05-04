@@ -10,6 +10,7 @@ import android.widget.Button;
 import cn.younext.R;
 
 import com.health.BaseActivity;
+import com.krl.ui.MeasureOnKRLECG;
 
 public class Measurement extends BaseActivity {
 	Button homeButton;
@@ -59,13 +60,16 @@ public class Measurement extends BaseActivity {
 				Intent intent = new Intent();
 				if (v == homeButton) {
 					Measurement.this.finish();
-				} else if (v == bpButton || v == boBotton || v == tempButton
-						|| v == ecgButton) {
+				} else if (v == bpButton || v == boBotton || v == tempButton) {
 					intent.setClass(Measurement.this, MeasureOnPC300.class);
 					// intent.setClass(Measurement.this,
 					// MainActivity.class);
 					startActivityForResult(intent, 1);
+				} else if (v == ecgButton) {
+					intent.setClass(Measurement.this, MeasureOnKRLECG.class);
+					startActivityForResult(intent, 1);
 				} else if (v == handinputButton) {
+
 					intent.setClass(Measurement.this, HandInputMeasure.class);
 					intent.putExtra("userid", userid);
 					intent.putExtra("username", username);

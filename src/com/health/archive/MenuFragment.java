@@ -8,12 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import cn.younext.DatabaseHelper;
 import cn.younext.R;
 
-import com.health.archive.baby.BabyHomeVistitList;
+import com.health.archive.baby.BabyTable;
+import com.health.archive.baby.VistitList;
 import com.health.archive.baby.oneold.OneOldChildTable;
-import com.health.archive.baby.oneold.VistitList;
 import com.health.archive.vaccinate.Vaccinate;
 import com.health.database.DataOpenHelper;
 
@@ -56,12 +55,22 @@ public class MenuFragment extends ListFragment {
 			newContent = new Vaccinate();
 			break;
 		case 9:
-			newContent = new BabyHomeVistitList();
+			newContent = new VistitList();
+			bundle = new Bundle();
+			bundle.putString(VistitList.TITLE, "新生儿家庭访视记录表");
+			bundle.putString(VistitList.TABLES, BabyTable.baby_table);
+			bundle.putString(VistitList.TO_CTIVITY,
+					"com.health.archive.baby.BabyHomeVistit");
+			bundle.putStringArray(VistitList.CLOUMNS, new String[] {
+					DataOpenHelper.SYS_ID, BabyTable.visit_date,
+					BabyTable.visit_doctor });
+			newContent.setArguments(bundle);
 			break;
 		case 10:
 			newContent = new VistitList();
 			bundle = new Bundle();
 			bundle.putString(VistitList.TITLE, "1岁以内儿童健康检查记录表");
+			bundle.putString(VistitList.TABLES, OneOldChildTable.oneold_table);
 			bundle.putString(VistitList.TO_CTIVITY,
 					"com.health.archive.baby.oneold.OneOldChilldVistit");
 			bundle.putStringArray(VistitList.CLOUMNS, new String[] {

@@ -77,7 +77,7 @@ public class BabyTable {
 	public static final String visit_date = "visit_date";
 	public static final String next_place = "next_place";
 	public static final String next_date = "next_date";
-	public static final String visite_doctor = "visite_doctor";
+	public static final String visit_doctor = "visite_doctor";
 	public static final String baby_table = "baby_table";
 
 	public static final Map<String, Integer> cloumIdmap = Collections
@@ -144,7 +144,7 @@ public class BabyTable {
 					put(visit_date, R.id.baby_visit_date);
 					put(next_place, R.id.baby_next_place);
 					put(next_date, R.id.baby_next_date);
-					put(visite_doctor, R.id.baby_visite_doctor);
+					put(visit_doctor, R.id.baby_visite_doctor);
 				}
 				
 			});
@@ -216,7 +216,7 @@ public class BabyTable {
 		map.put(visit_date, "date");
 		map.put(next_place, "varchar(20)");
 		map.put(next_date, "date");
-		map.put(visite_doctor, "varchar(20)");
+		map.put(visit_doctor, "varchar(20)");
 		return map;
 	}
 }

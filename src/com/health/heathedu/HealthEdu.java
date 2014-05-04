@@ -3,6 +3,7 @@ package com.health.heathedu;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -15,11 +16,13 @@ import com.health.BaseActivity;
 
 public class HealthEdu extends BaseActivity {
 	@SuppressLint("SetJavaScriptEnabled")
+	private WebView webview;
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getWindow().requestFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.health_edu);
-		WebView webview = (WebView) findViewById(R.id.health_edu_webview);
+		webview = (WebView) findViewById(R.id.health_edu_webview);
 		webview.getSettings().setJavaScriptEnabled(true);
 		final ProgressBar mProgress = (ProgressBar) findViewById(R.id.progress_bar);
 		final Activity activity = this;
@@ -40,4 +43,13 @@ public class HealthEdu extends BaseActivity {
 		webview.loadUrl("http://www.nihe.org.cn/");
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+		if ((keyCode == KeyEvent.KEYCODE_BACK) && webview.canGoBack()) {
+			webview.goBack();
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
 }

@@ -1,0 +1,767 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/top_title_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bg_title_bar"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/title_bar_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="1岁以内儿童健康检查记录表"
+            android:textColor="#ffffff"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/oneold_title_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="修改" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/table_body_sv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_title_layout"
+        android:background="@color/shallow_blue"
+        android:fadeScrollbars="false"
+        android:orientation="vertical"
+        android:scrollbarStyle="outsideOverlay" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/right_blank_size"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" >
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="姓名:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/oneold_name"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/name"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/oneold_serial_id"
+                    android:text="编号:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/oneold_serial_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/archive_edit_bg"
+                    android:focusable="false"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="月龄:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/oneold_age"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="随访日期："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.util.DateEditText
+                    android:id="@+id/oneold_visit_date"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="体重（kg）:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/oneold_weight"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="身长（cm）："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/oneold_height"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="头围（cm）："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/oneold_head_circum"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="面色:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/oneold_face"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="皮肤："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/oneold_skin"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="前囟大小:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/oneold_bregma_size_a"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="cm × "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/oneold_bregma_size_b"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="cm"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="前囟状况："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/oneold_bregma_state"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="颈部包块:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/oneold_neck_block"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="眼外观:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/oneold_eye"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="耳外观："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/oneold_ear"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="听力"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/oneold_hear"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="口腔"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/oneold_mouth"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="phone"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="心肺:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/oneold_heart_hear"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="腹部"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/oneold_abdomen_touch"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="脐部:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/oneold_funicle"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="四肢："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/oneold_limbs"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="可疑佝偻病症状:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.MultiChoiceEditText
+                    android:id="@+id/oneold_rickets_sign"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="可疑佝偻病体征:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.MultiChoiceEditText
+                    android:id="@+id/oneold_rickets_feature"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="肛门/外生殖器："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/oneold_externalia"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="血红蛋白值(g/L):"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/oneold_HGB"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="户外活动(小时/日)："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/oneold_outdoor_hour"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="服用维生素D(IU/日):"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/oneold_v_d"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="发育评估："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/oneold_growth_assess"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="两次随访间患病情况："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/oneold_seak_state"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="转诊建议:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.SingleChoiceEditText
+                    android:id="@+id/oneold_transfer_advise"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="原因："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/oneold_transfer_reason"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="机构及科室："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/oneold_transfer_org"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="指导:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.MultiChoiceEditText
+                    android:id="@+id/oneold_guide"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="中医健康管理:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.viewUtil.MultiChoiceEditText
+                    android:id="@+id/oneold_TCM"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="下次随访日期:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <com.health.util.DateEditText
+                    android:id="@+id/oneold_next_date"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="随访医生签名："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+
+                <EditText
+                    android:id="@+id/oneold_visit_doctor"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/archive_edit_bg"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_3" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/edit_help_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/right_blank_size"
+        android:background="@android:color/transparent"
+        android:visibility="gone" />
+
+</RelativeLayout>

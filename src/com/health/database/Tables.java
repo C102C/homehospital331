@@ -128,6 +128,10 @@ public class Tables {
 	public static final String THIS_FOLLOWUP_CLASSIFICATION = "this_followup_classification";
 	public static final String NEXT_FOLLOWUP_DATE = "next_followup_date";
 	public static final String FOLLOWUP_DOCTOR_SIGNATURE = "followup_doctor_signature";
+
+	public static final String ECG_SRC = "ECG_SRC";
+
+	public static final String ECG_PDF = "ECG_PDF";
 	
 	
 

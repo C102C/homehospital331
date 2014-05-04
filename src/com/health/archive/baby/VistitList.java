@@ -1,4 +1,4 @@
-package com.health.archive.baby.oneold;
+package com.health.archive.baby;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +20,7 @@ import cn.younext.R;
 
 import com.health.archive.ArchiveMain;
 import com.health.archive.ArchiveMain.ActionBarEditable;
+import com.health.archive.baby.oneold.OneOldChildTable;
 import com.health.archive.VisitBaseActivity;
 import com.health.database.DataOpenHelper;
 import com.health.database.DatabaseService;
@@ -48,9 +49,11 @@ public class VistitList extends Fragment {
 	private Class<?> toActivity;
 	private String title;
 	private String[] cloumns;
+	private String table;
 	public final static String TITLE = "title";
 	public final static String TO_CTIVITY = "toActivity";
 	public final static String CLOUMNS = "cloumns";
+	public final static String TABLES = "tables";
 
 	@Override
 	public void setArguments(Bundle bundle) {
@@ -61,7 +64,8 @@ public class VistitList extends Fragment {
 			L.e("VistitList", e.toString());
 		}
 		this.title = bundle.getString(TITLE);
-		this.cloumns = (String[]) bundle.get(CLOUMNS);
+		this.cloumns = bundle.getStringArray(CLOUMNS);
+		this.table = bundle.getString(TABLES);
 	}
 
 	private Handler handler = new Handler() {
@@ -167,8 +171,8 @@ public class VistitList extends Fragment {
 	 */
 	private List<String[]> getFromDb() {
 		List<String[]> content = new ArrayList<String[]>();
-		Cursor cursor = dbService.query(OneOldChildTable.oneold_table,
-				OneOldChildTable.serial_id, Tables.getSerialId());
+		Cursor cursor = dbService.query(table, OneOldChildTable.serial_id,
+				Tables.getSerialId());
 		L.i("getFromDb cursor.getCount()", cursor.getCount() + "");
 		while (cursor.moveToNext()) {
 			String[] line = new String[3];

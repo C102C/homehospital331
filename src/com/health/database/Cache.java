@@ -35,6 +35,7 @@ public class Cache {
 	private static final String GROUP_ID = "group_id";
 	private static final String CONTAC_NAMES = "names";
 	private static final String CONTACT = "Contact";
+	public static final String KRLECG = "KRLECG";
 
 	Context context;
 	private SharedPreferences sharedPrefrences;

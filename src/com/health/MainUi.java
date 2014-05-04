@@ -115,8 +115,7 @@ public class MainUi extends BaseActivity {
 
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
-				// TODO Auto-generated method stub
-
+				
 			}
 
 		});
@@ -129,7 +128,6 @@ public class MainUi extends BaseActivity {
 		AlertDialog.Builder builder = new Builder(MainUi.this);
 		builder.setMessage("确认退出登录？");
 		builder.setTitle("提示");
-
 		builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
 
 			@Override
@@ -153,7 +151,6 @@ public class MainUi extends BaseActivity {
 
 	protected void onResume() {
 		super.onResume();
-
 	}
 
 	private long exitTime = 0;

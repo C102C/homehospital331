@@ -62,7 +62,7 @@ public class VisitBaseActivity extends Activity {
 		return cursor.getString(cursor.getColumnIndex(cloumn));
 	}
 
-	protected void seChoiceEditText(int id, String[] items, String editableItem) {
+	protected void setChoiceEditText(int id, String[] items, String editableItem) {
 		ChoiceEditText cet = (ChoiceEditText) findViewById(id);
 		cet.setFixItems(items);
 		if (editableItem != null)
